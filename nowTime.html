@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>現在時刻</title>
+</head>
+<body onload="start();">
+    <div>
+        <div id="myDay" align = center></div>
+        <div id="myClock" align = center style="color:black; font-size: 2em;"></div>
+    </div>
+
+    <script>
+        //今日の日付データを変数に格納
+        //変数は"today"とする
+        var today=new Date(); 
+
+        //年・月・日・曜日を取得
+        var year = today.getFullYear();
+        var month = today.getMonth()+1;
+        var week = today.getDay();
+        var day = today.getDate();
+
+        var week_ja= new Array("日","月","火","水","木","金","土");
+
+        //年・月・日・曜日を書き出す
+        document.getElementById('myDay').innerHTML = year+"年"+month+"月"+day+"日 "+week_ja[week]+"曜日";
+
+      function updateClock() {
+        var now = new Date();
+        var hour = now.getHours();
+        var minute = now.getMinutes();
+        var second = now.getSeconds();
+        if ( hour < 10 ) hour = "0" + hour;
+        if ( minute < 10 ) minute = "0" + minute;
+        if ( second < 10 ) second = "0" + second;
+        document.getElementById('myClock').innerHTML = hour+":"+minute+":"+second;
+      };
+      function start() {
+         setInterval("updateClock();", 1000);
+         updateClock();
+      }
+    </script>
+
+</body>
+</html>
