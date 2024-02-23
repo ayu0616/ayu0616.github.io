@@ -1,7 +1,5 @@
-export interface ButtonProps {
-    children?: React.ReactNode
-}
+export interface ButtonProps extends React.HTMLAttributes<HTMLButtonElement> {}
 
-export const Button = ({ children }: ButtonProps) => {
-    return <button className='shadow-md'>{children}</button>
+export const Button = ({ className, ...props }: ButtonProps) => {
+    return <button className={`${className} rounded-md`} {...props}></button>
 }
