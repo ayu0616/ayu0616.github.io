@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap'); /* BIZ UDPGothic をダウンロード */
+
+:root {
+    font-family: 'BIZ UDPGothic', sans-serif;
+    @apply bg-slate-50 text-gray-900;
+}
