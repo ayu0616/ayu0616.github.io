@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 
+import { SNSIconList } from '../components/SNSIcon/SNSIconList'
+
 export const Index = () => {
     return (
         <div>
@@ -15,6 +17,10 @@ export const Index = () => {
                     <Link to='/blog'>blog</Link>
                 </li>
             </ul>
+            <div>
+                links
+                <SNSIconList></SNSIconList>
+            </div>
         </div>
     )
 }
