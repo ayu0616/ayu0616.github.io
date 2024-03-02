@@ -1,25 +1,50 @@
 import { Link } from 'react-router-dom'
 
+import Icon from '../assets/icon.webp'
 import { SNSIconList } from '../components/SNSIcon/SNSIconList'
+
+const links = [
+    {
+        name: 'work',
+        path: '/work',
+    },
+    {
+        name: 'skill',
+        path: '/skill',
+    },
+    {
+        name: 'blog',
+        path: '/blog',
+    },
+] as const
 
 export const Index = () => {
     return (
-        <div>
-            <div>index</div>
-            <ul>
-                <li>
-                    <Link to='/work'>work</Link>
-                </li>
-                <li>
-                    <Link to='/skill'>skill</Link>
-                </li>
-                <li>
-                    <Link to='/blog'>blog</Link>
-                </li>
-            </ul>
+        <div className='flex h-dvh flex-col items-center gap-12 p-12 lg:flex-row'>
             <div>
-                links
-                <SNSIconList></SNSIconList>
+                <img
+                    alt='アイコン'
+                    className='aspect-square max-h-[50dvh] rounded-full drop-shadow-lg drag-none lg:max-h-none lg:max-w-[50dvw]'
+                    src={Icon}
+                />
+            </div>
+            <div className='grid flex-1 justify-center gap-8'>
+                <h1 className='text-2xl font-bold lg:text-3xl'>
+                    はっさくゼリー製造工場
+                </h1>
+                <ul className='list-inside list-disc space-y-2'>
+                    {links.map((link) => (
+                        <li
+                            key={link.name}
+                            className='underline-offset-1 hover:underline'
+                        >
+                            <Link to={link.path}>{link.name}</Link>
+                        </li>
+                    ))}
+                </ul>
+                <div>
+                    <SNSIconList></SNSIconList>
+                </div>
             </div>
         </div>
     )

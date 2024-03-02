@@ -22,12 +22,12 @@ export const AtCoder = ({ ...props }: AtCoderProps) => {
                     <>
                         <img
                             {...imgProps}
-                            className='absolute opacity-0 transition-opacity duration-500 group-hover:opacity-100'
+                            className='absolute opacity-0 transition-opacity duration-500 drag-none group-hover:opacity-100'
                             src='https://img.atcoder.jp/assets/top/img/logo_wh.svg'
                         />
                         <img
                             {...imgProps}
-                            className='absolute transition-opacity duration-500 group-hover:opacity-0'
+                            className='absolute transition-opacity duration-500 drag-none group-hover:opacity-0'
                             src='https://img.atcoder.jp/assets/top/img/logo_bk.svg'
                         />
                     </>
