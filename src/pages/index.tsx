@@ -24,7 +24,7 @@ export const Index = () => {
             <div>
                 <img
                     alt='アイコン'
-                    className='aspect-square max-h-[50dvh] rounded-full border-[max(1dvh,_1dvw)] border-emerald-800 drop-shadow-lg drag-none lg:max-h-none lg:max-w-[50dvw]'
+                    className='aspect-square max-h-[50dvh] rounded-full border-[max(1dvh,_1dvw)] border-emerald-800 drop-shadow-lg transition-transform duration-300 ease-in-out drag-none hover:scale-105 lg:max-h-none lg:max-w-[50dvw]'
                     src={Icon}
                 />
             </div>
