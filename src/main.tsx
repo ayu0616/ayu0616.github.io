@@ -9,6 +9,7 @@ import './index.css'
 import { Index } from './pages'
 import { Blog } from './pages/blog'
 import { Skill } from './pages/skill'
+import { SkillDetail } from './pages/skill/$skillName'
 import { Work } from './pages/work'
 
 library.add(fas)
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
     {
         element: <Skill />,
         path: '/skill',
+    },
+    {
+        element: <SkillDetail />,
+        path: '/skill/:skillName',
     },
     {
         element: <Blog />,

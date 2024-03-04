@@ -20,6 +20,9 @@ dependencies:
     '@mdx-js/rollup':
         specifier: ^3.0.1
         version: 3.0.1(rollup@4.12.0)
+    dayjs:
+        specifier: ^1.11.10
+        version: 1.11.10
     react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -2185,6 +2188,13 @@ packages:
                 integrity: sha512-ndfJ/JxxMd3nw31uyKoY2naivF+r29V+Lc0svZxe1JvvIRmi8hUsrMvdOwgS1o6uBHmiz91geQ0ylPP0aj1VUA==,
             }
         engines: { node: '>=12' }
+        dev: false
+
+    /dayjs@1.11.10:
+        resolution:
+            {
+                integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==,
+            }
         dev: false
 
     /debug@3.2.7:
