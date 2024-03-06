@@ -95,6 +95,18 @@ const _data = [
         logo: remixLogo,
         skillName: 'Remix',
     },
+    {
+        color: color.gray['400'],
+        dateRange: [dayjs('2022-10'), dateMax], // TODO: 要調査
+        logo: '', // TODO
+        skillName: 'Next.js',
+    },
+    {
+        color: color.sky['600'],
+        dateRange: [dayjs('2023-03'), dateMax], // TODO: 要調査
+        logo: '', // TODO
+        skillName: 'Docker',
+    },
 ] as const satisfies SkillDataInput[]
 
 const skillData = _data.map((d) => ({
