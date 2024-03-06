@@ -54,13 +54,13 @@ const _data = [
         skillName: 'C++',
     },
     {
-        color: color.blue['800'],
+        color: color.blue['600'],
         dateRange: [dayjs('2022-01'), dateMax],
         logo: tsLogo,
         skillName: 'TypeScript',
     },
     {
-        color: color.blue['600'],
+        color: color.blue['800'],
         dateRange: [dayjs('2022-04'), dayjs('2023-01')],
         logo: rLogo,
         skillName: 'R',

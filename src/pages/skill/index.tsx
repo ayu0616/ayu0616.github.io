@@ -36,11 +36,12 @@ export const Skill = () => {
                         type='category'
                         width={
                             8 *
-                            skillData.reduce(
-                                (prev, { skillName }) =>
-                                    Math.max(prev, charCount(skillName)),
-                                0,
-                            )
+                                skillData.reduce(
+                                    (prev, { skillName }) =>
+                                        Math.max(prev, charCount(skillName)),
+                                    0,
+                                ) +
+                            20
                         }
                     />
                     <Tooltip formatter={tooltipFormatter} />
@@ -51,8 +52,8 @@ export const Skill = () => {
                     >
                         {skillData.map(({ color, skillName }, i) => (
                             <Cell
-                                className='hover:opacity-80'
                                 key={i}
+                                className='hover:opacity-80'
                                 fill={color}
                                 onClick={() => {
                                     const url = `/skill/${skillName}`
