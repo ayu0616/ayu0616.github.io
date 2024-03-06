@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap'); /* BIZ UDPGothic をダウンロード */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    font-family: 'BIZ UDPGothic', sans-serif;
+    @apply bg-slate-50 text-gray-900;
+}
+
+@mixin bulletedList($nest_num: 5) {
+    &::before {
+        content: '•';
+        border: none;
+    }
+
+    ul li {
+        &::before {
+            content: '◦';
+            @apply ml-4;
+        }
+
+        ul li {
+            &::before {
+                content: '▪';
+                @apply ml-4;
+            }
+
+            ul li {
+                @if $nest_num > 0 {
+                    @include bulletedList($nest_num - 1);
+                }
+            }
+        }
+    }
+}
+
+ul li {
+    @include bulletedList(3);
+
+    &:not(:first-child) {
+        @apply mt-1;
+    }
+    li {
+        @apply mt-1;
+    }
+
+    &::before {
+        $size: calc(1rem / 3);
+        $mr: 0.5rem;
+
+        display: inline-block;
+        margin-right: $mr;
+
+        font-family: Arial;
+        font-size: 1.5rem;
+        @apply leading-6 md:leading-7;
+        vertical-align: middle;
+    }
+
+    span,
+    a {
+        vertical-align: middle;
+    }
+}

@@ -5,7 +5,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 
-import './index.css'
+import './index.scss'
 import { Index } from './pages'
 import { Blog } from './pages/blog'
 import { Skill } from './pages/skill'
