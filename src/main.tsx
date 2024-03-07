@@ -11,6 +11,7 @@ import { Blog } from './pages/blog'
 import { Skill } from './pages/skill'
 import { SkillDetail } from './pages/skill/$skillName'
 import { Work } from './pages/work'
+import { WorkDetail } from './pages/work/$slug'
 
 library.add(fas)
 library.add(fab)
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
     {
         element: <Work />,
         path: '/work',
+    },
+    {
+        element: <WorkDetail />,
+        path: '/work/:slug',
     },
     {
         element: <Skill />,
