@@ -32,7 +32,7 @@ export const Index = () => {
                 <h1 className='text-2xl font-bold lg:text-3xl'>
                     はっさくゼリー製造工場
                 </h1>
-                <ul className='list-inside list-disc space-y-2'>
+                <ul>
                     {links.map((link) => (
                         <li
                             key={link.name}
