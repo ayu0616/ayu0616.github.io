@@ -2,9 +2,11 @@ import dayjs, { Dayjs } from 'dayjs'
 import color from 'tailwindcss/colors'
 
 import cppLogo from '../assets/skillLogo/cpp.svg'
+import dockerLogo from '../assets/skillLogo/docker.svg'
 import htmlLogo from '../assets/skillLogo/html.svg'
 import javaLogo from '../assets/skillLogo/java.svg'
 import jsLogo from '../assets/skillLogo/js.svg'
+import nextjsLogo from '../assets/skillLogo/nextjs.svg'
 import pythonLogo from '../assets/skillLogo/python.svg'
 import rLogo from '../assets/skillLogo/r.svg'
 import reactLogo from '../assets/skillLogo/react.svg'
@@ -98,13 +100,13 @@ const _data = [
     {
         color: color.gray['400'],
         dateRange: [dayjs('2022-10'), dateMax], // TODO: 要調査
-        logo: '', // TODO
+        logo: nextjsLogo,
         skillName: 'Next.js',
     },
     {
         color: color.sky['600'],
         dateRange: [dayjs('2023-03'), dateMax], // TODO: 要調査
-        logo: '', // TODO
+        logo: dockerLogo,
         skillName: 'Docker',
     },
 ] as const satisfies SkillDataInput[]
