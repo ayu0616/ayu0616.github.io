@@ -1,8 +1,16 @@
+/** @type {import('eslint').Linter.Config} */
 module.exports = {
     extends: [
         'plugin:import/recommended',
         'plugin:import/warnings',
         'prettier',
+    ],
+    ignorePatterns: [
+        'node_modules/',
+        'dist/',
+        'build/',
+        'public/',
+        'pnpm-lock.yaml',
     ],
     parser: '@typescript-eslint/parser',
     plugins: ['typescript-sort-keys', 'sort-keys-fix', 'react'],
