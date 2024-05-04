@@ -10,9 +10,9 @@ import {
     YAxis,
 } from 'recharts'
 
+import Markdown from '../../components/Markdown/Markdown'
 import skillData, { dateMax } from '../../constant/skillData'
 import { charCount } from '../../util/charCount'
-import Description from './indexDescription.mdx'
 
 export const Skill = () => {
     const navigate = useNavigate()
@@ -20,7 +20,13 @@ export const Skill = () => {
     return (
         <div className='flex h-dvh w-dvw flex-col p-6'>
             <div className='space-y-2 rounded-md border bg-white p-4'>
-                <Description></Description>
+                <Markdown>{`# スキル
+
+-   軸
+    -   縦軸 ： スキル
+    -   横軸 ： スキルを使用していた期間
+-   棒グラフの棒をクリックすると、対応したスキルの詳細ページに遷移
+`}</Markdown>
             </div>
             <div className='flex-1'>
                 <ResponsiveContainer className={'px-8'} width={'100%'}>
