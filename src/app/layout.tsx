@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import './index.scss'
 
+export const dynamic = 'force-static'
+
 export const metadata: Metadata = {
     description: 'はっさくゼリー製造工場のポートフォリオサイト',
     title: 'はっさくゼリー製造工場',
