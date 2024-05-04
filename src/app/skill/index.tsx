@@ -1,5 +1,4 @@
 import dayjs from 'dayjs'
-import { useNavigate } from 'react-router-dom'
 import {
     Bar,
     BarChart,
@@ -13,9 +12,10 @@ import {
 import Markdown from '../../components/Markdown/Markdown'
 import skillData, { dateMax } from '../../constant/skillData'
 import { charCount } from '../../util/charCount'
+import { useRouter } from 'next/navigation'
 
 export const Skill = () => {
-    const navigate = useNavigate()
+    const router = useRouter()
 
     return (
         <div className='flex h-dvh w-dvw flex-col p-6'>
@@ -73,7 +73,7 @@ export const Skill = () => {
                                     fill={color}
                                     onClick={() => {
                                         const url = `/skill/${skillName}`
-                                        navigate(url)
+                                        router.push(url)
                                     }}
                                 ></Cell>
                             ))}

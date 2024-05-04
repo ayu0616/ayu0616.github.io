@@ -1,4 +1,5 @@
-import { useParams } from 'react-router-dom'
+import Image from 'next/image'
+import { useParams } from 'next/navigation'
 
 import skillData, { SkillName } from '../../constant/skillData'
 
@@ -16,10 +17,12 @@ export const SkillDetail = () => {
             </h1>
             <p>準備中</p>
             <div className='flex aspect-square h-16 w-16 items-center justify-center'>
-                <img
+                <Image
                     alt='logo'
-                    className='max-h-full max-w-full drag-none'
+                    className='drag-none max-h-full max-w-full'
+                    height={0}
                     src={skill.logo}
+                    width={0}
                 />
             </div>
         </div>
