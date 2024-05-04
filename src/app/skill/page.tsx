@@ -20,9 +20,9 @@ export default function Page() {
     const router = useRouter()
 
     return (
-        <div className='flex h-dvh w-dvw flex-col p-6'>
+        <div className='mx-auto flex h-dvh w-dvw max-w-screen-lg flex-col p-6'>
             <div className='space-y-2 rounded-md border bg-white p-4'>
-                <Markdown>{`# スキル
+                <Markdown>{`## スキル
 
 -   軸
     -   縦軸 ： スキル
@@ -31,7 +31,7 @@ export default function Page() {
 `}</Markdown>
             </div>
             <div className='flex-1'>
-                <ResponsiveContainer className={'px-8'} width={'100%'}>
+                <ResponsiveContainer className={'md:px-8'} width={'100%'}>
                     <BarChart
                         data={skillData}
                         height={250}
