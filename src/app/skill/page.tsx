@@ -1,4 +1,7 @@
+'use client'
+
 import dayjs from 'dayjs'
+import { useRouter } from 'next/navigation'
 import {
     Bar,
     BarChart,
@@ -9,12 +12,11 @@ import {
     YAxis,
 } from 'recharts'
 
-import Markdown from '../../components/Markdown/Markdown'
-import skillData, { dateMax } from '../../constant/skillData'
-import { charCount } from '../../util/charCount'
-import { useRouter } from 'next/navigation'
+import Markdown from '@/components/Markdown/Markdown'
+import skillData, { dateMax } from '@/constant/skillData'
+import { charCount } from '@/util/charCount'
 
-export const Skill = () => {
+export default function Page() {
     const router = useRouter()
 
     return (
@@ -66,13 +68,13 @@ export const Skill = () => {
                             dataKey='dateRangeNum'
                             fill='color'
                         >
-                            {skillData.map(({ color, skillName }, i) => (
+                            {skillData.map(({ color, id }, i) => (
                                 <Cell
                                     key={i}
                                     className='hover:opacity-80'
                                     fill={color}
                                     onClick={() => {
-                                        const url = `/skill/${skillName}`
+                                        const url = `/skill/${id}`
                                         router.push(url)
                                     }}
                                 ></Cell>
