@@ -1,4 +1,4 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FaGithub, FaInstagram, FaThreads } from 'react-icons/fa6'
 
 import { AtCoder } from './AtCoder'
 import { SNSIcon } from './SNSIcon'
@@ -16,9 +16,7 @@ export const SNSIconList = () => {
             />
             <SNSIcon
                 className={`hover:bg-gray-600 hover:outline-gray-700 ${className}`}
-                icon={
-                    <FontAwesomeIcon icon={['fab', 'github']}></FontAwesomeIcon>
-                }
+                icon={<FaGithub></FaGithub>}
                 link={'https://github.com/ayu0616'}
                 name={'github'}
             />
@@ -29,21 +27,13 @@ export const SNSIconList = () => {
             />
             <SNSIcon
                 className={`hover:bg-pink-500 hover:outline-pink-600 ${className}`}
-                icon={
-                    <FontAwesomeIcon
-                        icon={['fab', 'instagram']}
-                    ></FontAwesomeIcon>
-                }
+                icon={<FaInstagram></FaInstagram>}
                 link={'https://instagram.com/hassaku_0616'}
                 name={'instagram'}
             />
             <SNSIcon
                 className={`hover:bg-gray-600 hover:outline-gray-700 ${className}`}
-                icon={
-                    <FontAwesomeIcon
-                        icon={['fab', 'threads']}
-                    ></FontAwesomeIcon>
-                }
+                icon={<FaThreads></FaThreads>}
                 link={'https://threads.net/@hassaku_0616'}
                 name={'threads'}
             />

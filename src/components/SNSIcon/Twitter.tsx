@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
+import { FaTwitter, FaXTwitter } from 'react-icons/fa6'
 
 import { SNSIcon } from './SNSIcon'
 
@@ -28,14 +28,8 @@ export const Twitter = ({ className, ...props }: TwitterProps) => {
                 className={`${_className} ${className}`}
                 icon={
                     <>
-                        <FontAwesomeIcon
-                            className='absolute opacity-0 transition-opacity duration-500 group-data-[is-twitter="true"]:opacity-100'
-                            icon={['fab', 'twitter']}
-                        ></FontAwesomeIcon>
-                        <FontAwesomeIcon
-                            className='absolute opacity-0 transition-opacity duration-500 group-data-[is-twitter="false"]:opacity-100'
-                            icon={['fab', 'x-twitter']}
-                        ></FontAwesomeIcon>
+                        <FaTwitter className='absolute opacity-0 transition-opacity duration-500 group-data-[is-twitter="true"]:opacity-100'></FaTwitter>
+                        <FaXTwitter className='absolute opacity-0 transition-opacity duration-500 group-data-[is-twitter="false"]:opacity-100'></FaXTwitter>
                     </>
                 }
             ></SNSIcon>
