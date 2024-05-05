@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { redirect } from 'next/navigation'
 
 import skillData from '@/constant/skillData'
 
@@ -8,7 +9,7 @@ export default function Page({ params }: { params: { id: string } }) {
     const { id } = params
     const skill = skillData.find((s) => s.id === id)
     if (!skill) {
-        return <div>not found</div>
+        return redirect('/404')
     }
     return (
         <div className='flex h-dvh w-dvw flex-col items-center justify-center gap-6'>
