@@ -42,12 +42,13 @@ export default function Page() {
                 </h1>
                 <ul>
                     {links.map((link) => (
-                        <li
+                        <Link
                             key={link.name}
-                            className='decoration-solid decoration-1 underline-offset-4 hover:underline'
+                            className='decoration-1 underline-offset-2 hover:underline'
+                            href={link.path}
                         >
-                            <Link href={link.path}>{link.name}</Link>
-                        </li>
+                            <li>{link.name}</li>
+                        </Link>
                     ))}
                 </ul>
                 <div>
