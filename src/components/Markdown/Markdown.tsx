@@ -3,13 +3,23 @@ import ReactMarkdown from 'react-markdown'
 import remarkBreaks from 'remark-breaks'
 import remarkGfm from 'remark-gfm'
 
+import Code from './components/Code/Code'
+
 export interface MarkdownProps {
     children?: string
+    className?: string
+    id?: string
 }
 
-const Markdown: React.FC<MarkdownProps> = ({ children = '' }) => {
+export const BLOG_CONTENT_ID = 'blog-content'
+
+const Markdown: React.FC<MarkdownProps> = ({
+    children = '',
+    id,
+    className = '',
+}) => {
     return (
-        <div className='grid gap-4'>
+        <div className={['grid gap-4', className].join(' ')} id={id}>
             <ReactMarkdown
                 components={{
                     a: ({ children, href }) => (
@@ -28,10 +38,16 @@ const Markdown: React.FC<MarkdownProps> = ({ children = '' }) => {
                             {children}
                         </Link>
                     ),
+                    code: Code,
                     li: ({ children }) => (
                         <li className='flex'>
                             <div>{children}</div>
                         </li>
+                    ),
+                    pre: ({ children }) => (
+                        <pre className='has-[#toc]:whitespace-nowrap'>
+                            {children}
+                        </pre>
                     ),
                 }}
                 remarkPlugins={[remarkGfm, remarkBreaks]}

@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs'
 
-import Markdown from '@/components/Markdown/Markdown'
+import Markdown, { BLOG_CONTENT_ID } from '@/components/Markdown/Markdown'
 import blogPageInfo from '@/constant/blogPageInfo'
 
 interface Params {
@@ -41,7 +41,7 @@ export default function Page({ params }: { params: Params }) {
                     <div>公開日： {publishedAt.format('YYYY-MM-DD')}</div>
                 </div>
                 <hr className='my-4' />
-                <Markdown>{markdown}</Markdown>
+                <Markdown id={BLOG_CONTENT_ID}>{markdown}</Markdown>
             </div>
         </div>
     )
