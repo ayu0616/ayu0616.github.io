@@ -14,7 +14,7 @@ export default function Page() {
             <div className='aspect-square max-h-[50dvh] rounded-full lg:max-h-none lg:max-w-[50dvw]'>
                 <Image
                     alt='アイコン'
-                    className='drag-none rounded-full border-[max(1dvh,_1dvw)] border-emerald-800 drop-shadow-lg transition-transform duration-300 ease-in-out hover:scale-105'
+                    className='rounded-full border-[max(1dvh,_1dvw)] border-emerald-800 drop-shadow-lg transition-transform duration-300 ease-in-out hover:scale-105'
                     height={0}
                     src={Icon}
                     width={0}
