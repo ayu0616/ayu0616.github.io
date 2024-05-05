@@ -12,7 +12,7 @@ export default function Page({ params }: { params: { id: string } }) {
         return redirect('/404')
     }
     return (
-        <div className='flex h-dvh w-dvw flex-col items-center justify-center gap-6'>
+        <div className='flex h-full w-dvw flex-col items-center justify-center gap-6'>
             <h1 className='text-3xl font-bold' style={{ color: skill.color }}>
                 {skill.skillName}
             </h1>

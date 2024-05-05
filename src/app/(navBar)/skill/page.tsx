@@ -20,7 +20,7 @@ export default function Page() {
     const router = useRouter()
 
     return (
-        <div className='mx-auto flex h-dvh w-dvw max-w-screen-lg flex-col p-6'>
+        <div className='mx-auto flex h-full w-dvw max-w-screen-lg flex-col p-6'>
             <div className='space-y-2 rounded-md border bg-white p-4'>
                 <Markdown>{`## スキル
 
