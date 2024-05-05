@@ -3,26 +3,10 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { basePath } from '../../next.config'
+import pages from '@/constant/pages'
+
 import Icon from '../../public/icon.webp'
 import { SNSIconList } from '../components/SNSIcon/SNSIconList'
-
-const BASE_PATH = basePath ? basePath : ''
-
-const links = [
-    {
-        name: 'work',
-        path: '/work',
-    },
-    {
-        name: 'skill',
-        path: '/skill',
-    },
-    {
-        name: 'blog',
-        path: '/blog',
-    },
-] as const
 
 export default function Page() {
     return (
@@ -40,17 +24,20 @@ export default function Page() {
                 <h1 className='text-2xl font-bold lg:text-3xl'>
                     はっさくゼリー製造工場
                 </h1>
-                <ul>
-                    {links.map((link) => (
-                        <Link
-                            key={link.name}
-                            className='decoration-1 underline-offset-2 hover:underline'
-                            href={link.path}
-                        >
-                            <li>{link.name}</li>
-                        </Link>
-                    ))}
-                </ul>
+                <div>
+                    {pages
+                        .filter(({ path }) => path !== '/')
+                        .map((page) => (
+                            <Link
+                                key={page.name}
+                                className='flex items-center gap-2 rounded px-2 py-1 text-lg underline underline-offset-4 transition-colors hover:bg-slate-100'
+                                href={page.path}
+                            >
+                                {page.icon}
+                                <span>{page.name}</span>
+                            </Link>
+                        ))}
+                </div>
                 <div>
                     <SNSIconList></SNSIconList>
                 </div>

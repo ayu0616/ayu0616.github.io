@@ -1,27 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { FaHome } from 'react-icons/fa'
-import { FaCode, FaPencil, FaWandMagicSparkles } from 'react-icons/fa6'
 
 import Icon from '@/../public/icon.webp'
 import NavLink from '@/components/Link/NavLink'
-
-interface PageInfo {
-    icon: JSX.Element
-    name: string
-    path: string
-}
-
-const pages = [
-    { icon: <FaHome></FaHome>, name: 'Home', path: '/' },
-    { icon: <FaCode></FaCode>, name: 'Skill', path: '/skill' },
-    {
-        icon: <FaWandMagicSparkles></FaWandMagicSparkles>,
-        name: 'Work',
-        path: '/work',
-    },
-    { icon: <FaPencil></FaPencil>, name: 'Blog', path: '/blog' },
-] satisfies PageInfo[]
+import pages from '@/constant/pages'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
