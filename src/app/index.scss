@@ -49,16 +49,20 @@ img {
         border: none;
     }
 
-    ul li {
-        &::before {
-            content: '◦';
-            @apply ml-4;
+    ul {
+        @apply ml-6;
+        li {
+            &::before {
+                content: '◦';
+            }
         }
 
-        ul li {
-            &::before {
-                content: '▪';
-                @apply ml-4;
+        ul {
+            @apply ml-6;
+            li {
+                &::before {
+                    content: '▪';
+                }
             }
 
             ul li {
