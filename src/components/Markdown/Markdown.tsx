@@ -1,4 +1,5 @@
 import ReactMarkdown from 'react-markdown'
+import remarkBreaks from 'remark-breaks'
 import remarkGfm from 'remark-gfm'
 
 export interface MarkdownProps {
@@ -7,9 +8,14 @@ export interface MarkdownProps {
 
 const Markdown: React.FC<MarkdownProps> = ({ children = '' }) => {
     return (
-        <ReactMarkdown components={{}} remarkPlugins={[remarkGfm]}>
-            {children}
-        </ReactMarkdown>
+        <div className='grid gap-4'>
+            <ReactMarkdown
+                components={{}}
+                remarkPlugins={[remarkGfm, remarkBreaks]}
+            >
+                {children}
+            </ReactMarkdown>
+        </div>
     )
 }
 
