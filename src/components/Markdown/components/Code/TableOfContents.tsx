@@ -32,7 +32,16 @@ const TableOfContents = ({ children, ...props }: TableOfContentsProps) => {
         setToc(tocList.join('\n'))
         console.log(tocList)
     }, [])
-    return <Markdown id='toc'>{toc}</Markdown>
+    return (
+        <div className='mx-auto w-fit space-y-4 rounded-md border border-emerald-800'>
+            <div className='rounded-t-md bg-emerald-800 p-2 text-center text-lg text-white'>
+                Contents
+            </div>
+            <Markdown className='p-4 pt-0' id='toc'>
+                {toc}
+            </Markdown>
+        </div>
+    )
 }
 
 export default TableOfContents
