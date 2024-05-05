@@ -34,13 +34,15 @@ export default function Page({ params }: { params: Params }) {
     const { tags, publishedAt } = blogPageInfo[slug]
     const markdown = getMarkdown(slug)
     return (
-        <div className='mx-auto mt-6 max-w-screen-lg rounded-lg border bg-white p-4'>
-            <div>
-                <div>タグ： {tags.join(' ')}</div>
-                <div>公開日： {publishedAt.format('YYYY-MM-DD')}</div>
+        <div className='p-4 md:p-6'>
+            <div className='mx-auto max-w-screen-lg rounded-lg border bg-white p-4'>
+                <div>
+                    <div>タグ： {tags.join(' ')}</div>
+                    <div>公開日： {publishedAt.format('YYYY-MM-DD')}</div>
+                </div>
+                <hr className='my-4' />
+                <Markdown>{markdown}</Markdown>
             </div>
-            <hr className='my-4' />
-            <Markdown>{markdown}</Markdown>
         </div>
     )
 }

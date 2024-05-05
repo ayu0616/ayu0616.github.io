@@ -15,18 +15,20 @@ const pageList: PageListItem[] = Object.keys(blogPageInfo)
 
 export default function Page() {
     return (
-        <div className='mx-auto mt-8 grid max-w-screen-lg'>
-            {pageList.map((page) => (
-                <Link key={page.slug} href={`/blog/${page.slug}`}>
-                    <div className='rounded-md bg-white p-4 shadow'>
-                        <h3>{page.title}</h3>
-                        <div>タグ： {page.tags.join(' ')}</div>
-                        <div>
-                            公開日： {page.publishedAt.format('YYYY-MM-DD')}
+        <div className='p-4 md:p-6'>
+            <div className='mx-auto grid max-w-screen-lg gap-2'>
+                {pageList.map((page) => (
+                    <Link key={page.slug} href={`/blog/${page.slug}`}>
+                        <div className='rounded-md bg-white p-4 shadow'>
+                            <h3>{page.title}</h3>
+                            <div>タグ： {page.tags.join(' ')}</div>
+                            <div>
+                                公開日： {page.publishedAt.format('YYYY-MM-DD')}
+                            </div>
                         </div>
-                    </div>
-                </Link>
-            ))}
+                    </Link>
+                ))}
+            </div>
         </div>
     )
 }
