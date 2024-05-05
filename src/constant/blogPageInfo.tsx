@@ -7,7 +7,7 @@ interface BlogPageInfoItemBefore {
     modified: string
     published: boolean
     publishedAt: string
-    tags: string[]
+    tags: string[] | null
     title: string
 }
 
@@ -15,6 +15,7 @@ interface BlogPageInfoItemChangeTarget {
     created: Dayjs
     modified: Dayjs
     publishedAt: Dayjs
+    tags: string[]
 }
 
 export type BlogPageInfoItem = Omit<
@@ -31,6 +32,7 @@ const convertPageInfo = (
         created: dayjs(pageInfoItem.created),
         modified: dayjs(pageInfoItem.modified),
         publishedAt: dayjs(pageInfoItem.publishedAt),
+        tags: pageInfoItem.tags || [],
     }
 }
 
