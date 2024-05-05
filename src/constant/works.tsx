@@ -11,3 +11,6 @@ export const works = {
         title: 'ボジョレー・ヌーヴォー エセソムリエ生成器',
     },
 } as const satisfies { [key: string]: Work }
+
+export const isWorkKey = (key: string): key is keyof typeof works =>
+    key in works
