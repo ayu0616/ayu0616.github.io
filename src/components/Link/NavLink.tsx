@@ -18,7 +18,7 @@ const NavLink: React.FC<NavLinkProps> = ({
     const pathName = usePathname()
     const { href } = props
     const isActive = useMemo(() => {
-        if (!href) return false
+        if (!href || !pathName) return false
         if (typeof href === 'string') {
             if (href === '/') return pathName === '/'
             return pathName.startsWith(href)
