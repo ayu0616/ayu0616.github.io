@@ -19,7 +19,7 @@ const Markdown: React.FC<MarkdownProps> = ({
     className = '',
 }) => {
     return (
-        <div className={['grid gap-4', className].join(' ')} id={id}>
+        <div className={['grid gap-8', className].join(' ')} id={id}>
             <ReactMarkdown
                 components={{
                     a: ({ children, href }) => (

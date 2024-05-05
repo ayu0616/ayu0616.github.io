@@ -35,7 +35,7 @@ export default function Page({ params }: { params: Params }) {
     const markdown = getMarkdown(slug)
     return (
         <div className='p-4 md:p-6'>
-            <div className='mx-auto max-w-screen-lg rounded-lg border bg-white p-4'>
+            <div className='mx-auto max-w-screen-lg rounded-lg border bg-white px-8 py-4 md:px-12 md:py-8'>
                 <div>
                     <div>タグ： {tags.join(' ')}</div>
                     <div>公開日： {publishedAt.format('YYYY-MM-DD')}</div>
