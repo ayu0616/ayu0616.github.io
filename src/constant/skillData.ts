@@ -18,12 +18,14 @@ import vueLogo from '../assets/skillLogo/vue.svg'
 interface SkillDataInput {
     color: string
     dateRange: [Dayjs, Dayjs]
+    id?: string
     logo: string
     skillName: string
 }
 
 interface SkillData extends SkillDataInput {
     dateRangeNum: [number, number]
+    id: string
 }
 
 export type SkillName = (typeof skillData)[number]['skillName']
@@ -34,6 +36,7 @@ const _data = [
     {
         color: color.red['600'],
         dateRange: [dayjs('2021-03'), dateMax],
+        id: 'HTML-CSS',
         logo: htmlLogo,
         skillName: 'HTML・CSS',
     },
@@ -52,6 +55,7 @@ const _data = [
     {
         color: color.violet['600'],
         dateRange: [dayjs('2023-03'), dateMax],
+        id: 'Cpp',
         logo: cppLogo,
         skillName: 'C++',
     },
@@ -109,11 +113,12 @@ const _data = [
         logo: dockerLogo,
         skillName: 'Docker',
     },
-] as const satisfies SkillDataInput[]
+] satisfies SkillDataInput[]
 
 const skillData = _data.map((d) => ({
     ...d,
     dateRangeNum: d.dateRange.map((date) => date.valueOf()) as [number, number],
+    id: d.id ?? d.skillName,
 })) satisfies SkillData[]
 
 skillData.sort((a, b) => {

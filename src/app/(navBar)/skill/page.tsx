@@ -1,5 +1,7 @@
+'use client'
+
 import dayjs from 'dayjs'
-import { useNavigate } from 'react-router-dom'
+import { useRouter } from 'next/navigation'
 import {
     Bar,
     BarChart,
@@ -10,20 +12,26 @@ import {
     YAxis,
 } from 'recharts'
 
-import skillData, { dateMax } from '../../constant/skillData'
-import { charCount } from '../../util/charCount'
-import Description from './indexDescription.mdx'
+import Markdown from '@/components/Markdown/Markdown'
+import skillData, { dateMax } from '@/constant/skillData'
+import { charCount } from '@/util/charCount'
 
-export const Skill = () => {
-    const navigate = useNavigate()
+export default function Page() {
+    const router = useRouter()
 
     return (
-        <div className='flex h-dvh w-dvw flex-col p-6'>
+        <div className='mx-auto flex h-full w-dvw max-w-screen-lg flex-col gap-4 p-6'>
             <div className='space-y-2 rounded-md border bg-white p-4'>
-                <Description></Description>
+                <Markdown>{`## スキル
+
+-   軸
+    -   縦軸 ： スキル
+    -   横軸 ： スキルを使用していた期間
+-   棒グラフの棒をクリックすると、対応したスキルの詳細ページに遷移
+`}</Markdown>
             </div>
-            <div className='flex-1'>
-                <ResponsiveContainer className={'px-8'} width={'100%'}>
+            <div className='flex-1 rounded-md border bg-white'>
+                <ResponsiveContainer className={'md:px-8'} width={'100%'}>
                     <BarChart
                         data={skillData}
                         height={250}
@@ -60,14 +68,14 @@ export const Skill = () => {
                             dataKey='dateRangeNum'
                             fill='color'
                         >
-                            {skillData.map(({ color, skillName }, i) => (
+                            {skillData.map(({ color, id }, i) => (
                                 <Cell
                                     key={i}
                                     className='hover:opacity-80'
                                     fill={color}
                                     onClick={() => {
-                                        const url = `/skill/${skillName}`
-                                        navigate(url)
+                                        const url = `/skill/${id}`
+                                        router.push(url)
                                     }}
                                 ></Cell>
                             ))}
