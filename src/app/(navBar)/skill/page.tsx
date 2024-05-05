@@ -20,7 +20,7 @@ export default function Page() {
     const router = useRouter()
 
     return (
-        <div className='mx-auto flex h-full w-dvw max-w-screen-lg flex-col p-6'>
+        <div className='mx-auto flex h-full w-dvw max-w-screen-lg flex-col gap-4 p-6'>
             <div className='space-y-2 rounded-md border bg-white p-4'>
                 <Markdown>{`## スキル
 
@@ -30,7 +30,7 @@ export default function Page() {
 -   棒グラフの棒をクリックすると、対応したスキルの詳細ページに遷移
 `}</Markdown>
             </div>
-            <div className='flex-1'>
+            <div className='flex-1 rounded-md border bg-white'>
                 <ResponsiveContainer className={'md:px-8'} width={'100%'}>
                     <BarChart
                         data={skillData}
