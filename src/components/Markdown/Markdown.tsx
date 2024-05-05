@@ -10,7 +10,13 @@ const Markdown: React.FC<MarkdownProps> = ({ children = '' }) => {
     return (
         <div className='grid gap-4'>
             <ReactMarkdown
-                components={{}}
+                components={{
+                    li: ({ children }) => (
+                        <li className='flex'>
+                            <div>{children}</div>
+                        </li>
+                    ),
+                }}
                 remarkPlugins={[remarkGfm, remarkBreaks]}
             >
                 {children}
