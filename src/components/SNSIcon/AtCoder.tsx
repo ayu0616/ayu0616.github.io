@@ -1,6 +1,9 @@
 /* eslint-disable jsx-a11y/alt-text */ // altを別の場所で設定しているため
 import Image, { ImageProps } from 'next/image'
 
+import AtCoderIconBlack from '@/assets/atcoder/atcoder-black.png'
+import AtCoderIconWhite from '@/assets/atcoder/atcoder-white.png'
+
 import { SNSIcon } from './SNSIcon'
 
 export interface AtCoderProps {
@@ -24,12 +27,12 @@ export const AtCoder = ({ ...props }: AtCoderProps) => {
                         <Image
                             {...imgProps}
                             className='drag-none absolute opacity-0 transition-opacity duration-500 group-hover:opacity-100'
-                            src='https://img.atcoder.jp/assets/top/img/logo_wh.svg'
+                            src={AtCoderIconWhite}
                         />
                         <Image
                             {...imgProps}
                             className='drag-none absolute transition-opacity duration-500 group-hover:opacity-0'
-                            src='https://img.atcoder.jp/assets/top/img/logo_bk.svg'
+                            src={AtCoderIconBlack}
                         />
                     </>
                 }
