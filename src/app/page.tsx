@@ -44,7 +44,7 @@ export default function Page() {
                     {links.map((link) => (
                         <li
                             key={link.name}
-                            className='underline-offset-1 hover:underline'
+                            className='decoration-solid decoration-1 underline-offset-4 hover:underline'
                         >
                             <Link href={link.path}>{link.name}</Link>
                         </li>
