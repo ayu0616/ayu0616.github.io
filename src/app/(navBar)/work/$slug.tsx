@@ -1,6 +1,6 @@
 import { useParams } from 'next/navigation'
 
-import { works } from '../../constant/works'
+import { works } from '../../../constant/works'
 
 export const WorkDetail = () => {
     const param = useParams<{ slug: keyof typeof works }>()

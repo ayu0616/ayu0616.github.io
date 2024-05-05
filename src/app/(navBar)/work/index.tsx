@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { works } from '../../constant/works'
+import { works } from '../../../constant/works'
 
 export const Work = () => {
     return (
