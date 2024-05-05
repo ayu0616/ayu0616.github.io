@@ -1,4 +1,8 @@
-import { ComponentProps } from 'react'
+/* eslint-disable jsx-a11y/alt-text */ // altを別の場所で設定しているため
+import Image, { ImageProps } from 'next/image'
+
+import AtCoderIconBlack from '@/assets/atcoder/atcoder-black.png'
+import AtCoderIconWhite from '@/assets/atcoder/atcoder-white.png'
 
 import { SNSIcon } from './SNSIcon'
 
@@ -9,26 +13,26 @@ export interface AtCoderProps {
 }
 
 export const AtCoder = ({ ...props }: AtCoderProps) => {
-    const imgProps: ComponentProps<'img'> = {
+    const imgProps = {
         alt: 'atcoder',
         height: 20,
         width: 20,
-    }
+    } satisfies Partial<ImageProps>
     return (
         <div className='group rounded-full'>
             <SNSIcon
                 {...props}
                 icon={
                     <>
-                        <img
+                        <Image
                             {...imgProps}
-                            className='absolute opacity-0 transition-opacity duration-500 drag-none group-hover:opacity-100'
-                            src='https://img.atcoder.jp/assets/top/img/logo_wh.svg'
+                            className='drag-none absolute opacity-0 transition-opacity duration-500 group-hover:opacity-100'
+                            src={AtCoderIconWhite}
                         />
-                        <img
+                        <Image
                             {...imgProps}
-                            className='absolute transition-opacity duration-500 drag-none group-hover:opacity-0'
-                            src='https://img.atcoder.jp/assets/top/img/logo_bk.svg'
+                            className='drag-none absolute transition-opacity duration-500 group-hover:opacity-0'
+                            src={AtCoderIconBlack}
                         />
                     </>
                 }
