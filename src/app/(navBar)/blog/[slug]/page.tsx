@@ -41,7 +41,9 @@ export default function Page({ params }: { params: Params }) {
                     <div>公開日： {publishedAt.format('YYYY-MM-DD')}</div>
                 </div>
                 <hr className='my-4' />
-                <Markdown id={BLOG_CONTENT_ID}>{markdown}</Markdown>
+                <Markdown slug={slug} id={BLOG_CONTENT_ID}>
+                    {markdown}
+                </Markdown>
             </div>
         </div>
     )

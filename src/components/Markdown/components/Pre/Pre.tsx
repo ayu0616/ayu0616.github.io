@@ -3,9 +3,11 @@ import { ComponentProps, ComponentPropsWithoutRef } from 'react'
 import CodeBlock from './CodeBlock'
 import TableOfContents from './TableOfContents'
 
-interface PreProps extends ComponentPropsWithoutRef<'pre'> {}
+interface PreProps extends ComponentPropsWithoutRef<'pre'> {
+    slug?: string
+}
 
-const Pre = ({ ...props }: PreProps) => {
+const Pre = ({ slug, ...props }: PreProps) => {
     const { children } = props
     if (!children || typeof children !== 'object') {
         return <>{props.children}</>
@@ -23,7 +25,7 @@ const Pre = ({ ...props }: PreProps) => {
             ?.replace('language-', '') ?? ''
     switch (lang) {
         case 'table-of-contents': {
-            return <TableOfContents {...props} />
+            return <TableOfContents slug={slug} {...props} />
         }
         default: {
             const code =
