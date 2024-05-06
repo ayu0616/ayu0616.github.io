@@ -4,6 +4,10 @@ import _pageInfoBefore from '@/../blog-contents/page-info.json'
 
 interface BlogPageInfoItemBefore {
     created: string
+    headings: {
+        level: number
+        title: string
+    }[]
     modified: string
     published: boolean
     publishedAt: string

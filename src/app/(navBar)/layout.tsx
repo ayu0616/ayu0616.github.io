@@ -32,7 +32,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     ))}
                 </div>
             </nav>
-            <div className='flex-1 overflow-y-auto'>{children}</div>
+            <div className='flex-1 overflow-y-auto scroll-smooth'>
+                {children}
+            </div>
         </div>
     )
 }
