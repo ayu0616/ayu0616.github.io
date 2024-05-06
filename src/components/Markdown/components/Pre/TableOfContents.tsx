@@ -11,7 +11,7 @@ export interface TableOfContentsProps {
 const headingNumList = [2, 3, 4, 5, 6] as const
 
 const TableOfContents = ({ children, ...props }: TableOfContentsProps) => {
-    const [toc, setToc] = useState<string>('')
+    const [toc, setToc] = useState<string>('Loading...')
     useEffect(() => {
         const mdElem = document.getElementById(BLOG_CONTENT_ID)
         if (!mdElem) return
@@ -37,7 +37,7 @@ const TableOfContents = ({ children, ...props }: TableOfContentsProps) => {
                 Contents
             </div>
             <Markdown className='p-4 pt-0' id='toc'>
-                {toc}
+                {toc || '目次なし'}
             </Markdown>
         </div>
     )
