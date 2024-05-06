@@ -23,7 +23,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({ language, children = '' }) => {
         setTimeout(() => setButtonText(language ?? 'text'), 2000)
     }
     return (
-        <div className='relative rounded-md drop-shadow-md'>
+        <div className='relative w-full overflow-x-auto rounded-md drop-shadow-md'>
             <button
                 className='absolute right-0 top-0 rounded-bl-md rounded-tr-md bg-white px-2 py-1 text-sm hover:bg-slate-100'
                 onClick={handleCopy}
@@ -32,7 +32,10 @@ const CodeBlock: React.FC<CodeBlockProps> = ({ language, children = '' }) => {
             </button>
             <SyntaxHighlighter
                 showLineNumbers
-                customStyle={{ borderRadius: '0.375rem', marginTop: 0 }}
+                customStyle={{
+                    borderRadius: '0.375rem',
+                    marginTop: 0,
+                }}
                 language={language}
                 style={vscDarkPlus}
             >
