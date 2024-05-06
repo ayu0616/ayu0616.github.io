@@ -3,7 +3,7 @@ import ReactMarkdown from 'react-markdown'
 import remarkBreaks from 'remark-breaks'
 import remarkGfm from 'remark-gfm'
 
-import Code from './components/Code/Code'
+import Pre from './components/Pre/Pre'
 
 export interface MarkdownProps {
     children?: string
@@ -38,17 +38,13 @@ const Markdown: React.FC<MarkdownProps> = ({
                             {children}
                         </Link>
                     ),
-                    code: Code,
+                    // code: Code,
                     li: ({ children }) => (
                         <li className='flex'>
                             <div>{children}</div>
                         </li>
                     ),
-                    pre: ({ children }) => (
-                        <pre className='has-[#toc]:whitespace-nowrap'>
-                            {children}
-                        </pre>
-                    ),
+                    pre: Pre,
                 }}
                 remarkPlugins={[remarkGfm, remarkBreaks]}
             >
