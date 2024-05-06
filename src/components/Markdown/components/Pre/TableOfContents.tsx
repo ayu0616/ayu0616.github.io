@@ -30,7 +30,6 @@ const TableOfContents = ({ children, ...props }: TableOfContentsProps) => {
             )
         })
         setToc(tocList.join('\n'))
-        console.log(tocList)
     }, [])
     return (
         <div className='mx-auto w-fit space-y-4 rounded-md border border-emerald-800'>
