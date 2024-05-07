@@ -1,3 +1,5 @@
+import { GoogleAnalytics } from '@next/third-parties/google'
+
 import Icon from '@/../public/icon.webp'
 
 import type { Metadata } from 'next'
@@ -19,6 +21,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang='ja'>
+            <head>
+                <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID ?? ''} />
+            </head>
             <body>{children}</body>
         </html>
     )
