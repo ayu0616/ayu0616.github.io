@@ -32,6 +32,8 @@ const getPageListByTag = (tag: string): PageListItem[] => {
 export default function Page({ params }: { params: Params }) {
     const tag = decodeURI(params.tag)
     const pageList = getPageListByTag(tag)
+
+    // TODO: [slug]/page.tsxと共通化
     return (
         <div className='p-4 md:p-6'>
             <div className='mx-auto grid max-w-screen-lg gap-2'>
