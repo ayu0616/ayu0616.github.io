@@ -1,6 +1,7 @@
 import { ComponentProps, ComponentPropsWithoutRef } from 'react'
 
-import CodeBlock from './CodeBlock'
+import CodeBlock from './Embed/CodeBlock'
+import Embed from './Embed'
 import TableOfContents from './TableOfContents'
 
 interface PreProps extends ComponentPropsWithoutRef<'pre'> {
@@ -26,6 +27,11 @@ const Pre = ({ slug, ...props }: PreProps) => {
     switch (lang) {
         case 'table-of-contents': {
             return <TableOfContents slug={slug} {...props} />
+        }
+        case 'embed': {
+            const optionStr =
+                'children' in childProps ? String(childProps.children) : ''
+            return <Embed optionStr={optionStr} />
         }
         default: {
             const code =
