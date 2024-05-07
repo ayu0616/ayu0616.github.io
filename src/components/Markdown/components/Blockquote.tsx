@@ -9,7 +9,6 @@ const Blockquote: React.FC<BlockquoteProps> = (props) => {
     const ref = createRef<HTMLQuoteElement>()
     useEffect(() => {
         if (isTwitter) {
-            // @ts-expect-error
             window.twttr?.widgets.load(ref.current)
         }
     }, [isTwitter, ref])
