@@ -10,6 +10,7 @@
     },
     "dependencies": {
         "dayjs": "^1.11.11",
+        "js-yaml": "^4.1.0",
         "next": "14.2.3",
         "react": "^18",
         "react-dom": "^18",
@@ -17,11 +18,13 @@
         "react-markdown": "^9.0.1",
         "react-syntax-highlighter": "^15.5.0",
         "recharts": "^2.12.6",
+        "rehype-raw": "^7.0.0",
         "remark-breaks": "^4.0.0",
         "remark-gfm": "^4.0.0",
         "sharp": "^0.33.3"
     },
     "devDependencies": {
+        "@types/js-yaml": "^4.0.9",
         "@types/node": "^20",
         "@types/react": "^18",
         "@types/react-dom": "^18",

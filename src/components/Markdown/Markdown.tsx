@@ -1,8 +1,10 @@
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
 import remarkBreaks from 'remark-breaks'
 import remarkGfm from 'remark-gfm'
 
+import Blockquote from './components/Blockquote'
 import Pre from './components/Pre/Pre'
 
 export interface MarkdownProps {
@@ -40,7 +42,7 @@ const Markdown: React.FC<MarkdownProps> = ({
                             {children}
                         </Link>
                     ),
-
+                    blockquote: (props) => <Blockquote {...props} />,
                     h1: (props) => (
                         <h1 {...props} id={props.children?.toString()}></h1>
                     ),
@@ -67,6 +69,7 @@ const Markdown: React.FC<MarkdownProps> = ({
                     ),
                     pre: (props) => <Pre {...props} slug={slug}></Pre>,
                 }}
+                rehypePlugins={[rehypeRaw]}
                 remarkPlugins={[remarkGfm, remarkBreaks]}
             >
                 {children}
