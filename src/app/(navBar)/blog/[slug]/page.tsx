@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs'
 
+import BlogTag from '@/components/BlogTag/BlogTag'
 import Markdown, { BLOG_CONTENT_ID } from '@/components/Markdown/Markdown'
 import blogPageInfo from '@/constant/blogPageInfo'
 
@@ -37,11 +38,20 @@ export default function Page({ params }: { params: Params }) {
         <div className='p-4 md:p-6'>
             <div className='mx-auto max-w-screen-lg rounded-lg border bg-white px-8 py-4 md:px-12 md:py-8'>
                 <div>
-                    <div>タグ： {tags.join(' ')}</div>
+                    <div className='flex items-center gap-2'>
+                        <span>タグ：</span>
+                        {tags.length >= 1 ? (
+                            tags.map((tag) => (
+                                <BlogTag key={tag} tag={tag}></BlogTag>
+                            ))
+                        ) : (
+                            <span className='text-gray-500'>タグ無し</span>
+                        )}
+                    </div>
                     <div>公開日： {publishedAt.format('YYYY-MM-DD')}</div>
                 </div>
                 <hr className='my-4' />
-                <Markdown slug={slug} id={BLOG_CONTENT_ID}>
+                <Markdown id={BLOG_CONTENT_ID} slug={slug}>
                     {markdown}
                 </Markdown>
             </div>
