@@ -1,6 +1,6 @@
 import { ComponentProps, ComponentPropsWithoutRef } from 'react'
 
-import CodeBlock from './Embed/CodeBlock'
+import CodeBlock from './CodeBlock'
 import Embed from './Embed'
 import TableOfContents from './TableOfContents'
 
