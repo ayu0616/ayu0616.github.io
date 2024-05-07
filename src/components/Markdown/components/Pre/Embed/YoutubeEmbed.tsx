@@ -11,6 +11,7 @@ const defaultOption: Partial<EmbedOption> = {
     width: '50%',
 }
 
+// TODO: next/third-partiesを使う （参考：https://zenn.dev/chot/articles/introduction-of-next-third-parties）
 const YoutubeEmbed: React.FC<YoutubeEmbedProps> = ({ ...props }) => {
     const option = { ...defaultOption, ...props.option }
     const src = useMemo(() => {
