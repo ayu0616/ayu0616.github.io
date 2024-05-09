@@ -5,7 +5,7 @@ import { Metadata } from 'next'
 import BlogTag from '@/components/BlogTag/BlogTag'
 import Markdown, { BLOG_CONTENT_ID } from '@/components/Markdown/Markdown'
 import blogPageInfo from '@/constant/blogPageInfo'
-import { generateTitle } from '@/util/metadata'
+import { getMetadata } from '@/util/metadata'
 
 interface Params {
     slug: string
@@ -21,7 +21,9 @@ export const generateMetadata = ({
 }): Promise<Metadata> => {
     const { slug } = params
     const { title } = blogPageInfo[slug]
-    return Promise.resolve({ title: generateTitle(title) })
+    return Promise.resolve(
+        getMetadata({ title, url: `https://ayu0616.github.io/blog/${slug}` }),
+    )
 }
 
 const getMarkdown = (slug: string) => {

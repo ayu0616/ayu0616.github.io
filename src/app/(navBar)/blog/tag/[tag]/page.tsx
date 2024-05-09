@@ -4,7 +4,7 @@ import { FaArrowLeft } from 'react-icons/fa6'
 
 import BlogTag from '@/components/BlogTag/BlogTag'
 import blogPageInfo, { BlogPageInfoItem } from '@/constant/blogPageInfo'
-import { generateTitle } from '@/util/metadata'
+import { getMetadata } from '@/util/metadata'
 
 interface Params {
     tag: string
@@ -23,9 +23,12 @@ export const generateMetadata = ({
     params: Params
 }): Promise<Metadata> => {
     const tag = decodeURI(params.tag)
-    return Promise.resolve({
-        title: generateTitle(`タグ： ${tag}`),
-    })
+    return Promise.resolve(
+        getMetadata({
+            title: `タグ： ${tag}`,
+            url: `https://ayu0616.github.io/blog/tag/${params.tag}`,
+        }),
+    )
 }
 
 interface PageListItem extends BlogPageInfoItem {

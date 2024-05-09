@@ -1,13 +1,13 @@
-import { Metadata } from 'next'
 import Link from 'next/link'
 
-import { generateTitle } from '@/util/metadata'
+import { getMetadata } from '@/util/metadata'
 
 import { works } from '../../../constant/works'
 
-export const metadata: Metadata = {
-    title: generateTitle('作品一覧'),
-}
+export const metadata = getMetadata({
+    title: '作品一覧',
+    url: 'https://ayu0616.github.io/work',
+})
 
 export default function Page() {
     return (

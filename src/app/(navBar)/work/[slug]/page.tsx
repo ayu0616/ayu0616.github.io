@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 
 import { isWorkKey, works } from '@/constant/works'
-import { generateTitle } from '@/util/metadata'
+import { getMetadata } from '@/util/metadata'
 
 interface Param {
     slug: string
@@ -20,9 +20,9 @@ export const generateMetadata = ({
         return Promise.reject('404')
     }
     const { title } = works[slug]
-    return Promise.resolve({
-        title: generateTitle(title),
-    })
+    return Promise.resolve(
+        getMetadata({ title, url: `https://ayu0616.github.io/work/${slug}` }),
+    )
 }
 
 export default function Page({ params }: { params: Param }) {

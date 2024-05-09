@@ -1,19 +1,29 @@
 import { GoogleAnalytics } from '@next/third-parties/google'
 
-import Icon from '@/../public/icon.webp'
-import { PAGE_TITLE } from '@/util/metadata'
-
-import type { Metadata } from 'next'
+import { SITE_NAME, getMetadata } from '@/util/metadata'
 
 import './index.scss'
 
 export const dynamic = 'force-static'
 
-export const metadata: Metadata = {
-    description: 'はっさくゼリー製造工場のポートフォリオサイト',
-    icons: [{ url: Icon.src }],
-    title: PAGE_TITLE,
-}
+// export const metadata: Metadata = {
+//     description: 'はっさくゼリー製造工場のポートフォリオサイト',
+//     icons: [{ url: Icon.src }],
+//     openGraph: {
+//         description: 'はっさくゼリー製造工場のポートフォリオサイト',
+//         // images: [{ url: Icon.src }],
+//         siteName: SITE_NAME,
+//         title: SITE_NAME,
+//         type: 'website',
+//         url: 'https://ayu0616.github.io',
+//     },
+//     title: SITE_NAME,
+// }
+
+export const metadata = getMetadata({
+    title: SITE_NAME,
+    url: 'https://ayu0616.github.io',
+})
 
 export default function RootLayout({
     children,

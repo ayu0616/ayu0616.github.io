@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { redirect } from 'next/navigation'
 
 import skillData from '@/constant/skillData'
-import { generateTitle } from '@/util/metadata'
+import { getMetadata } from '@/util/metadata'
 
 export const generateStaticParams = () => skillData.map(({ id }) => ({ id }))
 
@@ -17,9 +17,12 @@ export const generateMetadata = ({
     if (!skill) {
         return Promise.reject('404')
     }
-    return Promise.resolve({
-        title: generateTitle(skill.skillName),
-    })
+    return Promise.resolve(
+        getMetadata({
+            title: skill.skillName,
+            url: `https://ayu0616.github.io/skill/${id}`,
+        }),
+    )
 }
 
 export default function Page({ params }: { params: { id: string } }) {
