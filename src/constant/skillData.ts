@@ -23,7 +23,7 @@ interface SkillDataInput {
     skillName: string
 }
 
-interface SkillData extends SkillDataInput {
+export interface SkillData extends SkillDataInput {
     dateRangeNum: [number, number]
     id: string
 }
