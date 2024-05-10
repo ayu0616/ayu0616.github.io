@@ -5,7 +5,8 @@ import Icon from '@/../public/icon.webp'
 export const SITE_NAME = 'はっさくゼリー製造工場'
 
 /** ページのタイトルを作成 */
-const generateTitle = (title: string) => `${title} | ${SITE_NAME}`
+const generateTitle = (title: string) =>
+    title ? `${title} | ${SITE_NAME}` : SITE_NAME
 
 interface GetMetadataProps {
     description?: string
@@ -24,11 +25,20 @@ export const getMetadata = ({
     openGraph: {
         description:
             description ?? 'はっさくゼリー製造工場のポートフォリオサイト',
-        // images: [{ url: Icon.src }],
+        images: [{ url: '/og-image' }],
         siteName: SITE_NAME,
         title: generateTitle(title),
         type: 'website',
         url,
     },
     title: generateTitle(title),
+    twitter: {
+        card: 'summary_large_image',
+        creator: '@hassaku_0616',
+        creatorId: 'hassaku_0616',
+        description:
+            description ?? 'はっさくゼリー製造工場のポートフォリオサイト',
+        images: [{ url: '/og-image' }],
+        title: generateTitle(title),
+    },
 })
