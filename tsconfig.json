@@ -27,7 +27,8 @@
         "**/*.tsx",
         ".next/types/**/*.ts",
         "../tailwind.config.ts",
-        "sitemap.config.js"
+        "sitemap.config.js",
+        "src/app/og-image"
     ],
     "exclude": ["node_modules"]
 }
