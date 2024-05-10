@@ -1,8 +1,10 @@
+import { Metadata } from 'next'
 import Link from 'next/link'
 import { FaArrowLeft } from 'react-icons/fa6'
 
 import BlogTag from '@/components/BlogTag/BlogTag'
 import blogPageInfo, { BlogPageInfoItem } from '@/constant/blogPageInfo'
+import { getMetadata } from '@/util/metadata'
 
 interface Params {
     tag: string
@@ -13,6 +15,20 @@ const uniqueTags = Array.from(new Set(allTags))
 
 export const generateStaticParams = (): Params[] => {
     return uniqueTags.map((tag) => ({ tag: encodeURI(tag) }))
+}
+
+export const generateMetadata = ({
+    params,
+}: {
+    params: Params
+}): Promise<Metadata> => {
+    const tag = decodeURI(params.tag)
+    return Promise.resolve(
+        getMetadata({
+            title: `タグ： ${tag}`,
+            url: `https://ayu0616.github.io/blog/tag/${params.tag}`,
+        }),
+    )
 }
 
 interface PageListItem extends BlogPageInfoItem {

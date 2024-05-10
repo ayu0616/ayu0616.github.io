@@ -1,18 +1,15 @@
 import { GoogleAnalytics } from '@next/third-parties/google'
 
-import Icon from '@/../public/icon.webp'
-
-import type { Metadata } from 'next'
+import { getMetadata } from '@/util/metadata'
 
 import './index.scss'
 
 export const dynamic = 'force-static'
 
-export const metadata: Metadata = {
-    description: 'はっさくゼリー製造工場のポートフォリオサイト',
-    icons: [{ url: Icon.src }],
-    title: 'はっさくゼリー製造工場',
-}
+export const metadata = getMetadata({
+    title: '',
+    url: 'https://ayu0616.github.io',
+})
 
 export default function RootLayout({
     children,
@@ -22,7 +19,7 @@ export default function RootLayout({
     return (
         <html lang='ja'>
             <head>
-                <GoogleAnalytics gaId="G-WB8DFKSGMP" />
+                <GoogleAnalytics gaId='G-WB8DFKSGMP' />
             </head>
             <body>{children}</body>
         </html>

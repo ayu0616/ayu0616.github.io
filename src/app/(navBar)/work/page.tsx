@@ -1,6 +1,13 @@
 import Link from 'next/link'
 
+import { getMetadata } from '@/util/metadata'
+
 import { works } from '../../../constant/works'
+
+export const metadata = getMetadata({
+    title: '作品一覧',
+    url: 'https://ayu0616.github.io/work',
+})
 
 export default function Page() {
     return (

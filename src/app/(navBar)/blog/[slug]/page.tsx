@@ -1,8 +1,11 @@
 import { readFileSync } from 'fs'
 
+import { Metadata } from 'next'
+
 import BlogTag from '@/components/BlogTag/BlogTag'
 import Markdown, { BLOG_CONTENT_ID } from '@/components/Markdown/Markdown'
 import blogPageInfo from '@/constant/blogPageInfo'
+import { getMetadata } from '@/util/metadata'
 
 interface Params {
     slug: string
@@ -10,6 +13,18 @@ interface Params {
 
 export const generateStaticParams = (): Params[] =>
     Object.keys(blogPageInfo).map((slug) => ({ slug }))
+
+export const generateMetadata = ({
+    params,
+}: {
+    params: Params
+}): Promise<Metadata> => {
+    const { slug } = params
+    const { title } = blogPageInfo[slug]
+    return Promise.resolve(
+        getMetadata({ title, url: `https://ayu0616.github.io/blog/${slug}` }),
+    )
+}
 
 const getMarkdown = (slug: string) => {
     const lines = readFileSync(`blog-contents/${slug}/page.md`, 'utf-8').split(

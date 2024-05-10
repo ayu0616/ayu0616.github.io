@@ -2,6 +2,12 @@ import Link from 'next/link'
 
 import BlogTag from '@/components/BlogTag/BlogTag'
 import blogPageInfo, { BlogPageInfoItem } from '@/constant/blogPageInfo'
+import { getMetadata } from '@/util/metadata'
+
+export const metadata = getMetadata({
+    title: 'ブログ',
+    url: 'https://ayu0616.github.io/blog',
+})
 
 interface PageListItem extends BlogPageInfoItem {
     slug: string
