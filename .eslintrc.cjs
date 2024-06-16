@@ -12,6 +12,7 @@ module.exports = {
         'build/',
         'public/',
         'pnpm-lock.yaml',
+        '*.md',
     ],
     parser: '@typescript-eslint/parser',
     plugins: ['typescript-sort-keys', 'sort-keys-fix', 'react'],
