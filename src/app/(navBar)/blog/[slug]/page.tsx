@@ -51,8 +51,8 @@ export default function Page({ params }: { params: Params }) {
     const markdown = getMarkdown(slug)
     return (
         <div className='p-4 md:p-6'>
-            <div className='mx-auto max-w-screen-lg rounded-lg border bg-white px-8 py-4 md:px-12 md:py-8'>
-                <div>
+            <div className='mx-auto max-w-screen-lg rounded-lg border bg-white px-8 pb-16 pt-8 md:px-12 md:pb-16 md:pt-12'>
+                <div className='mb-12 border-b pb-4 md:pb-8'>
                     <div className='flex items-center gap-2'>
                         <span>タグ：</span>
                         {tags.length >= 1 ? (
@@ -65,7 +65,6 @@ export default function Page({ params }: { params: Params }) {
                     </div>
                     <div>公開日： {publishedAt.format('YYYY-MM-DD')}</div>
                 </div>
-                <hr className='my-4' />
                 <Markdown id={BLOG_CONTENT_ID} slug={slug}>
                     {markdown}
                 </Markdown>
