@@ -29,7 +29,7 @@ const Markdown: React.FC<MarkdownProps> = ({
                 components={{
                     a: ({ children, href }) => (
                         <Link
-                            className='block text-emerald-800 underline decoration-1 underline-offset-1'
+                            className='inline-block text-emerald-800 underline decoration-1 underline-offset-1'
                             href={href ?? '#'}
                             rel={
                                 href?.startsWith('http')
