@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm'
 
 import Blockquote from './components/Blockquote'
 import Pre from './components/Pre/Pre'
+import './style.css'
 
 export interface MarkdownProps {
     children?: string
@@ -23,7 +24,7 @@ const Markdown: React.FC<MarkdownProps> = ({
     slug,
 }) => {
     return (
-        <div className={['grid gap-8', className].join(' ')} id={id}>
+        <div className={['markdown grid gap-8', className].join(' ')} id={id}>
             <ReactMarkdown
                 components={{
                     a: ({ children, href }) => (
