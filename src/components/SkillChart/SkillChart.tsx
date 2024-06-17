@@ -1,7 +1,7 @@
 'use client'
 
 import dayjs from 'dayjs'
-import router from 'next/router'
+import { useRouter } from 'next/navigation'
 import {
     Bar,
     BarChart,
@@ -16,6 +16,7 @@ import skillData, { dateMax } from '@/constant/skillData'
 import { charCount } from '@/util/charCount'
 
 export const SkillChart = () => {
+    const router = useRouter()
     return (
         <ResponsiveContainer className={'md:px-8'} width={'100%'}>
             <BarChart
