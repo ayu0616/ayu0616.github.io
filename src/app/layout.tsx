@@ -1,4 +1,5 @@
 import { GoogleAnalytics } from '@next/third-parties/google'
+import { BIZ_UDPGothic } from 'next/font/google'
 
 import { getMetadata } from '@/util/metadata'
 
@@ -11,6 +12,11 @@ export const metadata = getMetadata({
     url: 'https://ayu0616.github.io',
 })
 
+const bizUDPGothic = BIZ_UDPGothic({
+    subsets: ['latin'],
+    weight: ['400', '700'],
+})
+
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -21,7 +27,7 @@ export default function RootLayout({
             <head>
                 <GoogleAnalytics gaId='G-WB8DFKSGMP' />
             </head>
-            <body>{children}</body>
+            <body className={bizUDPGothic.className}>{children}</body>
         </html>
     )
 }
