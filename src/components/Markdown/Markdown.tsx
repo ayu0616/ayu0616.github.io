@@ -6,6 +6,8 @@ import remarkBreaks from 'remark-breaks'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 
+import { cn } from '@/util/cn'
+
 import Blockquote from './components/Blockquote'
 import Pre from './components/Pre/Pre'
 import './style.css'
@@ -26,12 +28,15 @@ const Markdown: React.FC<MarkdownProps> = ({
     slug,
 }) => {
     return (
-        <div className={['markdown grid gap-8', className].join(' ')} id={id}>
+        <div className={cn('markdown grid gap-8', className)} id={id}>
             <ReactMarkdown
                 components={{
-                    a: ({ children, href }) => (
+                    a: ({ className, children, href }) => (
                         <Link
-                            className='inline-block text-emerald-800 underline decoration-1 underline-offset-1'
+                            className={cn(
+                                'inline-block text-emerald-800 underline decoration-1 underline-offset-1',
+                                className,
+                            )}
                             href={href ?? '#'}
                             rel={
                                 href?.startsWith('http')
@@ -46,23 +51,65 @@ const Markdown: React.FC<MarkdownProps> = ({
                         </Link>
                     ),
                     blockquote: (props) => <Blockquote {...props} />,
-                    h1: (props) => (
-                        <h1 {...props} id={props.children?.toString()}></h1>
+                    h1: ({ className, ...props }) => (
+                        <h1
+                            {...props}
+                            className={cn(
+                                'mt-8 first:mt-0 md:mt-14',
+                                className,
+                            )}
+                            id={props.children?.toString()}
+                        ></h1>
                     ),
-                    h2: (props) => (
-                        <h2 {...props} id={props.children?.toString()}></h2>
+                    h2: ({ className, ...props }) => (
+                        <h2
+                            {...props}
+                            className={cn(
+                                'mt-8 first:mt-0 md:mt-14',
+                                className,
+                            )}
+                            id={props.children?.toString()}
+                        ></h2>
                     ),
-                    h3: (props) => (
-                        <h3 {...props} id={props.children?.toString()}></h3>
+                    h3: ({ className, ...props }) => (
+                        <h3
+                            {...props}
+                            className={cn(
+                                'mt-8 first:mt-0 md:mt-14',
+                                className,
+                            )}
+                            id={props.children?.toString()}
+                        ></h3>
                     ),
-                    h4: (props) => (
-                        <h4 {...props} id={props.children?.toString()}></h4>
+                    h4: ({ className, ...props }) => (
+                        <h4
+                            {...props}
+                            className={cn(
+                                'mt-8 first:mt-0 md:mt-14',
+                                className,
+                            )}
+                            id={props.children?.toString()}
+                        ></h4>
                     ),
-                    h5: (props) => (
-                        <h5 {...props} id={props.children?.toString()}></h5>
+                    h5: ({ className, ...props }) => (
+                        <h5
+                            {...props}
+                            className={cn(
+                                'mt-8 first:mt-0 md:mt-14',
+                                className,
+                            )}
+                            id={props.children?.toString()}
+                        ></h5>
                     ),
-                    h6: (props) => (
-                        <h6 {...props} id={props.children?.toString()}></h6>
+                    h6: ({ className, ...props }) => (
+                        <h6
+                            {...props}
+                            className={cn(
+                                'mt-8 first:mt-0 md:mt-14',
+                                className,
+                            )}
+                            id={props.children?.toString()}
+                        ></h6>
                     ),
                     // code: Code,
                     li: ({ children }) => (
@@ -71,6 +118,48 @@ const Markdown: React.FC<MarkdownProps> = ({
                         </li>
                     ),
                     pre: (props) => <Pre {...props} slug={slug}></Pre>,
+                    table: ({ className, ...props }) => (
+                        <table
+                            className={cn(
+                                'min-w-full table-auto divide-y divide-gray-200 overflow-x-auto',
+                                className,
+                            )}
+                            {...props}
+                        />
+                    ),
+                    tbody: ({ className, ...props }) => (
+                        <tbody
+                            className={cn(
+                                'divide-y divide-gray-200 bg-white',
+                                className,
+                            )}
+                            {...props}
+                        />
+                    ),
+                    td: ({ className, ...props }) => (
+                        <td
+                            className={cn(
+                                'whitespace-nowrap px-2 py-2',
+                                className,
+                            )}
+                            {...props}
+                        />
+                    ),
+                    th: ({ className, ...props }) => (
+                        <th
+                            className={cn(
+                                'whitespace-nowrap px-2 py-2 tracking-wider text-gray-500',
+                                className,
+                            )}
+                            {...props}
+                        />
+                    ),
+                    thead: ({ className, ...props }) => (
+                        <thead
+                            className={cn('bg-gray-50', className)}
+                            {...props}
+                        />
+                    ),
                 }}
                 rehypePlugins={[rehypeRaw, rehypeKatex]}
                 remarkPlugins={[remarkGfm, remarkBreaks, remarkMath]}
