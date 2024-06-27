@@ -2,10 +2,12 @@
 
 import { ComponentProps, createRef, useEffect } from 'react'
 
+import { cn } from '@/util/cn'
+
 export interface BlockquoteProps extends ComponentProps<'blockquote'> {}
 
-const Blockquote: React.FC<BlockquoteProps> = (props) => {
-    const isTwitter = props.className?.split(' ').includes('twitter-tweet')
+const Blockquote: React.FC<BlockquoteProps> = ({ className, ...props }) => {
+    const isTwitter = className?.split(' ').includes('twitter-tweet')
     const ref = createRef<HTMLQuoteElement>()
     useEffect(() => {
         if (isTwitter) {
@@ -13,8 +15,20 @@ const Blockquote: React.FC<BlockquoteProps> = (props) => {
         }
     }, [isTwitter, ref])
     return (
-        <div className='flex w-full justify-center'>
-            <blockquote ref={ref} {...props} />
+        <div
+            className={cn(
+                'flex w-full justify-center',
+                !isTwitter && 'border-l-2 border-emerald-800',
+            )}
+        >
+            <blockquote
+                ref={ref}
+                {...props}
+                className={cn(
+                    !isTwitter && 'rounded bg-slate-50 p-1 pl-4 text-slate-700',
+                    className,
+                )}
+            />
         </div>
     )
 }
