@@ -25,7 +25,8 @@ const Blockquote: React.FC<BlockquoteProps> = ({ className, ...props }) => {
                 ref={ref}
                 {...props}
                 className={cn(
-                    !isTwitter && 'rounded bg-slate-50 p-1 pl-4 text-slate-700',
+                    !isTwitter &&
+                        'size-full rounded bg-slate-50 p-1 pl-4 text-slate-700',
                     className,
                 )}
             />
