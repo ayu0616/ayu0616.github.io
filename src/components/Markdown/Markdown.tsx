@@ -119,13 +119,15 @@ const Markdown: React.FC<MarkdownProps> = ({
                     ),
                     pre: (props) => <Pre {...props} slug={slug}></Pre>,
                     table: ({ className, ...props }) => (
-                        <table
-                            className={cn(
-                                'min-w-full table-auto divide-y divide-gray-200 overflow-x-auto',
-                                className,
-                            )}
-                            {...props}
-                        />
+                        <div className='w-full overflow-x-auto'>
+                            <table
+                                className={cn(
+                                    'min-w-full table-auto divide-y divide-gray-200',
+                                    className,
+                                )}
+                                {...props}
+                            />
+                        </div>
                     ),
                     tbody: ({ className, ...props }) => (
                         <tbody
