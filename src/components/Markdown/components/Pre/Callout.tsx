@@ -10,7 +10,6 @@ export const Callout: React.FC<CalloutProps> = ({ children }) => {
     let ymlText = ''
     let content = ''
     let isYml = false
-    console.log(children)
     children.split('\n').forEach((line) => {
         if (line.match(/^-+$/)) {
             isYml = !isYml
@@ -30,12 +29,17 @@ export const Callout: React.FC<CalloutProps> = ({ children }) => {
     ) {
         throw new Error(`Invalid callout config: ${JSON.stringify(config)}`)
     }
+    content = content.trim()
     return (
         <div className='flex gap-4 rounded-md border p-4'>
             <p>{config.icon}</p>
             <div>
-                <p className='mb-2 font-bold'>{config.title}</p>
-                <Markdown>{content}</Markdown>
+                <p className='font-bold'>{config.title}</p>
+                {content && (
+                    <div className='mt-2'>
+                        <Markdown>{content}</Markdown>
+                    </div>
+                )}
             </div>
         </div>
     )
