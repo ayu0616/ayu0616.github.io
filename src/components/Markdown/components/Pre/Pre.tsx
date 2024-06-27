@@ -1,5 +1,6 @@
 import { ComponentProps, ComponentPropsWithoutRef } from 'react'
 
+import { Callout } from './Callout'
 import CodeBlock from './CodeBlock'
 import Embed from './Embed'
 import TableOfContents from './TableOfContents'
@@ -33,6 +34,8 @@ const Pre = ({ slug, ...props }: PreProps) => {
                 'children' in childProps ? String(childProps.children) : ''
             return <Embed optionStr={optionStr} />
         }
+        case 'callout':
+            return <Callout>{String(childProps.children)}</Callout>
         default: {
             const code =
                 'children' in childProps ? String(childProps.children) : ''

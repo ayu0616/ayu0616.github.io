@@ -4,9 +4,10 @@
     "private": true,
     "scripts": {
         "dev": "next dev --turbo",
-        "build": "next build",
+        "build": "pnpm cp:img && next build",
         "start": "pnpx serve@latest out",
-        "lint": "next lint"
+        "lint": "next lint",
+        "cp:img": "pnpm dlx ts-node --project tsconfig.local.json src/scripts/copyImg.ts"
     },
     "dependencies": {
         "@next/third-parties": "14.3.0-canary.44",

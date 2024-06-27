@@ -9,6 +9,7 @@ import remarkMath from 'remark-math'
 import { cn } from '@/util/cn'
 
 import Blockquote from './components/Blockquote'
+import { Img } from './components/Img/Img'
 import Pre from './components/Pre/Pre'
 import './style.css'
 
@@ -34,7 +35,7 @@ const Markdown: React.FC<MarkdownProps> = ({
                     a: ({ className, children, href }) => (
                         <Link
                             className={cn(
-                                'inline-block text-emerald-800 underline decoration-1 underline-offset-1',
+                                'inline-block break-all text-emerald-800 underline decoration-1 underline-offset-1',
                                 className,
                             )}
                             href={href ?? '#'}
@@ -110,6 +111,13 @@ const Markdown: React.FC<MarkdownProps> = ({
                             )}
                             id={props.children?.toString()}
                         ></h6>
+                    ),
+                    img: ({ alt, src }) => (
+                        <Img
+                            alt={alt}
+                            slug={slug ?? ''} // TODO: slugがundefinedの場合の処理
+                            src={src ?? ''} // TODO: srcがundefinedの場合の処理
+                        />
                     ),
                     // code: Code,
                     li: ({ children }) => (
