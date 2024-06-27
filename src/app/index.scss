@@ -103,3 +103,15 @@ ul li {
         vertical-align: middle;
     }
 }
+
+ol {
+    counter-reset: list;
+
+    > li {
+        &::before {
+            content: counter(list) '. ';
+            counter-increment: list;
+            margin-right: 0.5rem;
+        }
+    }
+}
