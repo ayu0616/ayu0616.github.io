@@ -1,8 +1,10 @@
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
+import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw'
 import remarkBreaks from 'remark-breaks'
 import remarkGfm from 'remark-gfm'
+import remarkMath from 'remark-math'
 
 import Blockquote from './components/Blockquote'
 import Pre from './components/Pre/Pre'
@@ -70,8 +72,8 @@ const Markdown: React.FC<MarkdownProps> = ({
                     ),
                     pre: (props) => <Pre {...props} slug={slug}></Pre>,
                 }}
-                rehypePlugins={[rehypeRaw]}
-                remarkPlugins={[remarkGfm, remarkBreaks]}
+                rehypePlugins={[rehypeRaw, rehypeKatex]}
+                remarkPlugins={[remarkGfm, remarkBreaks, remarkMath]}
             >
                 {children}
             </ReactMarkdown>
