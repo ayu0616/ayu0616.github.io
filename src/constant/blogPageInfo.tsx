@@ -2,18 +2,16 @@ import dayjs, { Dayjs } from 'dayjs'
 
 import _pageInfoBefore from '@/../blog-contents/page-info.json'
 
-interface BlogPageInfoItemBefore {
+type BlogPageInfoItemBefore = {
     created: string
     headings: {
         level: number
         title: string
     }[]
     modified: string
-    published: boolean
-    publishedAt: string
     tags: string[] | null
     title: string
-}
+} & ({ published: true; publishedAt: string } | { published: false })
 
 interface BlogPageInfoItemChangeTarget {
     created: Dayjs
@@ -35,7 +33,9 @@ const convertPageInfo = (
         ...pageInfoItem,
         created: dayjs(pageInfoItem.created),
         modified: dayjs(pageInfoItem.modified),
-        publishedAt: dayjs(pageInfoItem.publishedAt),
+        publishedAt: pageInfoItem.published
+            ? dayjs(pageInfoItem.publishedAt)
+            : dayjs(0),
         tags: pageInfoItem.tags || [],
     }
 }
@@ -53,6 +53,15 @@ const blogPageInfo = Object.keys(pageInfoBefore).reduce(
         return acc
     },
     {} as Record<string, BlogPageInfoItem>,
+)
+
+export const blogTagList = Array.from(
+    Object.values(blogPageInfo).reduce((acc, pageInfo) => {
+        pageInfo.tags.forEach((tag) => {
+            if (!acc.has(tag)) acc.add(tag)
+        })
+        return acc
+    }, new Set<string>()),
 )
 
 export default blogPageInfo
