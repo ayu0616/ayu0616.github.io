@@ -115,3 +115,19 @@ ol {
         }
     }
 }
+
+.katex {
+    margin: 0 0.25rem;
+    display: inline-flex;
+    align-items: center;
+}
+
+.katex-display {
+    > .katex {
+        margin: 0;
+    }
+
+    .newline {
+        height: 0.75rem;
+    }
+}
