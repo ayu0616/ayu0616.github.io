@@ -34,7 +34,7 @@ export const Callout: React.FC<CalloutProps> = ({ children }) => {
         <div className='flex gap-4 rounded-md border p-4'>
             <p>{config.icon}</p>
             <div>
-                <p className='font-bold'>{config.title}</p>
+                <Markdown className='font-bold'>{config.title}</Markdown>
                 {content && (
                     <div className='mt-2'>
                         <Markdown>{content}</Markdown>
