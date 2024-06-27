@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import IconMini from '@/../public/icon-mini.webp'
 import Icon from '@/../public/icon.webp'
 import NavLink from '@/components/Link/NavLink'
 import pages from '@/constant/pages'
@@ -10,8 +11,11 @@ const NavBar = () => (
         <Link href='/'>
             <Image
                 alt='icon'
+                blurDataURL={IconMini.src}
                 className='drag-none aspect-square rounded-full drop-shadow transition-transform duration-300 ease-in-out hover:scale-105'
                 height={64}
+                loading='lazy'
+                placeholder='blur'
                 src={Icon}
                 width={64}
             />

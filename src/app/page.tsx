@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import pages from '@/constant/pages'
 
+import IconMini from '../../public/icon-mini.webp'
 import Icon from '../../public/icon.webp'
 import { SNSIconList } from '../components/SNSIcon/SNSIconList'
 
@@ -12,8 +13,11 @@ export default function Page() {
             <div className='aspect-square max-h-[50dvh] rounded-full lg:max-h-none lg:max-w-[50dvw]'>
                 <Image
                     alt='アイコン'
+                    blurDataURL={IconMini.src}
                     className='rounded-full border-[max(1dvh,_1dvw)] border-emerald-800 drop-shadow-lg transition-transform duration-300 ease-in-out hover:scale-105'
                     height={0}
+                    loading='lazy'
+                    placeholder='blur'
                     src={Icon}
                     width={0}
                 />
