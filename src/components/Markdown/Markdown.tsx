@@ -8,6 +8,7 @@ import remarkMath from 'remark-math'
 
 import { cn } from '@/util/cn'
 
+import 'katex/dist/katex.min.css'
 import Blockquote from './components/Blockquote'
 import { Img } from './components/Img/Img'
 import Pre from './components/Pre/Pre'
