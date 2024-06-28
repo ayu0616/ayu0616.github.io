@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */ // altを別の場所で設定しているため
-import Image, { ImageProps } from 'next/image'
+import Image from 'next-export-optimize-images/image'
+import { ImageProps } from 'next/image'
 
 import AtCoderIconBlack from '@/assets/atcoder/atcoder-black.png'
 import AtCoderIconWhite from '@/assets/atcoder/atcoder-white.png'

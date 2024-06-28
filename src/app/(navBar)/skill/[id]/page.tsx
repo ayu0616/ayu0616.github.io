@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import Image from 'next/image'
+import Image from 'next-export-optimize-images/picture'
 import { redirect } from 'next/navigation'
 
 import skillData from '@/constant/skillData'
