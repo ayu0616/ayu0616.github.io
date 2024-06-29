@@ -134,7 +134,7 @@ const Markdown: React.FC<MarkdownProps> = ({
                     ),
                     pre: (props) => <Pre {...props} slug={slug}></Pre>,
                     table: ({ className, ...props }) => (
-                        <div className='w-full overflow-x-auto'>
+                        <div className='relative w-full overflow-x-auto'>
                             <table
                                 className={cn(
                                     'min-w-full table-auto divide-y divide-gray-200',
