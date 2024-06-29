@@ -126,6 +126,12 @@ const Markdown: React.FC<MarkdownProps> = ({
                             <div>{children}</div>
                         </li>
                     ),
+                    ol: ({ className, ...props }) => (
+                        <ol
+                            className={cn('list-decimal', className)}
+                            {...props}
+                        />
+                    ),
                     pre: (props) => <Pre {...props} slug={slug}></Pre>,
                     table: ({ className, ...props }) => (
                         <div className='w-full overflow-x-auto'>

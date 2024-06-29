@@ -173,7 +173,7 @@ ul li {
     }
 }
 
-ol {
+ol.list-decimal {
     counter-reset: list;
 
     > li {
