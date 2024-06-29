@@ -2,7 +2,7 @@
 
 import { ComponentProps, createRef, useEffect } from 'react'
 
-import { cn } from '@/util/cn'
+import { cn } from '@/lib/utils'
 
 export interface BlockquoteProps extends ComponentProps<'blockquote'> {}
 
