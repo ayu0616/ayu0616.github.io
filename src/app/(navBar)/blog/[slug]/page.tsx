@@ -2,6 +2,7 @@ import { readFileSync } from 'fs'
 
 import { Metadata } from 'next'
 
+import { BlogBreadcrumb } from '@/components/BlogBreadcrumb/BlogBreadcrumb'
 import BlogTag from '@/components/BlogTag/BlogTag'
 import Markdown, { BLOG_CONTENT_ID } from '@/components/Markdown/Markdown'
 import blogPageInfo from '@/constant/blogPageInfo'
@@ -47,24 +48,28 @@ const getMarkdown = (slug: string) => {
 
 export default function Page({ params }: { params: Params }) {
     const { slug } = params
-    const { tags, publishedAt } = blogPageInfo[slug]
+    const { tags, publishedAt, title } = blogPageInfo[slug]
     const markdown = getMarkdown(slug)
     return (
         <div className='p-4 md:p-6'>
-            <div className='mx-auto max-w-screen-lg rounded-lg border bg-white px-8 pb-16 pt-8 md:px-12 md:pb-16 md:pt-12'>
-                <div className='mb-12 border-b pb-4 md:pb-8'>
-                    <div className='flex items-center gap-2'>
-                        <span>タグ：</span>
-                        {tags.length >= 1 ? (
-                            tags.map((tag) => (
-                                <BlogTag key={tag} tag={tag}></BlogTag>
-                            ))
-                        ) : (
-                            <span className='text-gray-500'>タグ無し</span>
-                        )}
+            <div className='mx-auto max-w-screen-lg space-y-8 rounded-lg border bg-white px-6 pb-16 pt-8'>
+                <div className='space-y-4'>
+                    <BlogBreadcrumb title={title} />
+                    <div className='space-y-1'>
+                        <div className='flex items-center gap-2'>
+                            <span>タグ：</span>
+                            {tags.length >= 1 ? (
+                                tags.map((tag) => (
+                                    <BlogTag key={tag} tag={tag}></BlogTag>
+                                ))
+                            ) : (
+                                <span className='text-gray-500'>タグ無し</span>
+                            )}
+                        </div>
+                        <div>公開日： {publishedAt.format('YYYY-MM-DD')}</div>
                     </div>
-                    <div>公開日： {publishedAt.format('YYYY-MM-DD')}</div>
                 </div>
+                <hr />
                 <Markdown id={BLOG_CONTENT_ID} slug={slug}>
                     {markdown}
                 </Markdown>
