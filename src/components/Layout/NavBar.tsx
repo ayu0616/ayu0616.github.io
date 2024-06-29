@@ -7,7 +7,7 @@ import NavLink from '@/components/Link/NavLink'
 import pages from '@/constant/pages'
 
 const NavBar = () => (
-    <nav className='sticky top-0 flex h-20 w-full items-center gap-6 bg-emerald-800 px-4 py-2 text-white sm:h-24'>
+    <nav className='sticky top-0 z-50 flex h-20 w-full items-center gap-6 bg-emerald-800 px-4 py-2 text-white sm:h-24'>
         <Link className='aspect-square h-full' href='/'>
             <Image
                 alt='icon'
