@@ -59,6 +59,7 @@
         "prettier-plugin-tailwindcss": "^0.5.14",
         "saas": "^1.0.0",
         "sass": "^1.76.0",
+        "schema-dts": "^1.1.2",
         "tailwindcss": "^3.4.1",
         "ts-node": "^10.9.2",
         "typescript": "^5"
