@@ -9,13 +9,10 @@ export const metadata = getMetadata({
     url: 'https://ayu0616.github.io/blog',
 })
 
-interface PageListItem extends BlogPageInfoItem {
-    slug: string
-}
+interface PageListItem extends BlogPageInfoItem {}
 
 const pageList: PageListItem[] = Object.keys(blogPageInfo)
     .map((slug) => ({
-        slug,
         ...blogPageInfo[slug],
     }))
     .sort((a, b) => b.publishedAt.diff(a.publishedAt))
