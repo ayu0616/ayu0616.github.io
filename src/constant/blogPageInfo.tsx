@@ -4,11 +4,13 @@ import _pageInfoBefore from '@/../blog-contents/page-info.json'
 
 type BlogPageInfoItemBefore = {
     created: string
+    dirname: string
     headings: {
         level: number
         title: string
     }[]
     modified: string
+    slug: string
     tags: string[] | null
     title: string
 } & ({ published: true; publishedAt: string } | { published: false })

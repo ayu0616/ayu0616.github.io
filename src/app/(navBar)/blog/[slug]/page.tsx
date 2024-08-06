@@ -28,9 +28,11 @@ export const generateMetadata = ({
 }
 
 const getMarkdown = (slug: string) => {
-    const lines = readFileSync(`blog-contents/${slug}/page.md`, 'utf-8').split(
-        '\n',
-    )
+    const { dirname } = blogPageInfo[slug]
+    const lines = readFileSync(
+        `blog-contents/${dirname}/page.md`,
+        'utf-8',
+    ).split('\n')
     let yamlFlag = false
     let markdown = ''
     for (const line of lines) {
