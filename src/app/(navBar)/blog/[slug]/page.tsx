@@ -28,9 +28,11 @@ export const generateMetadata = ({
 }
 
 const getMarkdown = (slug: string) => {
-    const lines = readFileSync(`blog-contents/${slug}/page.md`, 'utf-8').split(
-        '\n',
-    )
+    const { dirname } = blogPageInfo[slug]
+    const lines = readFileSync(
+        `blog-contents/${dirname}/page.md`,
+        'utf-8',
+    ).split('\n')
     let yamlFlag = false
     let markdown = ''
     for (const line of lines) {
@@ -54,7 +56,7 @@ export default function Page({ params }: { params: Params }) {
         <div className='p-4 md:p-6'>
             <div className='mx-auto max-w-screen-lg space-y-8 rounded-lg border bg-white px-6 pb-16 pt-8'>
                 <div className='space-y-4'>
-                    <BlogBreadcrumb title={title} />
+                    <BlogBreadcrumb slug={slug} title={title} />
                     <div className='space-y-1'>
                         <div className='flex items-center gap-2'>
                             <span>タグ：</span>
