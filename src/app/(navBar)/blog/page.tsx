@@ -12,9 +12,7 @@ export const metadata = getMetadata({
 interface PageListItem extends BlogPageInfoItem {}
 
 const pageList: PageListItem[] = Object.keys(blogPageInfo)
-    .map((slug) => ({
-        ...blogPageInfo[slug],
-    }))
+    .map((slug) => blogPageInfo[slug])
     .sort((a, b) => b.publishedAt.diff(a.publishedAt))
 
 export default function Page() {
