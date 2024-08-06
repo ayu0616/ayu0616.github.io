@@ -37,10 +37,7 @@ interface PageListItem extends BlogPageInfoItem {
 
 const getPageListByTag = (tag: string): PageListItem[] => {
     return Object.keys(blogPageInfo)
-        .map((slug) => ({
-            slug,
-            ...blogPageInfo[slug],
-        }))
+        .map((slug) => blogPageInfo[slug])
         .filter((page) => page.tags.includes(tag))
         .sort((a, b) => b.publishedAt.diff(a.publishedAt))
 }
