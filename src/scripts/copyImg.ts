@@ -6,7 +6,7 @@ const imgPathList = fs
     .globSync(path.join(fileDir, '../../blog-contents/**/assets/*.*'))
     .reduce(
         (acc, ph) => {
-            const slug = /blog-contents\/(.+?)\/(.+?)\/assets\/.+\..+/.exec(
+            const slug = /blog-contents(.*?)\/([^\/]+?)\/assets\/.+\..+/.exec(
                 ph,
             )![2]
             return [...acc, { filePath: ph, name: path.basename(ph), slug }]
