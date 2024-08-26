@@ -1,5 +1,5 @@
 import { GoogleAnalytics } from '@next/third-parties/google'
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { BIZ_UDPGothic } from 'next/font/google'
 
 import { getMetadata } from '@/util/metadata'
@@ -27,9 +27,9 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html lang='ja'>
+        <html lang="ja">
             <head>
-                <GoogleAnalytics gaId='G-WB8DFKSGMP' />
+                <GoogleAnalytics gaId="G-WB8DFKSGMP" />
             </head>
             <body className={bizUDPGothic.className}>{children}</body>
         </html>

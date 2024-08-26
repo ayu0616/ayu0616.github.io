@@ -1,4 +1,4 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 
 import { isWorkKey, works } from '@/constant/works'
 import { getMetadata } from '@/util/metadata'
@@ -32,7 +32,7 @@ export default function Page({ params }: { params: Param }) {
     }
 
     return (
-        <div className='flex h-full flex-col items-center justify-center gap-4'>
+        <div className="flex h-full flex-col items-center justify-center gap-4">
             <h1>{works[slug].content}</h1>
             <p>準備中</p>
         </div>

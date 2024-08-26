@@ -1,9 +1,9 @@
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { FaArrowLeft } from 'react-icons/fa6'
 
 import BlogTag from '@/components/BlogTag/BlogTag'
-import blogPageInfo, { BlogPageInfoItem } from '@/constant/blogPageInfo'
+import blogPageInfo, { type BlogPageInfoItem } from '@/constant/blogPageInfo'
 import { getMetadata } from '@/util/metadata'
 
 interface Params {
@@ -48,10 +48,10 @@ export default function Page({ params }: { params: Params }) {
 
     // TODO: [slug]/page.tsxと共通化
     return (
-        <div className='p-4 md:p-6'>
-            <div className='mx-auto grid max-w-screen-lg gap-2'>
-                <Link href='/blog'>
-                    <div className='flex items-center gap-2 text-emerald-800 underline-offset-2 hover:underline'>
+        <div className="p-4 md:p-6">
+            <div className="mx-auto grid max-w-screen-lg gap-2">
+                <Link href="/blog">
+                    <div className="flex items-center gap-2 text-emerald-800 underline-offset-2 hover:underline">
                         <FaArrowLeft />
                         <span>ブログ一覧に戻る</span>
                     </div>
@@ -59,12 +59,12 @@ export default function Page({ params }: { params: Params }) {
                 <h1>タグ：{tag}</h1>
                 {pageList.map((page) => (
                     <Link key={page.slug} href={`/blog/${page.slug}`}>
-                        <div className='rounded-md bg-white p-4 shadow'>
+                        <div className="rounded-md bg-white p-4 shadow">
                             <h3>{page.title}</h3>
-                            <div className='flex items-center gap-2'>
+                            <div className="flex items-center gap-2">
                                 <span>タグ：</span>
                                 {page.tags.map((tag) => (
-                                    <BlogTag key={tag} tag={tag}></BlogTag>
+                                    <BlogTag key={tag} tag={tag} />
                                 ))}
                             </div>
                             <div>

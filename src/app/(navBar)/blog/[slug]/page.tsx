@@ -1,6 +1,6 @@
-import { readFileSync } from 'fs'
+import { readFileSync } from 'node:fs'
 
-import { Metadata } from 'next'
+import type { Metadata } from 'next'
 
 import { BlogBreadcrumb } from '@/components/BlogBreadcrumb/BlogBreadcrumb'
 import BlogTag from '@/components/BlogTag/BlogTag'
@@ -53,19 +53,19 @@ export default function Page({ params }: { params: Params }) {
     const { tags, publishedAt, title } = blogPageInfo[slug]
     const markdown = getMarkdown(slug)
     return (
-        <div className='p-4 md:p-6'>
-            <div className='mx-auto max-w-screen-lg space-y-8 rounded-lg border bg-white px-6 pb-16 pt-8'>
-                <div className='space-y-4'>
+        <div className="p-4 md:p-6">
+            <div className="mx-auto max-w-screen-lg space-y-8 rounded-lg border bg-white px-6 pt-8 pb-16">
+                <div className="space-y-4">
                     <BlogBreadcrumb slug={slug} title={title} />
-                    <div className='space-y-1'>
-                        <div className='flex items-center gap-2'>
+                    <div className="space-y-1">
+                        <div className="flex items-center gap-2">
                             <span>タグ：</span>
                             {tags.length >= 1 ? (
                                 tags.map((tag) => (
-                                    <BlogTag key={tag} tag={tag}></BlogTag>
+                                    <BlogTag key={tag} tag={tag} />
                                 ))
                             ) : (
-                                <span className='text-gray-500'>タグ無し</span>
+                                <span className="text-gray-500">タグ無し</span>
                             )}
                         </div>
                         <div>公開日： {publishedAt.format('YYYY-MM-DD')}</div>

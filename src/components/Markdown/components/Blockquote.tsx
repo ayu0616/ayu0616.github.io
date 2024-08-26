@@ -1,6 +1,6 @@
 'use client'
 
-import { ComponentProps, createRef, useEffect } from 'react'
+import { type ComponentProps, createRef, useEffect } from 'react'
 
 import { cn } from '@/lib/utils'
 
@@ -18,7 +18,7 @@ const Blockquote: React.FC<BlockquoteProps> = ({ className, ...props }) => {
         <div
             className={cn(
                 'flex w-full justify-center',
-                !isTwitter && 'border-l-2 border-emerald-800',
+                !isTwitter && 'border-emerald-800 border-l-2',
             )}
         >
             <blockquote

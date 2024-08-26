@@ -1,4 +1,9 @@
-import { BreadcrumbList as BreadcrumbListSchema, WithContext } from 'schema-dts'
+import { BASE_URL } from '@/constant/others'
+import type {
+    BreadcrumbList as BreadcrumbListSchema,
+    WithContext,
+} from 'schema-dts'
+import { JsonLD } from '../JsonLD/JsonLD'
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -7,8 +12,6 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from '../ui/breadcrumb'
-import { JsonLD } from '../JsonLD/JsonLD'
-import { BASE_URL } from '@/constant/others'
 
 export interface BlogBreadcrumbProps {
     slug: string
@@ -34,13 +37,13 @@ export const BlogBreadcrumb: React.FC<BlogBreadcrumbProps> = ({
                 '@type': 'ListItem',
                 position: 2,
                 name: 'ブログ',
-                item: BASE_URL + '/blog',
+                item: `${BASE_URL}/blog`,
             },
             {
                 '@type': 'ListItem',
                 position: 3,
                 name: title,
-                item: BASE_URL + '/blog/' + slug,
+                item: `${BASE_URL}/blog/${slug}`,
             },
         ],
     } satisfies WithContext<BreadcrumbListSchema>
@@ -49,11 +52,11 @@ export const BlogBreadcrumb: React.FC<BlogBreadcrumbProps> = ({
             <Breadcrumb>
                 <BreadcrumbList>
                     <BreadcrumbItem>
-                        <BreadcrumbLink href='/'>Home</BreadcrumbLink>
+                        <BreadcrumbLink href="/">Home</BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
-                        <BreadcrumbLink href='/blog'>Blog</BreadcrumbLink>
+                        <BreadcrumbLink href="/blog">Blog</BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
@@ -61,7 +64,7 @@ export const BlogBreadcrumb: React.FC<BlogBreadcrumbProps> = ({
                     </BreadcrumbItem>
                 </BreadcrumbList>
             </Breadcrumb>
-            <JsonLD json={json} id='breadcrumb-json-ld' />
+            <JsonLD json={json} id="breadcrumb-json-ld" />
         </>
     )
 }

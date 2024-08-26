@@ -22,18 +22,18 @@ export const SkillChart = () => {
             <BarChart
                 data={skillData}
                 height={250}
-                layout='vertical'
+                layout="vertical"
                 margin={{ bottom: 20, left: 20, right: 20, top: 20 }}
                 width={730}
             >
                 <XAxis
                     domain={['dataMin', 'dataMax']}
                     tickFormatter={(unix) => dayjs(unix).format('YYYY-MM')}
-                    type='number'
+                    type="number"
                 />
                 <YAxis
-                    dataKey='skillName'
-                    type='category'
+                    dataKey="skillName"
+                    type="category"
                     width={
                         8 *
                             skillData.reduce(
@@ -46,20 +46,20 @@ export const SkillChart = () => {
                 />
                 <Tooltip formatter={tooltipFormatter} />
                 <Bar
-                    className='cursor-pointer'
-                    dataKey='dateRangeNum'
-                    fill='color'
+                    className="cursor-pointer"
+                    dataKey="dateRangeNum"
+                    fill="color"
                 >
                     {skillData.map(({ color, id }, i) => (
                         <Cell
                             key={i}
-                            className='hover:opacity-80'
+                            className="hover:opacity-80"
                             fill={color}
                             onClick={() => {
                                 const url = `/skill/${id}`
                                 router.push(url)
                             }}
-                        ></Cell>
+                        />
                     ))}
                 </Bar>
             </BarChart>
@@ -77,8 +77,10 @@ const tooltipFormatter = (value: string | number | (string | number)[]) => {
                 `${value
                     .map((v) => {
                         const d = dayjs(v)
-                        if (d.valueOf() === dateMax.valueOf()) return '継続中'
-                        else return d.format('YYYY-MM')
+                        if (d.valueOf() === dateMax.valueOf()) {
+                            return '継続中'
+                        }
+                        return d.format('YYYY-MM')
                     })
                     .join(' 〜 ')}`,
                 '期間',

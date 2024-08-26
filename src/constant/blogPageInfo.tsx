@@ -1,4 +1,4 @@
-import dayjs, { Dayjs } from 'dayjs'
+import dayjs, { type Dayjs } from 'dayjs'
 
 import _pageInfoBefore from '@/../blog-contents/page-info.json'
 
@@ -60,7 +60,9 @@ const blogPageInfo = Object.keys(pageInfoBefore).reduce(
 export const blogTagList = Array.from(
     Object.values(blogPageInfo).reduce((acc, pageInfo) => {
         pageInfo.tags.forEach((tag) => {
-            if (!acc.has(tag)) acc.add(tag)
+            if (!acc.has(tag)) {
+                acc.add(tag)
+            }
         })
         return acc
     }, new Set<string>()),

@@ -1,6 +1,6 @@
 'use client'
 
-import Link, { LinkProps } from 'next/link'
+import Link, { type LinkProps } from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useMemo } from 'react'
 
@@ -18,14 +18,22 @@ const NavLink: React.FC<NavLinkProps> = ({
     const pathName = usePathname()
     const { href } = props
     const isActive = useMemo(() => {
-        if (!href || !pathName) return false
+        if (!(href && pathName)) {
+            return false
+        }
         if (typeof href === 'string') {
-            if (href === '/') return pathName === '/'
+            if (href === '/') {
+                return pathName === '/'
+            }
             return pathName.startsWith(href)
         }
         const hrefPath = href.pathname
-        if (!hrefPath) return false
-        if (hrefPath === '/') return pathName === '/'
+        if (!hrefPath) {
+            return false
+        }
+        if (hrefPath === '/') {
+            return pathName === '/'
+        }
         return pathName.startsWith(hrefPath)
     }, [href, pathName])
     const classNameList = [className]
@@ -33,7 +41,7 @@ const NavLink: React.FC<NavLinkProps> = ({
         classNameList.push(activeClassName)
     }
 
-    return <Link className={classNameList.join(' ')} {...props} />
+    return <Link className={classNameList.join('')} {...props} />
 }
 
 export default NavLink

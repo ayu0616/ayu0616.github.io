@@ -21,8 +21,7 @@ export const Callout: React.FC<CalloutProps> = ({ children }) => {
     })
     const config = jsYaml.load(ymlText)
     if (
-        !(config instanceof Object) ||
-        !('title' in config) ||
+        !(config instanceof Object && 'title' in config) ||
         typeof config.title !== 'string' ||
         !('icon' in config) ||
         typeof config.icon !== 'string'
@@ -31,12 +30,12 @@ export const Callout: React.FC<CalloutProps> = ({ children }) => {
     }
     content = content.trim()
     return (
-        <div className='flex gap-4 rounded-md border p-4'>
+        <div className="flex gap-4 rounded-md border p-4">
             <p>{config.icon}</p>
             <div>
-                <Markdown className='font-bold'>{config.title}</Markdown>
+                <Markdown className="font-bold">{config.title}</Markdown>
                 {content && (
-                    <div className='mt-2'>
+                    <div className="mt-2">
                         <Markdown>{content}</Markdown>
                     </div>
                 )}
