@@ -113,6 +113,12 @@ const _data = [
         logo: dockerLogo,
         skillName: 'Docker',
     },
+    {
+        color: color.gray['800'],
+        dateRange: [dayjs('2022-11'), dateMax],
+        logo: '',
+        skillName: 'AtCoder',
+    },
 ] satisfies SkillDataInput[]
 
 const skillData = _data.map((d) => ({

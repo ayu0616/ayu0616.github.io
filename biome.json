@@ -20,7 +20,8 @@
                 "useNamingConvention": "off",
                 "noNonNullAssertion": "off",
                 "noDefaultExport": "off",
-                "noNamespaceImport": "off"
+                "noNamespaceImport": "off",
+                "noImplicitBoolean": "off"
             },
             "suspicious": {
                 "noConsoleLog": "off",

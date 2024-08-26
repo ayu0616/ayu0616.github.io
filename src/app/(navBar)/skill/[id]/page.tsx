@@ -27,6 +27,9 @@ export const generateMetadata = ({
 
 export default function Page({ params }: { params: { id: string } }) {
     const { id } = params
+    if (id === 'AtCoder') {
+        redirect('/atcoder')
+    }
     const skill = skillData.find((s) => s.id === id)
     if (!skill) {
         return redirect('/404')
