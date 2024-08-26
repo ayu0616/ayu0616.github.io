@@ -61,7 +61,7 @@ const Markdown: React.FC<MarkdownProps> = ({
                                 className,
                             )}
                             id={props.children?.toString()}
-                        ></h1>
+                        />
                     ),
                     h2: ({ className, ...props }) => (
                         <h2
@@ -71,7 +71,7 @@ const Markdown: React.FC<MarkdownProps> = ({
                                 className,
                             )}
                             id={props.children?.toString()}
-                        ></h2>
+                        />
                     ),
                     h3: ({ className, ...props }) => (
                         <h3
@@ -81,7 +81,7 @@ const Markdown: React.FC<MarkdownProps> = ({
                                 className,
                             )}
                             id={props.children?.toString()}
-                        ></h3>
+                        />
                     ),
                     h4: ({ className, ...props }) => (
                         <h4
@@ -91,7 +91,7 @@ const Markdown: React.FC<MarkdownProps> = ({
                                 className,
                             )}
                             id={props.children?.toString()}
-                        ></h4>
+                        />
                     ),
                     h5: ({ className, ...props }) => (
                         <h5
@@ -101,7 +101,7 @@ const Markdown: React.FC<MarkdownProps> = ({
                                 className,
                             )}
                             id={props.children?.toString()}
-                        ></h5>
+                        />
                     ),
                     h6: ({ className, ...props }) => (
                         <h6
@@ -111,7 +111,7 @@ const Markdown: React.FC<MarkdownProps> = ({
                                 className,
                             )}
                             id={props.children?.toString()}
-                        ></h6>
+                        />
                     ),
                     img: ({ alt, src }) => (
                         <Img
@@ -122,7 +122,7 @@ const Markdown: React.FC<MarkdownProps> = ({
                     ),
                     // code: Code,
                     li: ({ children }) => (
-                        <li className='flex'>
+                        <li className="flex">
                             <div>{children}</div>
                         </li>
                     ),
@@ -132,9 +132,9 @@ const Markdown: React.FC<MarkdownProps> = ({
                             {...props}
                         />
                     ),
-                    pre: (props) => <Pre {...props} slug={slug}></Pre>,
+                    pre: (props) => <Pre {...props} slug={slug} />,
                     table: ({ className, ...props }) => (
-                        <div className='relative w-full overflow-x-auto'>
+                        <div className="relative w-full overflow-x-auto">
                             <table
                                 className={cn(
                                     'min-w-full table-auto divide-y divide-gray-200',
@@ -165,7 +165,7 @@ const Markdown: React.FC<MarkdownProps> = ({
                     th: ({ className, ...props }) => (
                         <th
                             className={cn(
-                                'whitespace-nowrap px-2 py-2 tracking-wider text-gray-500',
+                                'whitespace-nowrap px-2 py-2 text-gray-500 tracking-wider',
                                 className,
                             )}
                             {...props}

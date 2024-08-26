@@ -1,4 +1,4 @@
-import { ComponentProps, ComponentPropsWithoutRef } from 'react'
+import type { ComponentProps, ComponentPropsWithoutRef } from 'react'
 
 import { Callout } from './Callout'
 import CodeBlock from './CodeBlock'

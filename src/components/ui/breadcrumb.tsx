@@ -10,7 +10,7 @@ const Breadcrumb = React.forwardRef<
     React.ComponentPropsWithoutRef<'nav'> & {
         separator?: React.ReactNode
     }
->(({ ...props }, ref) => <nav ref={ref} aria-label='breadcrumb' {...props} />)
+>(({ ...props }, ref) => <nav ref={ref} aria-label="breadcrumb" {...props} />)
 Breadcrumb.displayName = 'Breadcrumb'
 
 const BreadcrumbList = React.forwardRef<
@@ -20,7 +20,7 @@ const BreadcrumbList = React.forwardRef<
     <ol
         ref={ref}
         className={cn(
-            'flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground sm:gap-2.5',
+            'flex flex-wrap items-center gap-1.5 break-words text-muted-foreground text-sm sm:gap-2.5',
             className,
         )}
         {...props}
@@ -65,10 +65,10 @@ const BreadcrumbPage = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <span
         ref={ref}
-        aria-current='page'
-        aria-disabled='true'
+        aria-current="page"
+        aria-disabled="true"
         className={cn('font-normal text-foreground', className)}
-        role='link'
+        role="link"
         {...props}
     />
 ))
@@ -80,9 +80,9 @@ const BreadcrumbSeparator = ({
     ...props
 }: React.ComponentProps<'li'>) => (
     <li
-        aria-hidden='true'
+        aria-hidden="true"
         className={cn('[&>svg]:size-3.5', className)}
-        role='presentation'
+        role="presentation"
         {...props}
     >
         {children ?? <ChevronRight />}
@@ -95,13 +95,13 @@ const BreadcrumbEllipsis = ({
     ...props
 }: React.ComponentProps<'span'>) => (
     <span
-        aria-hidden='true'
+        aria-hidden="true"
         className={cn('flex h-9 w-9 items-center justify-center', className)}
-        role='presentation'
+        role="presentation"
         {...props}
     >
-        <MoreHorizontal className='h-4 w-4' />
-        <span className='sr-only'>More</span>
+        <MoreHorizontal className="h-4 w-4" />
+        <span className="sr-only">More</span>
     </span>
 )
 BreadcrumbEllipsis.displayName = 'BreadcrumbElipssis'

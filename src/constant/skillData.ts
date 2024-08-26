@@ -1,4 +1,4 @@
-import dayjs, { Dayjs } from 'dayjs'
+import dayjs, { type Dayjs } from 'dayjs'
 import color from 'tailwindcss/colors'
 
 import cppLogo from '../assets/skillLogo/cpp.svg'
@@ -113,6 +113,12 @@ const _data = [
         logo: dockerLogo,
         skillName: 'Docker',
     },
+    {
+        color: color.gray['800'],
+        dateRange: [dayjs('2022-11'), dateMax],
+        logo: '',
+        skillName: 'AtCoder',
+    },
 ] satisfies SkillDataInput[]
 
 const skillData = _data.map((d) => ({
@@ -123,7 +129,9 @@ const skillData = _data.map((d) => ({
 
 skillData.sort((a, b) => {
     const diff = a.dateRangeNum[0] - b.dateRangeNum[0]
-    if (diff === 0) return a.dateRangeNum[1] - b.dateRangeNum[1]
+    if (diff === 0) {
+        return a.dateRangeNum[1] - b.dateRangeNum[1]
+    }
     return diff
 })
 

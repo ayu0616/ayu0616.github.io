@@ -7,7 +7,7 @@ export interface BlogTagProps {
 const BlogTag: React.FC<BlogTagProps> = ({ tag }) => {
     return (
         <Link href={`/blog/tag/${tag}`}>
-            <span className='rounded-sm bg-emerald-50 p-1 text-sm text-emerald-800 underline-offset-2 hover:underline'>
+            <span className="rounded-sm bg-emerald-50 p-1 text-emerald-800 text-sm underline-offset-2 hover:underline">
                 #{tag}
             </span>
         </Link>

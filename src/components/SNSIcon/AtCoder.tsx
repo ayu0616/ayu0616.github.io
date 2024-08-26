@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */ // altを別の場所で設定しているため
 import Image from 'next-export-optimize-images/image'
-import { ImageProps } from 'next/image'
+import type { ImageProps } from 'next/image'
 
 import AtCoderIconBlack from '@/assets/atcoder/atcoder-black.png'
 import AtCoderIconWhite from '@/assets/atcoder/atcoder-white.png'
@@ -20,24 +20,24 @@ export const AtCoder = ({ ...props }: AtCoderProps) => {
         width: 20,
     } satisfies Partial<ImageProps>
     return (
-        <div className='group rounded-full'>
+        <div className="group rounded-full">
             <SNSIcon
                 {...props}
                 icon={
                     <>
                         <Image
                             {...imgProps}
-                            className='drag-none absolute opacity-0 transition-opacity duration-500 group-hover:opacity-100'
+                            className="drag-none absolute opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                             src={AtCoderIconWhite}
                         />
                         <Image
                             {...imgProps}
-                            className='drag-none absolute transition-opacity duration-500 group-hover:opacity-0'
+                            className="drag-none absolute transition-opacity duration-500 group-hover:opacity-0"
                             src={AtCoderIconBlack}
                         />
                     </>
                 }
-            ></SNSIcon>
+            />
         </div>
     )
 }

@@ -36,7 +36,6 @@ export type EmbedOption = {
 const EmbedOptionIsValid = (option: unknown): option is EmbedOption => {
     if (typeof option !== 'object' || option === null) {
         throw new Error('Embed option must be an object')
-        return false
     }
 
     const optionKeys = Object.keys(option)
@@ -46,7 +45,6 @@ const EmbedOptionIsValid = (option: unknown): option is EmbedOption => {
     )
     if (invalidKeys.length > 0) {
         throw new Error(`Invalid key: ${invalidKeys.join(', ')}`)
-        return false
     }
 
     const missingKeys = Object.entries(embedOptionSchema).filter(
@@ -54,7 +52,6 @@ const EmbedOptionIsValid = (option: unknown): option is EmbedOption => {
     )
     if (missingKeys.length > 0) {
         throw new Error(`Required key is missing: ${missingKeys.join(', ')}`)
-        return false
     }
 
     /** 上までのチェックでkeyが正しいことは確認済み */
@@ -79,7 +76,6 @@ const EmbedOptionIsValid = (option: unknown): option is EmbedOption => {
         throw new Error(
             `Invalid type: ${invalidTypeKeys.map(([key]) => key).join(', ')}`,
         )
-        return false
     }
 
     return true
@@ -101,9 +97,9 @@ const Embed = ({ optionStr, ...props }: EmbedProps) => {
     return (
         <iframe
             {...option}
-            className='border-none'
+            className="border-none"
             style={{ aspectRatio: aspect }}
-        ></iframe>
+        />
     )
 }
 

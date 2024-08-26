@@ -15,7 +15,7 @@ export const JsonLD = <T extends Thing>({
     return (
         <Script
             id={id}
-            type='application/ld+json'
+            type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(json) }}
         />
     )

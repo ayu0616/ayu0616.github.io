@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 
-import { EmbedOption } from '../Embed'
+import type { EmbedOption } from '../Embed'
 
 export interface YoutubeEmbedProps {
     option: EmbedOption
@@ -24,22 +24,21 @@ const YoutubeEmbed: React.FC<YoutubeEmbedProps> = ({ ...props }) => {
                 throw new Error('Invalid YouTube URL')
             }
             return `https://www.youtube.com/embed/${videoId}`
-        } else {
-            const urlMatch = /(\/embed)?\/(.*)[\/\?]?.*/.exec(pathName)
-            if (!urlMatch) {
-                throw new Error('Invalid YouTube URL')
-            }
-            const videoId = urlMatch[2]
-            return `https://www.youtube.com/embed/${videoId}`
         }
+        const urlMatch = /(\/embed)?\/(.*)[\/\?]?.*/.exec(pathName)
+        if (!urlMatch) {
+            throw new Error('Invalid YouTube URL')
+        }
+        const videoId = urlMatch[2]
+        return `https://www.youtube.com/embed/${videoId}`
     }, [option.src])
     const { aspect } = option
     return (
         <iframe
             {...{ ...option, src }}
-            className='mx-auto rounded-md border-none drop-shadow-md'
+            className="mx-auto rounded-md border-none drop-shadow-md"
             style={{ aspectRatio: aspect }}
-        ></iframe>
+        />
     )
 }
 

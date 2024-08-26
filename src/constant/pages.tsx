@@ -1,5 +1,5 @@
 import { FaHome } from 'react-icons/fa'
-import { FaCode, FaWandMagicSparkles, FaPencil } from 'react-icons/fa6'
+import { FaCode, FaPencil, FaWandMagicSparkles } from 'react-icons/fa6'
 
 interface PageInfo {
     icon: JSX.Element
@@ -8,14 +8,14 @@ interface PageInfo {
 }
 
 const pages = [
-    { icon: <FaHome></FaHome>, name: 'Home', path: '/' },
-    { icon: <FaCode></FaCode>, name: 'Skill', path: '/skill' },
+    { icon: <FaHome />, name: 'Home', path: '/' },
+    { icon: <FaCode />, name: 'Skill', path: '/skill' },
     {
-        icon: <FaWandMagicSparkles></FaWandMagicSparkles>,
+        icon: <FaWandMagicSparkles />,
         name: 'Work',
         path: '/work',
     },
-    { icon: <FaPencil></FaPencil>, name: 'Blog', path: '/blog' },
+    { icon: <FaPencil />, name: 'Blog', path: '/blog' },
 ] as const satisfies PageInfo[]
 
 export default pages

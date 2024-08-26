@@ -21,20 +21,20 @@ export const Twitter = ({ className, ...props }: TwitterProps) => {
     const _className = isTwitter ? twitterClassName : xClassName
     return (
         <div
-            className='group rounded-full'
+            className="group rounded-full"
             data-is-twitter={isTwitter}
             onMouseLeave={handleMouseLeave}
         >
             <SNSIcon
                 {...props}
-                className={`${_className} ${className}`}
+                className={`${_className}${className}`}
                 icon={
                     <>
-                        <FaTwitter className='absolute opacity-0 transition-opacity duration-500 group-data-[is-twitter="true"]:opacity-100'></FaTwitter>
-                        <FaXTwitter className='absolute opacity-0 transition-opacity duration-500 group-data-[is-twitter="false"]:opacity-100'></FaXTwitter>
+                        <FaTwitter className='absolute opacity-0 transition-opacity duration-500 group-data-[is-twitter="true"]:opacity-100' />
+                        <FaXTwitter className='absolute opacity-0 transition-opacity duration-500 group-data-[is-twitter="false"]:opacity-100' />
                     </>
                 }
-            ></SNSIcon>
+            />
         </div>
     )
 }

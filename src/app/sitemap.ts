@@ -1,6 +1,6 @@
-import fs from 'fs'
+import fs from 'node:fs'
 
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from 'next'
 
 import blogPageInfo, { blogTagList } from '@/constant/blogPageInfo'
 
@@ -25,11 +25,16 @@ const createSitemapItem = (path: string): SitemapItem => {
 const getSitemap = (pathName: string, list: SitemapItem[]) => {
     const dirents = fs.readdirSync(pathName, { withFileTypes: true })
     for (const dirent of dirents) {
-        if (dirent.name.startsWith('[') || dirent.name.startsWith('_')) continue
+        if (dirent.name.startsWith('[') || dirent.name.startsWith('_')) {
+            continue
+        }
         const currentPath = `${pathName}/${dirent.name}`
-        if (dirent.isDirectory()) getSitemap(currentPath, list)
-        if (dirent.name === pageFileName)
+        if (dirent.isDirectory()) {
+            getSitemap(currentPath, list)
+        }
+        if (dirent.name === pageFileName) {
             list.push(createSitemapItem(currentPath))
+        }
     }
     return list
 }
