@@ -5,8 +5,15 @@ import { BIZ_UDPGothic } from 'next/font/google'
 import { getMetadata } from '@/util/metadata'
 
 import './index.scss'
+import dayjs from 'dayjs'
+import timezone from 'dayjs/plugin/timezone'
+import utc from 'dayjs/plugin/utc'
 
 export const dynamic = 'force-static'
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
+dayjs.tz.setDefault('Asia/Tokyo')
 
 export const metadata: Metadata = {
     ...getMetadata({
