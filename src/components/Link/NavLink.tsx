@@ -1,5 +1,6 @@
 'use client'
 
+import { cn } from '@/lib/utils'
 import Link, { type LinkProps } from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useMemo } from 'react'
@@ -41,7 +42,7 @@ const NavLink: React.FC<NavLinkProps> = ({
         classNameList.push(activeClassName)
     }
 
-    return <Link className={classNameList.join('')} {...props} />
+    return <Link className={cn(...classNameList)} {...props} />
 }
 
 export default NavLink
