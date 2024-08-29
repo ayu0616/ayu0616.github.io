@@ -23,8 +23,9 @@ const TableOfContents = ({
         const tocList: string[] = []
         headings.forEach((heading) => {
             const { level, title } = heading
+            const encodedTitle = encodeURIComponent(title) // エンコードしないとリンクとして判定されない場合がある
             tocList.push(
-                `${' '.repeat((level - 2) * 4)}- [${title}](#${title})`,
+                `${' '.repeat((level - 2) * 4)}- [${title}](#${encodedTitle})`,
             )
         })
         return tocList.join('\n')
