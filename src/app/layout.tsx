@@ -5,6 +5,7 @@ import { BIZ_UDPGothic } from 'next/font/google'
 import { getMetadata } from '@/util/metadata'
 
 import './index.scss'
+import { cn } from '@/lib/utils'
 import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
@@ -34,11 +35,13 @@ export default function RootLayout({
     children: React.ReactNode
 }>) {
     return (
-        <html lang="ja">
+        <html lang="ja" className="h-full scroll-smooth">
             <head>
                 <GoogleAnalytics gaId="G-WB8DFKSGMP" />
             </head>
-            <body className={bizUDPGothic.className}>{children}</body>
+            <body className={cn(bizUDPGothic.className, 'h-full')}>
+                {children}
+            </body>
         </html>
     )
 }
