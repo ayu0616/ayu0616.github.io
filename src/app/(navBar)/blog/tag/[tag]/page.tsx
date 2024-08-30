@@ -1,10 +1,9 @@
+import { BlogPageCard } from '@/components/BlogPageCard'
+import blogPageInfo, { type BlogPageInfoItem } from '@/constant/blogPageInfo'
+import { getMetadata } from '@/util/metadata'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { FaArrowLeft } from 'react-icons/fa6'
-
-import BlogTag from '@/components/BlogTag/BlogTag'
-import blogPageInfo, { type BlogPageInfoItem } from '@/constant/blogPageInfo'
-import { getMetadata } from '@/util/metadata'
 
 interface Params {
     tag: string
@@ -58,20 +57,7 @@ export default function Page({ params }: { params: Params }) {
                 </Link>
                 <h1>タグ：{tag}</h1>
                 {pageList.map((page) => (
-                    <Link key={page.slug} href={`/blog/${page.slug}`}>
-                        <div className="rounded-md bg-white p-4 shadow">
-                            <h3>{page.title}</h3>
-                            <div className="flex items-center gap-2">
-                                <span>タグ：</span>
-                                {page.tags.map((tag) => (
-                                    <BlogTag key={tag} tag={tag} />
-                                ))}
-                            </div>
-                            <div>
-                                公開日： {page.publishedAt.format('YYYY-MM-DD')}
-                            </div>
-                        </div>
-                    </Link>
+                    <BlogPageCard key={page.slug} {...page} />
                 ))}
             </div>
         </div>
