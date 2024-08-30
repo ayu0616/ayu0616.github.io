@@ -16,7 +16,7 @@ const pageList: PageListItem[] = Object.keys(blogPageInfo)
 export default function Page() {
     return (
         <div className="p-4 md:p-6">
-            <div className="mx-auto grid max-w-screen-lg gap-2">
+            <div className="mx-auto grid max-w-screen-lg gap-4">
                 {pageList.map((page) => (
                     <BlogPageCard key={page.slug} {...page} />
                 ))}
