@@ -93,6 +93,11 @@
     body {
         @apply bg-background text-foreground;
     }
+    html{
+        &:has(#nav-bar){
+            @apply scroll-pt-24;
+        }
+    }
 }
 
 :root {
