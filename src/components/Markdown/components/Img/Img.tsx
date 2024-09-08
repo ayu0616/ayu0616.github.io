@@ -1,6 +1,8 @@
+import fs from 'node:fs'
 import path from 'node:path'
 
 import Image from 'next-export-optimize-images/picture'
+import { OriginalObject } from './OriginalObject'
 
 export interface ImgProps {
     alt?: string
@@ -21,6 +23,16 @@ export const Img: React.FC<ImgProps> = async ({ alt = '', slug, ...props }) => {
         )
         return toPath
     })()
+    if (src.endsWith('.json')) {
+        // 独自定義オブジェクトの場合
+        const jsonPath = fs.globSync(
+            path.join(process.cwd(), 'blog-contents', '**', slug, '*.json'),
+        )[0]
+        if (!jsonPath) {
+            throw new Error('jsonPath is not found')
+        }
+        return <OriginalObject alt={alt} filePath={jsonPath} />
+    }
     if (src.endsWith('.svg')) {
         return (
             // eslint-disable-next-line @next/next/no-img-element
