@@ -46,6 +46,6 @@ next-env.d.ts
 *.sln
 *.sw?
 
-blog-contents/
+blog-contents
 public/blog-image/
 src/__generated__/
