@@ -35,7 +35,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
             - name: Clone Blog Contents
-              run: git clone --depth 1 --branch main https://github.com/ayu0616/blog-contents.git
+              run: curl https://storage.googleapis.com/hassaku-blog-contents/blog-contents -o blog-contents.zip && unzip blog-contents.zip && rm blog-contents.zip
             - uses: pnpm/action-setup@v2
               with:
                   version: 9.3.0

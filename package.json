@@ -11,7 +11,8 @@
         "prepare": "node --eval 'process.exit(process.env.NODE_ENV === `production` ? 0 : 1)' || husky",
         "typecheck": "tsc --noEmit",
         "lint-staged": "lint-staged --config .lintstagedrc.js",
-        "codegen": "pnpm dlx tsx src/scripts/codegen.ts"
+        "codegen": "pnpm dlx tsx src/scripts/codegen.ts",
+        "push-content": "rm blog-contents.zip && python blog-contents/update_page_info.py && zip -r blog-contents.zip blog-contents && cd terraform && terraform apply -var-file vars.tfvars -auto-approve && cd .."
     },
     "dependencies": {
         "@next/third-parties": "14.3.0-canary.44",
