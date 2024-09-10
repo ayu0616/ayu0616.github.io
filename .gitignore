@@ -47,4 +47,5 @@ next-env.d.ts
 *.sw?
 
 blog-contents
+blog-contents.zip
 public/blog-image/
