@@ -35,7 +35,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
             - name: Clone Blog Contents
-              run: curl ${{secrets.CLOUD_STORAGE_URL}} -o blog-contents.zip && unzip blog-contents.zip && rm blog-contents.zip
+              run: curl https://storage.googleapis.com/hassaku-blog-contents/blog-contents -o blog-contents.zip && unzip blog-contents.zip && rm blog-contents.zip
             - uses: pnpm/action-setup@v2
               with:
                   version: 9.3.0
