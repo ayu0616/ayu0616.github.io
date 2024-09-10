@@ -10,7 +10,8 @@
         "cp:img": "pnpm dlx ts-node --project tsconfig.local.json src/scripts/copyImg.ts",
         "prepare": "node --eval 'process.exit(process.env.NODE_ENV === `production` ? 0 : 1)' || husky",
         "typecheck": "tsc --noEmit",
-        "lint-staged": "lint-staged --config .lintstagedrc.js"
+        "lint-staged": "lint-staged --config .lintstagedrc.js",
+        "codegen": "for f in $(find blog-contents/schema -name \"*.json\"); do pnpm quicktype $f -o src/__generated__/types/$(basename ${f//.json/.ts}) --src-lang schema --lang typescript-zod; done"
     },
     "dependencies": {
         "@next/third-parties": "14.3.0-canary.44",
@@ -20,7 +21,7 @@
         "dayjs": "^1.11.11",
         "js-yaml": "^4.1.0",
         "katex": "^0.16.10",
-        "lucide-react": "^0.399.0",
+        "lucide-react": "^0.439.0",
         "next": "14.2.3",
         "next-export-optimize-images": "^4.5.0",
         "react": "^18",
@@ -51,6 +52,7 @@
         "lint-staged": "^15.2.9",
         "next-sitemap": "^4.2.3",
         "postcss": "^8",
+        "quicktype": "^23.0.170",
         "saas": "^1.0.0",
         "sass": "^1.76.0",
         "schema-dts": "^1.1.2",
