@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-import Image from 'next-export-optimize-images/picture'
+import Image from 'next/image'
 import { OriginalObject } from './OriginalObject'
 
 export interface ImgProps {
