@@ -1,8 +1,8 @@
-const withExportImages = require('next-export-optimize-images')
+// @ts-check
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    output: 'export',
+    output: 'standalone',
 }
 
-module.exports = withExportImages(nextConfig)
+module.exports = nextConfig
