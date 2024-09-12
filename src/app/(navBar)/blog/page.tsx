@@ -11,7 +11,13 @@ interface PageListItem extends BlogPageInfoItem {}
 
 const pageList: PageListItem[] = Object.keys(blogPageInfo)
     .map((slug) => blogPageInfo[slug])
-    .sort((a, b) => b.publishedAt.diff(a.publishedAt))
+    .sort((a, b) => {
+        const publishedDiff = b.publishedAt.diff(a.publishedAt) // 日付の降順
+        if (publishedDiff !== 0) {
+            return publishedDiff
+        }
+        return b.slug.localeCompare(a.slug) // slugの降順
+    })
 
 export default function Page() {
     return (
