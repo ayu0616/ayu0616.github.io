@@ -35,7 +35,8 @@
                 "BriteSnow.vscode-toggle-quotes",
                 "foxundermoon.shell-format",
                 "hashicorp.terraform",
-                "YoavBls.pretty-ts-errors"
+                "YoavBls.pretty-ts-errors",
+                "jeff-hykin.better-dockerfile-syntax"
             ]
         }
     }
