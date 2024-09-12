@@ -1,0 +1,15 @@
+node_modules
+
+.git
+.github
+.gitignore
+
+.vscode
+.zed
+
+terraform
+
+.mypy_cache
+
+Dockerfile*
+docker-compose*.yml
