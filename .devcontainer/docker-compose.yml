@@ -1,0 +1,10 @@
+services:
+    app:
+        image: mcr.microsoft.com/vscode/devcontainers/typescript-node
+        volumes:
+            - ..:/workspace:cached
+            # - /workspace/node_modules
+            - ${BLOG_CONTENTS_DIR}:/workspace/blog-contents
+        command: sleep infinity
+        environment:
+            PNPM_HOME: "$HOME/.local/share/pnpm/store"
