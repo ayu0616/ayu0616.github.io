@@ -107,3 +107,6 @@ DISABLE_UPDATE_PROMPT=true
 
 PROMPT="$PROMPT
 > "
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform

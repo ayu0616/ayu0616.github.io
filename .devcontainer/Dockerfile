@@ -7,4 +7,3 @@ RUN apt update -y && \
     unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip && \
     mv terraform /usr/local/bin/ && \
     rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-RUN terraform -install-autocomplete
