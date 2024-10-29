@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
+import Image from 'next-export-optimize-images/picture'
 import { redirect } from 'next/navigation'
 
 import skillData from '@/constant/skillData'
@@ -9,7 +9,9 @@ export const generateStaticParams = () => skillData.map(({ id }) => ({ id }))
 
 export const generateMetadata = ({
     params,
-}: { params: { id: string } }): Promise<Metadata> => {
+}: {
+    params: { id: string }
+}): Promise<Metadata> => {
     const { id } = params
     const skill = skillData.find((s) => s.id === id)
     if (!skill) {

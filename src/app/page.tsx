@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from 'next-export-optimize-images/picture'
 import Link from 'next/link'
 
 import pages from '@/constant/pages'
