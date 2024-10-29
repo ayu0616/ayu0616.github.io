@@ -45,14 +45,21 @@ export const Img: React.FC<ImgProps> = async ({ alt = '', slug, ...props }) => {
         )
     }
     return (
-        <Image
-            alt={alt}
-            className="mx-auto max-h-[50vh] object-contain"
-            height={1000}
-            layout="responsive"
-            loading="lazy"
-            src={src}
-            width={1000}
-        />
+        <figure className="mx-auto w-fit">
+            <Image
+                alt={alt}
+                className="max-h-[50vh] object-contain"
+                height={1000}
+                layout="responsive"
+                loading="lazy"
+                src={src}
+                width={1000}
+            />
+            {alt && (
+                <figcaption className="mt-2 whitespace-break-spaces text-gray-700 text-sm [line-break:anywhere]">
+                    {alt}
+                </figcaption>
+            )}
+        </figure>
     )
 }
