@@ -19,7 +19,7 @@ export const BlogPageCard: FC<BlogPageCardProps> = ({
             <div className="rounded-md bg-white p-6 shadow">
                 <h3 className="mb-2">{title}</h3>
                 <div className="space-y-1">
-                    <div className="flex flex-1 flex-wrap gap-x-2 gap-y-1">
+                    <div className="flex flex-wrap gap-x-2 gap-y-1">
                         {tags.length >= 1 ? (
                             tags.map((tag) => <BlogTag key={tag} tag={tag} />)
                         ) : (
