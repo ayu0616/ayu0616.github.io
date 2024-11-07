@@ -1,0 +1,10 @@
+services:
+    web-prod:
+        build:
+            context: .
+            dockerfile: Dockerfile.prod
+        image: ${DOCKER_IMAGE}
+        env_file:
+            - .env.local
+        ports:
+            - 3000:3000

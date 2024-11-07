@@ -1,5 +1,5 @@
 import { BlogPageCard } from '@/components/BlogPageCard'
-import blogPageInfo, { type BlogPageInfoItem } from '@/constant/blogPageInfo'
+import { type BlogPageInfoItem, blogPageInfo } from '@/constant/blog-page-info'
 import { getMetadata } from '@/util/metadata'
 import type { Metadata } from 'next'
 import Link from 'next/link'
@@ -12,9 +12,9 @@ interface Params {
 const allTags = Object.values(blogPageInfo).flatMap((info) => info.tags)
 const uniqueTags = Array.from(new Set(allTags))
 
-export const generateStaticParams = (): Params[] => {
-    return uniqueTags.map((tag) => ({ tag }))
-}
+// export const generateStaticParams = (): Params[] => {
+//     return uniqueTags.map((tag) => ({ tag }))
+// }
 
 export const generateMetadata = ({
     params,

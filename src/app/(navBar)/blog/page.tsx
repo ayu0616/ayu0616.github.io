@@ -1,6 +1,12 @@
 import { BlogPageCard } from '@/components/BlogPageCard'
-import blogPageInfo, { type BlogPageInfoItem } from '@/constant/blogPageInfo'
+import {
+    type BlogPageInfoItem,
+    getBlogPageInfo,
+} from '@/constant/blog-page-info'
 import { getMetadata } from '@/util/metadata'
+
+export const dynamic = 'force-dynamic'
+export const revalidate = 3600
 import Link from 'next/link'
 
 export const metadata = getMetadata({
@@ -10,17 +16,17 @@ export const metadata = getMetadata({
 
 interface PageListItem extends BlogPageInfoItem {}
 
-const pageList: PageListItem[] = Object.keys(blogPageInfo)
-    .map((slug) => blogPageInfo[slug])
-    .sort((a, b) => {
-        const publishedDiff = b.publishedAt.diff(a.publishedAt) // 日付の降順
-        if (publishedDiff !== 0) {
-            return publishedDiff
-        }
-        return b.slug.localeCompare(a.slug) // slugの降順
-    })
-
 export default function Page() {
+    const blogPageInfo = getBlogPageInfo()
+    const pageList: PageListItem[] = Object.keys(blogPageInfo)
+        .map((slug) => blogPageInfo[slug])
+        .sort((a, b) => {
+            const publishedDiff = b.publishedAt.diff(a.publishedAt) // 日付の降順
+            if (publishedDiff !== 0) {
+                return publishedDiff
+            }
+            return b.slug.localeCompare(a.slug) // slugの降順
+        })
     return (
         <div className="gap-8 p-4 md:flex md:p-6">
             <div className="mx-auto grid max-w-screen-sm gap-4">
