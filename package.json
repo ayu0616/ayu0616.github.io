@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "dev": "next dev --turbo",
-        "build": "pnpm cp:img && next build",
+        "build": "next build",
         "start": "next start",
         "lint": "biome check --write .",
         "cp:img": "pnpm dlx ts-node --project tsconfig.local.json src/scripts/copyImg.ts",
