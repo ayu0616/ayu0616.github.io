@@ -12,9 +12,9 @@ interface Params {
 const allTags = Object.values(blogPageInfo).flatMap((info) => info.tags)
 const uniqueTags = Array.from(new Set(allTags))
 
-export const generateStaticParams = (): Params[] => {
-    return uniqueTags.map((tag) => ({ tag }))
-}
+// export const generateStaticParams = (): Params[] => {
+//     return uniqueTags.map((tag) => ({ tag }))
+// }
 
 export const generateMetadata = ({
     params,

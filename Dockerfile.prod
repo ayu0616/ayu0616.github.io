@@ -11,8 +11,8 @@ COPY package.json pnpm-lock.yaml ./
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
 COPY . .
-COPY blog-contents.zip /app/blog-contents.zip
-RUN rm blog-contents && unzip blog-contents.zip
+# COPY blog-contents.zip /app/blog-contents.zip
+# RUN rm blog-contents && unzip blog-contents.zip
 RUN --mount=type=cache,id=next,target=/app/.next/cache pnpm build
 
 ENV NODE_ENV=production

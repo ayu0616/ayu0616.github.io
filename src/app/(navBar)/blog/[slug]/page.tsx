@@ -12,8 +12,8 @@ interface Params {
     slug: string
 }
 
-export const generateStaticParams = (): Params[] =>
-    Object.keys(blogPageInfo).map((slug) => ({ slug }))
+// export const generateStaticParams = (): Params[] =>
+//     Object.keys(blogPageInfo).map((slug) => ({ slug }))
 
 export const generateMetadata = ({
     params,
