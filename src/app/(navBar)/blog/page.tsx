@@ -1,11 +1,6 @@
 import { BlogPageCard } from '@/components/BlogPageCard'
-import {
-    type BlogPageInfoItem,
-    getBlogPageInfo,
-} from '@/constant/blog-page-info'
+import { type BlogPageInfoItem, blogPageInfo } from '@/constant/blog-page-info'
 import { getMetadata } from '@/util/metadata'
-
-export const dynamic = 'force-dynamic'
 
 export const metadata = getMetadata({
     title: 'ブログ',
@@ -14,11 +9,11 @@ export const metadata = getMetadata({
 
 interface PageListItem extends BlogPageInfoItem {}
 
+const pageList: PageListItem[] = Object.keys(blogPageInfo)
+    .map((slug) => blogPageInfo[slug])
+    .sort((a, b) => b.publishedAt.diff(a.publishedAt))
+
 export default function Page() {
-    const blogPageInfo = getBlogPageInfo()
-    const pageList: PageListItem[] = Object.keys(blogPageInfo)
-        .map((slug) => blogPageInfo[slug])
-        .sort((a, b) => b.publishedAt.diff(a.publishedAt))
     return (
         <div className="p-4 md:p-6">
             <div className="mx-auto grid max-w-screen-lg gap-4">
