@@ -19,6 +19,17 @@ resource "google_cloud_run_v2_service" "default" {
       ports {
         container_port = 3000
       }
+      volume_mounts {
+        mount_path = "/app/blog-contents"
+        name       = "blog-contents"
+      }
+    }
+
+    volumes {
+      name = "blog-contents"
+      gcs {
+        bucket = var.bucket_name
+      }
     }
 
     scaling {
