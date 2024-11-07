@@ -134,6 +134,22 @@ function getPageInfoItem(dirInfo: DirInfo): BlogPageInfoItem {
 }
 
 const dirInfoList = getDirInfo()
+
+export const getBlogPageInfo = (): Record<string, BlogPageInfoItem> => {
+    const dirInfoList = getDirInfo()
+    return dirInfoList.map(getPageInfoItem).reduce(
+        (acc, cur) => {
+            if (process.env.NODE_ENV === 'production' && !cur.published) {
+                // 本番環境ではpublishedでないものは無視
+                return acc
+            }
+            acc[cur.slug] = cur
+            return acc
+        },
+        {} as Record<string, BlogPageInfoItem>,
+    )
+}
+
 export const blogPageInfo = dirInfoList.map(getPageInfoItem).reduce(
     (acc, cur) => {
         if (process.env.NODE_ENV === 'production' && !cur.published) {
