@@ -60,12 +60,13 @@ function isTarget(slug: string): boolean {
     return !IGNORE_SLUGS.has(slug)
 }
 
-const basedir = path.join(__dirname, '../../blog-contents')
+const basedir =
+    process.env.NODE_ENV === 'production'
+        ? '/app/blog-contents'
+        : path.join(process.cwd(), 'blog-contents')
 
 function getDirInfo(): DirInfo[] {
-    const res = fs.globSync(
-        path.join(process.cwd(), 'blog-contents', '**/page.md'),
-    )
+    const res = fs.globSync(path.join(basedir, '**/page.md'))
     const dirInfo: DirInfo[] = []
     for (const filePath of res) {
         const dirname = path.dirname(filePath)
