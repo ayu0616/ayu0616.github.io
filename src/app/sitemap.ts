@@ -2,7 +2,7 @@ import fs from 'node:fs'
 
 import type { MetadataRoute } from 'next'
 
-import blogPageInfo, { blogTagList } from '@/constant/blogPageInfo'
+import { blogPageInfo, blogTagList } from '@/constant/blog-page-info'
 
 type SitemapItem = MetadataRoute.Sitemap[number]
 
