@@ -5,7 +5,7 @@ import type { Metadata } from 'next'
 import { BlogBreadcrumb } from '@/components/BlogBreadcrumb/BlogBreadcrumb'
 import BlogTag from '@/components/BlogTag/BlogTag'
 import Markdown, { BLOG_CONTENT_ID } from '@/components/Markdown/Markdown'
-import blogPageInfo from '@/constant/blogPageInfo'
+import { blogPageInfo } from '@/constant/blog-page-info'
 import { getMetadata } from '@/util/metadata'
 
 interface Params {
@@ -29,10 +29,7 @@ export const generateMetadata = ({
 
 const getMarkdown = (slug: string) => {
     const { dirname } = blogPageInfo[slug]
-    const lines = readFileSync(
-        `blog-contents/${dirname}/page.md`,
-        'utf-8',
-    ).split('\n')
+    const lines = readFileSync(`${dirname}/page.md`, 'utf-8').split('\n')
     let yamlFlag = false
     let markdown = ''
     for (const line of lines) {

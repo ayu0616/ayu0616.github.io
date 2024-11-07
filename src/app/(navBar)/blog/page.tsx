@@ -1,5 +1,5 @@
 import { BlogPageCard } from '@/components/BlogPageCard'
-import blogPageInfo, { type BlogPageInfoItem } from '@/constant/blogPageInfo'
+import { type BlogPageInfoItem, blogPageInfo } from '@/constant/blog-page-info'
 import { getMetadata } from '@/util/metadata'
 
 export const metadata = getMetadata({

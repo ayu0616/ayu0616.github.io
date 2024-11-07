@@ -1,4 +1,4 @@
-import type { BlogPageInfoItem } from '@/constant/blogPageInfo'
+import type { BlogPageInfoItem } from '@/constant/blog-page-info'
 import Link from 'next/link'
 import type { FC } from 'react'
 import BlogTag from './BlogTag/BlogTag'
