@@ -11,7 +11,7 @@ resource "google_cloud_run_v2_service" "default" {
 
     containers {
       name  = "portfolio-web"
-      image = "${var.region}-docker.pkg.dev/${var.project_id}/${google_artifact_registry_repository.app.repository_id}/portfolio-web:latest"
+      image = local.image_name
       resources {
         cpu_idle          = true
         startup_cpu_boost = true
@@ -36,12 +36,6 @@ resource "google_cloud_run_v2_service" "default" {
   }
 
   depends_on = []
-}
-
-resource "google_artifact_registry_repository" "app" {
-  location      = var.region
-  repository_id = "portfolio-web"
-  format        = "DOCKER"
 }
 
 # 未認証のアクセスを許可する設定

@@ -24,6 +24,7 @@ provider "registry.terraform.io/hashicorp/google" {
 provider "registry.terraform.io/hashicorp/google-beta" {
   version = "6.2.0"
   hashes = [
+    "h1:V0g3vq58XGOAlICVusnK+z2VodB3Kyuqu+RyTPOC2cE=",
     "h1:rDpLrqSZEnuUP697LITaMqmIF6k2j9wGLG9mGNl79Zs=",
     "zh:01d227ce9fd7538b331efa669fadb33cc9cf6fd3c76351a70b6f71fc513494a2",
     "zh:03113bccea6da3ac7c9187728182e940869f17285854709bb9f2d4aed34e44f2",
