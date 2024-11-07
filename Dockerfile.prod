@@ -27,8 +27,6 @@ ENV NODE_ENV=production
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.7.0 --chown=nextjs:nodejs /lambda-adapter /opt/extensions/lambda-adapter
-
 COPY --from=builder --chown=nextjs:nodejs /app/public /app/public
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static /app/.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone /app/
