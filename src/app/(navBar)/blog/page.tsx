@@ -6,6 +6,7 @@ import {
 import { getMetadata } from '@/util/metadata'
 
 export const dynamic = 'force-dynamic'
+export const revalidate = 3600
 
 export const metadata = getMetadata({
     title: 'ブログ',
