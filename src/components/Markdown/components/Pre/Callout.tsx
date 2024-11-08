@@ -1,10 +1,16 @@
 import jsYaml from 'js-yaml'
 
+import { z } from 'zod'
 import Markdown from '../../Markdown'
 
 export interface CalloutProps {
     children: string
 }
+
+const calloutConfigSchema = z.object({
+    title: z.string(),
+    icon: z.string(),
+})
 
 export const Callout: React.FC<CalloutProps> = ({ children }) => {
     let ymlText = ''
@@ -19,14 +25,16 @@ export const Callout: React.FC<CalloutProps> = ({ children }) => {
             content += `${line}\n`
         }
     })
-    const config = jsYaml.load(ymlText)
-    if (
-        !(config instanceof Object && 'title' in config) ||
-        typeof config.title !== 'string' ||
-        !('icon' in config) ||
-        typeof config.icon !== 'string'
-    ) {
-        throw new Error(`Invalid callout config: ${JSON.stringify(config)}`)
+    let { data: config, success } = calloutConfigSchema.safeParse(
+        jsYaml.load(ymlText),
+    )
+    if (!(success && config)) {
+        console.error('Invalid callout config', { config, ymlText })
+        content = [
+            'Invalid callout config',
+            `\`${JSON.stringify(config)}\``,
+        ].join('\n')
+        config = { icon: '🚨', title: 'Invalid Callout' }
     }
     content = content.trim()
     return (
