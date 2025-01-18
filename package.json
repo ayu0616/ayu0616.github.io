@@ -15,11 +15,13 @@
         "push-content": "rm blog-contents.zip && python blog-contents/update_page_info.py && zip -r blog-contents.zip blog-contents && cd terraform && terraform apply -var-file vars.tfvars -auto-approve && cd .."
     },
     "dependencies": {
+        "@hono/zod-validator": "^0.4.2",
         "@next/third-parties": "15.1.5",
         "@radix-ui/react-slot": "^1.1.1",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "dayjs": "^1.11.13",
+        "hono": "^4.6.17",
         "js-yaml": "^4.1.0",
         "katex": "^0.16.21",
         "lucide-react": "^0.473.0",
