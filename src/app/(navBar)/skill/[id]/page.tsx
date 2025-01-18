@@ -7,10 +7,10 @@ import { getMetadata } from '@/util/metadata'
 
 export const generateStaticParams = () => skillData.map(({ id }) => ({ id }))
 
-export const generateMetadata = ({
+export const generateMetadata = async ({
     params,
-}: { params: { id: string } }): Promise<Metadata> => {
-    const { id } = params
+}: { params: Promise<{ id: string }> }): Promise<Metadata> => {
+    const { id } = await params
     const skill = skillData.find((s) => s.id === id)
     if (!skill) {
         return Promise.reject('404')
@@ -23,8 +23,10 @@ export const generateMetadata = ({
     )
 }
 
-export default function Page({ params }: { params: { id: string } }) {
-    const { id } = params
+export default async function Page({
+    params,
+}: { params: Promise<{ id: string }> }) {
+    const { id } = await params
     if (id === 'AtCoder') {
         redirect('/atcoder')
     }

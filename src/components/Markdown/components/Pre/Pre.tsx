@@ -19,7 +19,9 @@ const Pre = ({ slug, ...props }: PreProps) => {
         return <>{props.children}</>
     }
     const childProps: ComponentProps<'code'> =
-        'props' in children ? children.props : {}
+        'props' in children && children.props instanceof Object
+            ? children.props
+            : {}
     const lang =
         childProps.className
             ?.split(' ')

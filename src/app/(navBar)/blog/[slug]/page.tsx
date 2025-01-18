@@ -15,12 +15,12 @@ interface Params {
 // export const generateStaticParams = (): Params[] =>
 //     Object.keys(blogPageInfo).map((slug) => ({ slug }))
 
-export const generateMetadata = ({
+export const generateMetadata = async ({
     params,
 }: {
-    params: Params
+    params: Promise<Params>
 }): Promise<Metadata> => {
-    const { slug } = params
+    const { slug } = await params
     const { title } = blogPageInfo[slug]
     return Promise.resolve(
         getMetadata({ title, url: `https://ayu0616.github.io/blog/${slug}` }),
@@ -45,8 +45,8 @@ const getMarkdown = (slug: string) => {
     return markdown
 }
 
-export default function Page({ params }: { params: Params }) {
-    const { slug } = params
+export default async function Page({ params }: { params: Promise<Params> }) {
+    const { slug } = await params
     const { tags, publishedAt, title } = blogPageInfo[slug]
     const markdown = getMarkdown(slug)
     return (
@@ -58,7 +58,7 @@ export default function Page({ params }: { params: Params }) {
                         <div className="flex gap-2">
                             <span>タグ：</span>
                             <div className="flex flex-1 flex-wrap gap-x-2 gap-y-1">
-                                {tags.length >= 1 ? (
+                                {tags.length > 0 ? (
                                     tags.map((tag) => (
                                         <BlogTag key={tag} tag={tag} />
                                     ))

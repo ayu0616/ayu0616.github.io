@@ -8,8 +8,11 @@ type Params = {
 
 const basedir = process.env.NODE_ENV === 'production' ? '/app' : process.cwd()
 
-export const GET = async (req: NextRequest, { params }: { params: Params }) => {
-    const { route } = params
+export const GET = async (
+    _req: NextRequest,
+    { params }: { params: Promise<Params> },
+) => {
+    const { route } = await params
     if (route.length !== 2) {
         return NextResponse.json({ error: 'Not Found' }, { status: 404 })
     }
