@@ -16,16 +16,17 @@ const uniqueTags = Array.from(new Set(allTags))
 //     return uniqueTags.map((tag) => ({ tag }))
 // }
 
-export const generateMetadata = ({
+export const generateMetadata = async ({
     params,
 }: {
-    params: Params
+    params: Promise<Params>
 }): Promise<Metadata> => {
-    const tag = decodeURI(params.tag)
+    const { tag } = await params
+    const decodedTag = decodeURI(tag)
     return Promise.resolve(
         getMetadata({
-            title: `タグ： ${tag}`,
-            url: `https://ayu0616.github.io/blog/tag/${params.tag}`,
+            title: `タグ： ${decodedTag}`,
+            url: `https://ayu0616.github.io/blog/tag/${tag}`,
         }),
     )
 }
@@ -41,9 +42,10 @@ const getPageListByTag = (tag: string): PageListItem[] => {
         .sort((a, b) => b.publishedAt.diff(a.publishedAt))
 }
 
-export default function Page({ params }: { params: Params }) {
-    const tag = decodeURI(params.tag)
-    const pageList = getPageListByTag(tag)
+export default async function Page({ params }: { params: Promise<Params> }) {
+    const { tag } = await params
+    const decodedTag = decodeURI(tag)
+    const pageList = getPageListByTag(decodedTag)
 
     // TODO: [slug]/page.tsxと共通化
     return (
@@ -55,7 +57,7 @@ export default function Page({ params }: { params: Params }) {
                         <span>ブログ一覧に戻る</span>
                     </div>
                 </Link>
-                <h1 className="mb-8">タグ：{tag}</h1>
+                <h1 className="mb-8">タグ：{decodedTag}</h1>
                 <div className="grid gap-4">
                     {pageList.map((page) => (
                         <BlogPageCard key={page.slug} {...page} />

@@ -32,6 +32,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({ language, children = '' }) => {
             >
                 <code>{buttonText}</code>
             </button>
+            {/* @ts-ignore */}
             <SyntaxHighlighter
                 showLineNumbers={true}
                 customStyle={{

@@ -10,12 +10,12 @@ interface Param {
 export const generateStaticParams = (): Param[] =>
     Object.keys(works).map((slug) => ({ slug }))
 
-export const generateMetadata = ({
+export const generateMetadata = async ({
     params,
 }: {
-    params: Param
+    params: Promise<Param>
 }): Promise<Metadata> => {
-    const { slug } = params
+    const { slug } = await params
     if (!isWorkKey(slug)) {
         return Promise.reject('404')
     }
@@ -25,8 +25,8 @@ export const generateMetadata = ({
     )
 }
 
-export default function Page({ params }: { params: Param }) {
-    const { slug } = params
+export default async function Page({ params }: { params: Promise<Param> }) {
+    const { slug } = await params
     if (!isWorkKey(slug)) {
         return <div>not found</div>
     }

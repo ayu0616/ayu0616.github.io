@@ -1,5 +1,5 @@
 {
-    "$schema": "https://biomejs.dev/schemas/1.8.0/schema.json",
+    "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
     "organizeImports": {
         "enabled": true
     },
@@ -27,12 +27,14 @@
                 "noConsoleLog": "off",
                 "noEmptyBlockStatements": "off",
                 "useAwait": "off",
-                "noArrayIndexKey": "warn"
+                "noArrayIndexKey": "warn",
+                "noReactSpecificProps": "off"
             },
             "correctness": {
                 "noUnusedVariables": "off",
                 "noNodejsModules": "off",
-                "noUndeclaredVariables": "off"
+                "noUndeclaredVariables": "off",
+                "useImportExtensions": "off"
             },
             "complexity": {
                 "noBannedTypes": "off",
