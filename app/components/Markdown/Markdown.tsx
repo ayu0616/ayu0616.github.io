@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
+import { Link } from 'react-router'
 import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw'
 import remarkBreaks from 'remark-breaks'
@@ -39,7 +39,7 @@ const Markdown: React.FC<MarkdownProps> = ({
                                 'inline-block break-all text-emerald-800 underline decoration-1 underline-offset-1',
                                 className,
                             )}
-                            href={href ?? '#'}
+                            to={href ?? '#'}
                             rel={
                                 href?.startsWith('http')
                                     ? 'noopener noreferrer'

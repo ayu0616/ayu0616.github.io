@@ -1,7 +1,6 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-import Image from 'next/image'
 import { OriginalObject } from './OriginalObject'
 
 export interface ImgProps {
@@ -46,14 +45,11 @@ export const Img: React.FC<ImgProps> = async ({ alt = '', slug, ...props }) => {
     }
     return (
         <figure className="mx-auto w-fit">
-            <Image
+            <img
                 alt={alt}
                 className="max-h-[50vh] object-contain"
-                height={1000}
-                layout="responsive"
                 loading="lazy"
                 src={src}
-                width={1000}
             />
             {alt && (
                 <figcaption className="mt-2 whitespace-break-spaces text-gray-700 text-sm [line-break:anywhere]">

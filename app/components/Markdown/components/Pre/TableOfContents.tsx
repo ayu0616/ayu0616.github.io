@@ -1,6 +1,6 @@
 import { type ReactNode, useMemo } from 'react'
 
-import { blogPageInfo } from '@/constant/blog-page-info'
+import { blogPageInfo } from '~/constant/blog-page-info'
 
 import Markdown from '../../Markdown'
 
