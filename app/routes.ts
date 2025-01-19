@@ -13,5 +13,8 @@ export default [
 
         route('skill', 'routes/skill.tsx'),
         route('skill/:id', 'routes/skill-detail.tsx'),
+
+        route('work', 'routes/work.tsx'),
+        route('work/:slug', 'routes/work-detail.tsx'),
     ]),
 ] satisfies RouteConfig
