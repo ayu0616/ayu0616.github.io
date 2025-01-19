@@ -1,9 +1,9 @@
-import type { AtCoderResultSchema } from '~/lib/atcoder'
-import type { Route } from '../+types/root'
-import type { ReactNode } from 'react'
-import { AtCoderChart } from '~/components/AtCoderChart'
 import dayjs from 'dayjs'
+import type { ReactNode } from 'react'
 import type { z } from 'zod'
+import { AtCoderChart } from '~/components/AtCoderChart'
+import type { AtCoderResultSchema } from '~/lib/atcoder'
+import type { Route } from './+types/atcoder'
 
 export const meta = ({ params }: Route.MetaArgs) => {
     return [

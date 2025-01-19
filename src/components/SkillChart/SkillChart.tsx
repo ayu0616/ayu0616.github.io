@@ -1,7 +1,6 @@
 'use client'
 
 import dayjs from 'dayjs'
-import { useRouter } from 'next/navigation'
 import {
     Bar,
     BarChart,
@@ -14,9 +13,10 @@ import {
 
 import skillData, { dateMax } from '@/constant/skillData'
 import { charCount } from '@/util/charCount'
+import { useNavigate } from 'react-router'
 
 export const SkillChart = () => {
-    const router = useRouter()
+    const navigate = useNavigate()
     return (
         <ResponsiveContainer className={'md:px-8'} width={'100%'}>
             <BarChart
@@ -57,7 +57,7 @@ export const SkillChart = () => {
                             fill={color}
                             onClick={() => {
                                 const url = `/skill/${id}`
-                                router.push(url)
+                                navigate(url)
                             }}
                         />
                     ))}
