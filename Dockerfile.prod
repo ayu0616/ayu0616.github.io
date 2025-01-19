@@ -8,6 +8,7 @@ RUN corepack enable pnpm
 FROM base AS builder
 
 COPY package.json pnpm-lock.yaml ./
+# TODO: bunに変更
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
 
 COPY . .
