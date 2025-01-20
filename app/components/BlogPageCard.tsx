@@ -1,6 +1,6 @@
-import type { BlogPageInfoItem } from '@/constant/blog-page-info'
 import type { FC } from 'react'
 import { Link } from 'react-router'
+import type { BlogPageInfoItem } from '~/constant/blog-page-info'
 import BlogTag from './BlogTag/BlogTag'
 
 export type BlogPageCardProps = Pick<

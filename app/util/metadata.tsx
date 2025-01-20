@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import Icon from '@/../public/icon.webp'
+import Icon from '~/../public/icon.webp'
 
 export const SITE_NAME = 'はっさくゼリー製造工場'
 
