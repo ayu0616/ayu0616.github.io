@@ -4,7 +4,9 @@ import { zValidator } from '@hono/zod-validator'
 import { Hono } from 'hono'
 import { z } from 'zod'
 
-const basedir = import.meta.env.PROD ? '/app' : process.cwd()
+const PROD = process.env.NODE_ENV !== 'development' || import.meta.env.PROD
+
+const basedir = PROD ? '/app' : process.cwd()
 
 export const blogImageApp = new Hono().get(
     '/:slug/:filename',

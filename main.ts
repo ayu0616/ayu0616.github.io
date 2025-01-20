@@ -14,4 +14,4 @@ server.use(
 
 const handler = handle(build, server)
 
-serve({ fetch: handler.fetch, port: 3010 })
+serve({ fetch: handler.fetch, port: 3000 })
