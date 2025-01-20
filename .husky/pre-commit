@@ -1,4 +1,4 @@
 # 参考： <https://zenn.dev/risu729/articles/latest-husky-lint-staged>
 
-pnpm typecheck
-pnpm lint-staged
+bun typecheck
+bun lint-staged

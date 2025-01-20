@@ -8,7 +8,7 @@
         "build": "react-router build",
         "start": "react-router-serve ./build/server/index.js",
         "lint": "biome check --write .",
-        "cp:img": "pnpm dlx ts-node --project tsconfig.local.json src/scripts/copyImg.ts",
+        "cp:img": "bunx ts-node --project tsconfig.local.json src/scripts/copyImg.ts",
         "prepare": "node --eval 'process.exit(process.env.NODE_ENV === `production` ? 0 : 1)' || husky",
         "typecheck": "react-router typegen && tsc",
         "lint-staged": "lint-staged --config .lintstagedrc.js",
@@ -17,7 +17,6 @@
     },
     "dependencies": {
         "@hono/zod-validator": "^0.4.2",
-        "@next/third-parties": "15.1.5",
         "@radix-ui/react-slot": "^1.1.1",
         "@react-router/node": "^7.1.3",
         "@react-router/serve": "^7.1.3",
@@ -31,7 +30,6 @@
         "js-yaml": "^4.1.0",
         "katex": "^0.16.21",
         "lucide-react": "^0.473.0",
-        "next": "15.1.5",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
         "react-icons": "^5.4.0",
@@ -44,7 +42,6 @@
         "remark-breaks": "^4.0.0",
         "remark-gfm": "^4.0.0",
         "remark-math": "^6.0.0",
-        "sharp": "^0.33.5",
         "tailwind-merge": "^2.6.0",
         "tailwindcss-animate": "^1.0.7",
         "zod": "^3.24.1"
@@ -60,16 +57,13 @@
         "autoprefixer": "^10.4.20",
         "husky": "^9.1.7",
         "lint-staged": "^15.4.1",
-        "next-sitemap": "^4.2.3",
         "postcss": "^8.5.1",
         "quicktype": "^23.0.170",
         "sass": "^1.83.4",
         "schema-dts": "^1.1.2",
         "tailwindcss": "^3.4.17",
-        "ts-node": "^10.9.2",
         "typescript": "^5.7.3",
         "vite": "^6.0.7",
         "vite-tsconfig-paths": "^5.1.4"
-    },
-    "packageManager": "pnpm@9.3.0+sha512.ee7b93e0c2bd11409c6424f92b866f31d3ea1bef5fbe47d3c7500cdc3c9668833d2e55681ad66df5b640c61fa9dc25d546efa54d76d7f8bf54b13614ac293631"
+    }
 }

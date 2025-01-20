@@ -1,7 +1,5 @@
 import type { Metadata } from 'next'
 
-import Icon from '~/../public/icon.webp'
-
 export const SITE_NAME = 'はっさくゼリー製造工場'
 
 /** ページのタイトルを作成 */
@@ -21,7 +19,7 @@ export const getMetadata = ({
     url,
 }: GetMetadataProps): Metadata => ({
     description: description ?? 'はっさくゼリー製造工場のポートフォリオサイト',
-    icons: [{ url: Icon.src }],
+    icons: ['/icon.webp'],
     openGraph: {
         description:
             description ?? 'はっさくゼリー製造工場のポートフォリオサイト',
