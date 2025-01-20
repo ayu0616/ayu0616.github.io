@@ -1,4 +1,5 @@
 import dayjs from 'dayjs'
+import { cache } from 'react'
 import { z } from 'zod'
 
 const ATCODER_RESULT_URL =
@@ -21,7 +22,8 @@ export const AtCoderResultSchema = z.array(
     }),
 )
 
-export const getAtCoderResult = () =>
-    fetch(ATCODER_RESULT_URL, { next: { revalidate: 60 * 60 * 24 } })
+export const getAtCoderResult = cache(() =>
+    fetch(ATCODER_RESULT_URL)
         .then((res) => res.json())
-        .then(AtCoderResultSchema.parse)
+        .then(AtCoderResultSchema.parse),
+)

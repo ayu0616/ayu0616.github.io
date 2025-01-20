@@ -1,5 +1,3 @@
-import Script from 'next/script'
-
 import type { Thing, WithContext } from 'schema-dts'
 
 export interface JsonLDProps<T extends Thing> {
@@ -13,7 +11,7 @@ export const JsonLD = <T extends Thing>({
     ...props
 }: JsonLDProps<T>) => {
     return (
-        <Script
+        <script
             id={id}
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(json) }}

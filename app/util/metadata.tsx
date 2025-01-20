@@ -1,5 +1,3 @@
-import type { Metadata } from 'next'
-
 export const SITE_NAME = 'はっさくゼリー製造工場'
 
 /** ページのタイトルを作成 */
@@ -13,11 +11,7 @@ interface GetMetadataProps {
 }
 
 /** メタデータを作成 */
-export const getMetadata = ({
-    title,
-    description,
-    url,
-}: GetMetadataProps): Metadata => ({
+export const getMetadata = ({ title, description, url }: GetMetadataProps) => ({
     description: description ?? 'はっさくゼリー製造工場のポートフォリオサイト',
     icons: ['/icon.webp'],
     openGraph: {
