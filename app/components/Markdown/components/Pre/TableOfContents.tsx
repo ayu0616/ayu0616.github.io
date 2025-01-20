@@ -1,6 +1,6 @@
-import { type ReactNode, use, useMemo } from 'react'
+import { type ReactNode, cache, use, useMemo } from 'react'
 
-import { getBlogPageInfo } from '~/constant/blog-page-info'
+import { honoClient } from '~/lib/hono'
 import Markdown from '../../Markdown'
 
 export interface TableOfContentsProps {
@@ -8,17 +8,21 @@ export interface TableOfContentsProps {
     slug?: string
 }
 
+const getBlogPageDetail = cache(async (slug: string) => {
+    const res = await honoClient.blog[':slug'].$get({ param: { slug } })
+    return res.json()
+})
+
 const TableOfContents = ({
     children,
     slug,
     ...props
 }: TableOfContentsProps) => {
-    const blogPageInfo = use(getBlogPageInfo())
     const toc = useMemo(() => {
-        if (!(slug && slug in blogPageInfo)) {
+        if (!slug) {
             return ''
         }
-        const pageInfo = blogPageInfo[slug]
+        const pageInfo = use(getBlogPageDetail(slug))
         const headings = pageInfo.headings
         const tocList: string[] = []
         headings.forEach((heading) => {
@@ -29,7 +33,7 @@ const TableOfContents = ({
             )
         })
         return tocList.join('\n')
-    }, [slug, blogPageInfo])
+    }, [slug])
     return (
         <div className="mx-auto w-fit min-w-[50%] max-w-full rounded-md border border-emerald-800">
             <div className="rounded-t-md bg-emerald-800 p-2 text-center text-lg text-white">

@@ -1,8 +1,9 @@
+import type { ReactElement } from 'react'
 import { FaHome } from 'react-icons/fa'
 import { FaCode, FaPencil, FaWandMagicSparkles } from 'react-icons/fa6'
 
 interface PageInfo {
-    icon: JSX.Element
+    icon: ReactElement
     name: string
     path: string
 }

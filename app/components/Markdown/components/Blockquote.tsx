@@ -1,6 +1,6 @@
 'use client'
 
-import { type ComponentProps, createRef, useEffect } from 'react'
+import { type ComponentProps, createRef } from 'react'
 
 import { cn } from '~/lib/utils'
 
@@ -9,11 +9,11 @@ export interface BlockquoteProps extends ComponentProps<'blockquote'> {}
 const Blockquote: React.FC<BlockquoteProps> = ({ className, ...props }) => {
     const isTwitter = className?.split(' ').includes('twitter-tweet')
     const ref = createRef<HTMLQuoteElement>()
-    useEffect(() => {
-        if (isTwitter) {
-            window.twttr?.widgets.load(ref.current)
-        }
-    }, [isTwitter, ref])
+    // useEffect(() => {
+    //     if (isTwitter) {
+    //         window.twttr?.widgets.load(ref.current)
+    //     }
+    // }, [isTwitter, ref])
     return (
         <div
             className={cn(

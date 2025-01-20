@@ -1,8 +1,14 @@
+import { zValidator } from '@hono/zod-validator'
+import { Hono } from 'hono'
+
 import fs from 'node:fs/promises'
 import { cache } from 'react'
 import { data } from 'react-router'
-import type { BlogPageInfoItem } from './schema'
-import { blogPageInfoSchema } from './schema'
+import { z } from 'zod'
+import {
+    type BlogPageInfoItem,
+    blogPageInfoSchema,
+} from '~/constant/blog-page-info/schema'
 
 const PROD = process.env.NODE_ENV !== 'development' || import.meta.env.PROD
 
@@ -74,3 +80,19 @@ export const getBlogPageDetail = cache(async (slug: string) => {
     const markdown = await getMarkdown(info.dirname)
     return { ...info, markdown }
 })
+
+export const blogApp = new Hono()
+    .get('/', async (c) => {
+        return c.json(await getBlogPageInfo(), 200)
+    })
+    .get('/tags', async (c) => {
+        return c.json(await getBlogTagList(), 200)
+    })
+    .get(
+        '/:slug',
+        zValidator('param', z.object({ slug: z.string().min(1) })),
+        async (c) => {
+            const { slug } = c.req.valid('param')
+            return c.json(await getBlogPageDetail(slug), 200)
+        },
+    )

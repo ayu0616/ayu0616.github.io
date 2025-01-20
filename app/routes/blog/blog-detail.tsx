@@ -1,29 +1,33 @@
-import { use } from 'react'
-import { data, useLoaderData } from 'react-router'
+import { atom, useAtomValue } from 'jotai'
+import { useHydrateAtoms } from 'jotai/utils'
+import { useLoaderData } from 'react-router'
 import { BlogBreadcrumb } from '~/components/BlogBreadcrumb/BlogBreadcrumb'
 import BlogTag from '~/components/BlogTag/BlogTag'
 import Markdown, { BLOG_CONTENT_ID } from '~/components/Markdown/Markdown'
-import { getBlogPageDetail, getBlogPageInfo } from '~/constant/blog-page-info'
+import type { BlogPageInfoItem } from '~/constant/blog-page-info/schema'
+import { honoClient } from '~/lib/hono'
 import type { Route } from './+types/blog-detail'
+
+const blogDetailAtom = atom<BlogPageInfoItem | null>(null)
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
     const { slug } = params
-    return getBlogPageDetail(slug)
+    const res = honoClient.blog[':slug'].$get({ param: { slug } })
+    return (await res).json()
 }
 
 export const meta = ({ params }: Route.MetaArgs) => {
-    const { slug } = params
-    const blogPageInfo = use(getBlogPageInfo())
-    if (!(slug && slug in blogPageInfo)) {
-        throw data('not-found', { status: 404 })
+    const data = useAtomValue(blogDetailAtom)
+    if (!data) {
+        return []
     }
-    const { title } = blogPageInfo[slug]
-    return [{ title: title }]
+    return [{ title: data.title }]
 }
 
 export default function Page() {
-    const { slug, tags, publishedAt, title, markdown, dirname } =
-        useLoaderData<typeof loader>()
+    const data = useLoaderData<typeof loader>()
+    useHydrateAtoms([[blogDetailAtom, data]])
+    const { slug, tags, publishedAt, title, markdown, dirname } = data
     return (
         <div className="p-4 md:p-6">
             <div className="mx-auto max-w-screen-lg space-y-8 rounded-lg border bg-white px-6 pt-8 pb-16">

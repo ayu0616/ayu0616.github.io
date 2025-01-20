@@ -1,41 +1,32 @@
-import fs from 'node:fs'
-import path from 'node:path'
-
-import { OriginalObject } from './OriginalObject'
-
 export interface ImgProps {
     alt?: string
     dirname: string
     src: string
 }
 
-export const Img: React.FC<ImgProps> = async ({
-    alt = '',
-    dirname,
-    ...props
-}) => {
-    const src = await (async () => {
+export const Img: React.FC<ImgProps> = ({ alt = '', dirname, ...props }) => {
+    const src = (() => {
         const isHttp = props.src.startsWith('http')
         if (isHttp) {
             return props.src
         }
-        const toPath = path.join(
+        const toPath = [
             '/blog-image',
             dirname,
             props.src.replace('assets/', ''),
-        )
+        ].join('/')
         return toPath
     })()
-    if (src.endsWith('.json')) {
-        // 独自定義オブジェクトの場合
-        const jsonPath = fs.globSync(
-            path.join(process.cwd(), 'blog-contents', '**', dirname, '*.json'),
-        )[0]
-        if (!jsonPath) {
-            throw new Error('jsonPath is not found')
-        }
-        return <OriginalObject alt={alt} filePath={jsonPath} />
-    }
+    // if (src.endsWith('.json')) {
+    //     // 独自定義オブジェクトの場合
+    //     const jsonPath = fs.globSync(
+    //         path.join(process.cwd(), 'blog-contents', '**', dirname, '*.json'),
+    //     )[0]
+    //     if (!jsonPath) {
+    //         throw new Error('jsonPath is not found')
+    //     }
+    //     return <OriginalObject alt={alt} filePath={jsonPath} />
+    // }
     if (src.endsWith('.svg')) {
         return (
             // eslint-disable-next-line @next/next/no-img-element
