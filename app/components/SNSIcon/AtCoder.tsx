@@ -1,6 +1,6 @@
 
-import AtCoderIconBlack from '@/assets/atcoder/atcoder-black.png'
-import AtCoderIconWhite from '@/assets/atcoder/atcoder-white.png'
+import AtCoderIconBlack from '~/assets/atcoder/atcoder-black.png'
+import AtCoderIconWhite from '~/assets/atcoder/atcoder-white.png'
 
 import { SNSIcon } from './SNSIcon'
 import type { ComponentPropsWithRef } from 'react'
@@ -27,13 +27,13 @@ export const AtCoder = ({ ...props }: AtCoderProps) => {
                             {...imgProps}
                             alt={imgProps.alt}
                             className="drag-none absolute opacity-0 transition-opacity duration-500 group-hover:opacity-100"
-                            src={'/atcoder-white.png'}
+                            src={AtCoderIconWhite}
                         />
                         <img
                             {...imgProps}
                             alt={imgProps.alt}
                             className="drag-none absolute transition-opacity duration-500 group-hover:opacity-0"
-                            src={'/atcoder-black.png'}
+                            src={AtCoderIconBlack}
                         />
                     </>
                 }
