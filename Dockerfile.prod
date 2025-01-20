@@ -1,39 +1,25 @@
-FROM node:22-alpine AS base
-
-ENV PNPM_HOME=/pnpm
+FROM oven/bun:latest AS base
 
 WORKDIR /app
-RUN corepack enable pnpm
+ENV NODE_ENV=production
 
 FROM base AS builder
 
-COPY package.json pnpm-lock.yaml ./
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile
 
 COPY . .
-# COPY blog-contents.zip /app/blog-contents.zip
-# RUN rm blog-contents && unzip blog-contents.zip
-RUN --mount=type=cache,id=next,target=/app/.next/cache pnpm build
+RUN bun run build
 
-ENV NODE_ENV=production
-
-RUN pnpm prune --prod
+RUN bun build main.ts --target=node > main.js
 
 FROM base AS production
 
-
-ENV NODE_ENV=production
-
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
-COPY --from=builder --chown=nextjs:nodejs /app/public /app/public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static /app/.next/static
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone /app/
-
-USER nextjs
+COPY --from=builder /app/build ./build
+COPY --from=builder /app/main.js ./
+COPY server ./server
 
 EXPOSE 3000
 ENV PORT 3000
 
-CMD node ./server.js
+CMD bun run main.js
