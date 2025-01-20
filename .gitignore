@@ -49,3 +49,7 @@ next-env.d.ts
 blog-contents
 blog-contents.zip
 public/blog-image/
+
+# React Router
+/.react-router/
+/build/

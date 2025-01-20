@@ -34,7 +34,8 @@
                 "noUnusedVariables": "off",
                 "noNodejsModules": "off",
                 "noUndeclaredVariables": "off",
-                "useImportExtensions": "off"
+                "useImportExtensions": "off",
+                "noUnusedFunctionParameters": "off"
             },
             "complexity": {
                 "noBannedTypes": "off",
