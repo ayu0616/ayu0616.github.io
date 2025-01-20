@@ -1,4 +1,5 @@
 import { Hono } from 'hono'
+import { blogImageApp } from './blog-image'
 
 const app = new Hono()
 
@@ -12,5 +13,7 @@ app.get('/api', (c) => {
         message: 'Hello',
     })
 })
+
+app.route('/blog-image', blogImageApp)
 
 export default app
