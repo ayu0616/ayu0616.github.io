@@ -11,9 +11,9 @@ export interface TableOfContentsProps {
     slug?: string
 }
 
-const getBlogPageDetail = cache(async (slug: string) => {
+const getHeadings = cache(async (slug: string) => {
     const res = await honoClient.blog[':slug'].$get({ param: { slug } })
-    return res.json()
+    return (await res.json()).headings
 })
 
 const TableOfContents = ({
@@ -21,15 +21,14 @@ const TableOfContents = ({
     slug,
     ...props
 }: TableOfContentsProps) => {
-    const { data: pageInfo, isPending } = useQuery({
+    const { data: headings, isPending } = useQuery({
         queryKey: ['blog', slug],
-        queryFn: () => (slug ? getBlogPageDetail(slug) : null),
+        queryFn: () => (slug ? getHeadings(slug) : null),
     })
     const toc = useMemo(() => {
-        if (!pageInfo?.headings) {
+        if (!headings) {
             return ''
         }
-        const headings = pageInfo.headings
         const tocList: string[] = []
         headings.forEach((heading) => {
             const { level, title } = heading
@@ -39,7 +38,7 @@ const TableOfContents = ({
             )
         })
         return tocList.join('\n')
-    }, [pageInfo?.headings])
+    }, [headings])
     return (
         <div className="mx-auto w-fit min-w-[50%] max-w-full rounded-md border border-emerald-800">
             <div className="rounded-t-md bg-emerald-800 p-2 text-center text-lg text-white">

@@ -1,6 +1,5 @@
-import { atom, useAtomValue, useSetAtom } from 'jotai'
+import { atom, useAtomValue } from 'jotai'
 import { atomFamily, useHydrateAtoms } from 'jotai/utils'
-import { useEffect } from 'react'
 import { useLoaderData } from 'react-router'
 import { BlogBreadcrumb } from '~/components/BlogBreadcrumb/BlogBreadcrumb'
 import BlogTag from '~/components/BlogTag/BlogTag'
@@ -27,14 +26,11 @@ export const meta = ({ params }: Route.MetaArgs) => {
     return [{ title: data.title }]
 }
 
-export default function Page() {
+export default function Page({ params }: Route.ComponentProps) {
+    const { slug } = params
     const data = useLoaderData<typeof loader>()
-    useHydrateAtoms([[blogDetailAtom(data.slug), data]])
-    const setBlogDetail = useSetAtom(blogDetailAtom(data.slug))
-    useEffect(() => {
-        setBlogDetail(data)
-    }, [data, setBlogDetail])
-    const { slug, tags, publishedAt, title, markdown, dirname } = data
+    useHydrateAtoms([[blogDetailAtom(slug), data]])
+    const { tags, publishedAt, title, markdown, dirname } = data
     return (
         <div className="p-4 md:p-6">
             <div className="mx-auto max-w-screen-lg space-y-8 rounded-lg border bg-white px-6 pt-8 pb-16">
