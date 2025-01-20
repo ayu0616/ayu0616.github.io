@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs'
-import { useLoaderData } from 'react-router'
+import { data, useLoaderData } from 'react-router'
 import { BlogBreadcrumb } from '~/components/BlogBreadcrumb/BlogBreadcrumb'
 import BlogTag from '~/components/BlogTag/BlogTag'
 import Markdown, { BLOG_CONTENT_ID } from '~/components/Markdown/Markdown'
@@ -9,7 +9,7 @@ import type { Route } from './+types/blog-detail'
 export const loader = ({ params }: Route.LoaderArgs) => {
     const { slug } = params
     if (!(slug && slug in blogPageInfo)) {
-        throw new Error('404')
+        throw data('not-found', { status: 404 })
     }
     const { dirname, tags, publishedAt, title } = blogPageInfo[slug]
     const lines = readFileSync(`${dirname}/page.md`, 'utf-8').split('\n')

@@ -1,10 +1,10 @@
-import { useLoaderData } from 'react-router'
+import { data, useLoaderData } from 'react-router'
 import { isWorkKey, works } from '~/constant/works'
 import type { Route } from './+types/work-detail'
 
 export const loader = ({ params }: Route.LoaderArgs) => {
     if (!isWorkKey(params.slug)) {
-        throw new Error('404')
+        throw data('not-found', { status: 404 })
     }
     return works[params.slug]
 }

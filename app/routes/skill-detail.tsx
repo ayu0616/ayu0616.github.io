@@ -1,4 +1,4 @@
-import { redirect, useLoaderData } from 'react-router'
+import { data, redirect, useLoaderData } from 'react-router'
 import skillData from '~/constant/skillData'
 import type { Route } from './+types/skill-detail'
 
@@ -11,11 +11,11 @@ export const loader = ({ params }: Route.LoaderArgs) => {
     if (params.id === 'AtCoder') {
         return redirect('/atcoder')
     }
-    const data = skillData.find((s) => s.id === params.id)
-    if (!data) {
-        throw new Error('404')
+    const skill = skillData.find((s) => s.id === params.id)
+    if (!skill) {
+        throw data('not-found', { status: 404 })
     }
-    return data
+    return skill
 }
 
 export default function Page({ params }: Route.ComponentProps) {
