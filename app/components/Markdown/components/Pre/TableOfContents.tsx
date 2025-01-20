@@ -1,7 +1,6 @@
-import { type ReactNode, useMemo } from 'react'
+import { type ReactNode, use, useMemo } from 'react'
 
-import { blogPageInfo } from '~/constant/blog-page-info'
-
+import { getBlogPageInfo } from '~/constant/blog-page-info'
 import Markdown from '../../Markdown'
 
 export interface TableOfContentsProps {
@@ -14,6 +13,7 @@ const TableOfContents = ({
     slug,
     ...props
 }: TableOfContentsProps) => {
+    const blogPageInfo = use(getBlogPageInfo())
     const toc = useMemo(() => {
         if (!(slug && slug in blogPageInfo)) {
             return ''
@@ -29,7 +29,7 @@ const TableOfContents = ({
             )
         })
         return tocList.join('\n')
-    }, [slug])
+    }, [slug, blogPageInfo])
     return (
         <div className="mx-auto w-fit min-w-[50%] max-w-full rounded-md border border-emerald-800">
             <div className="rounded-t-md bg-emerald-800 p-2 text-center text-lg text-white">

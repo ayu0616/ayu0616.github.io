@@ -1,50 +1,28 @@
-import { readFileSync } from 'node:fs'
+import { use } from 'react'
 import { data, useLoaderData } from 'react-router'
 import { BlogBreadcrumb } from '~/components/BlogBreadcrumb/BlogBreadcrumb'
 import BlogTag from '~/components/BlogTag/BlogTag'
 import Markdown, { BLOG_CONTENT_ID } from '~/components/Markdown/Markdown'
-import { blogPageInfo } from '~/constant/blog-page-info'
+import { getBlogPageDetail, getBlogPageInfo } from '~/constant/blog-page-info'
 import type { Route } from './+types/blog-detail'
 
-export const loader = ({ params }: Route.LoaderArgs) => {
+export const loader = async ({ params }: Route.LoaderArgs) => {
     const { slug } = params
-    if (!(slug && slug in blogPageInfo)) {
-        throw data('not-found', { status: 404 })
-    }
-    const { dirname, tags, publishedAt, title } = blogPageInfo[slug]
-    const lines = readFileSync(`${dirname}/page.md`, 'utf-8').split('\n')
-    let yamlFlag = false
-    let markdown = ''
-    for (const line of lines) {
-        if (line === '---') {
-            yamlFlag = !yamlFlag
-            continue
-        }
-        if (yamlFlag) {
-            continue
-        }
-        markdown += `${line}\n`
-    }
-    return {
-        slug,
-        tags,
-        publishedAt: publishedAt.format('YYYY-MM-DD'),
-        title,
-        markdown,
-    }
+    return getBlogPageDetail(slug)
 }
 
 export const meta = ({ params }: Route.MetaArgs) => {
     const { slug } = params
+    const blogPageInfo = use(getBlogPageInfo())
     if (!(slug && slug in blogPageInfo)) {
-        return [{ title: 'Not Found' }]
+        throw data('not-found', { status: 404 })
     }
     const { title } = blogPageInfo[slug]
     return [{ title: title }]
 }
 
 export default function Page() {
-    const { slug, tags, publishedAt, title, markdown } =
+    const { slug, tags, publishedAt, title, markdown, dirname } =
         useLoaderData<typeof loader>()
     return (
         <div className="p-4 md:p-6">
@@ -70,7 +48,7 @@ export default function Page() {
                     </div>
                 </div>
                 <hr />
-                <Markdown id={BLOG_CONTENT_ID} slug={slug}>
+                <Markdown id={BLOG_CONTENT_ID} slug={slug} dirname={dirname}>
                     {markdown}
                 </Markdown>
             </div>

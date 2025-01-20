@@ -19,6 +19,7 @@ export interface MarkdownProps {
     className?: string
     id?: string
     slug?: string
+    dirname?: string
 }
 
 export const BLOG_CONTENT_ID = 'blog-content'
@@ -28,6 +29,7 @@ const Markdown: React.FC<MarkdownProps> = ({
     id,
     className = '',
     slug,
+    dirname,
 }) => {
     return (
         <div className={cn('markdown space-y-16', className)} id={id}>
@@ -116,7 +118,7 @@ const Markdown: React.FC<MarkdownProps> = ({
                     img: ({ alt, src }) => (
                         <Img
                             alt={alt}
-                            slug={slug ?? ''} // TODO: slugがundefinedの場合の処理
+                            dirname={dirname ?? ''} // TODO: slugがundefinedの場合の処理
                             src={src ?? ''} // TODO: srcがundefinedの場合の処理
                         />
                     ),

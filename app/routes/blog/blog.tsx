@@ -1,10 +1,8 @@
 import dayjs from 'dayjs'
 import { Link, useLoaderData } from 'react-router'
 import { BlogPageCard } from '~/components/BlogPageCard'
-import {
-    type BlogPageInfoItem,
-    getBlogPageInfo,
-} from '~/constant/blog-page-info'
+import { getBlogPageInfo } from '~/constant/blog-page-info'
+import type { BlogPageInfoItem } from '~/constant/blog-page-info/schema'
 
 export const meta = () => {
     return [
@@ -16,22 +14,21 @@ export const meta = () => {
     ]
 }
 
-interface PageListItem extends Omit<BlogPageInfoItem, 'publishedAt'> {
-    publishedAt: Date
-}
+interface PageListItem extends BlogPageInfoItem {}
 
-export const loader = () => {
-    const blogPageInfo = getBlogPageInfo()
+export const loader = async () => {
+    const blogPageInfo = await getBlogPageInfo()
     const pageList: PageListItem[] = Object.keys(blogPageInfo)
         .map((slug) => blogPageInfo[slug])
         .sort((a, b) => {
-            const publishedDiff = b.publishedAt.diff(a.publishedAt) // 日付の降順
+            const publishedDiff = dayjs(b.publishedAt).diff(
+                dayjs(a.publishedAt),
+            ) // 日付の降順
             if (publishedDiff !== 0) {
                 return publishedDiff
             }
             return b.slug.localeCompare(a.slug) // slugの降順
         })
-        .map((page) => ({ ...page, publishedAt: page.publishedAt.toDate() }))
     return { pageList }
 }
 
@@ -44,7 +41,9 @@ export default function Page() {
                     <BlogPageCard
                         key={page.slug}
                         {...page}
-                        publishedAt={dayjs(page.publishedAt)}
+                        publishedAt={dayjs(page.publishedAt).format(
+                            'YYYY-MM-DD',
+                        )}
                     />
                 ))}
             </div>

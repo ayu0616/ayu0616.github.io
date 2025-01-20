@@ -5,11 +5,15 @@ import { OriginalObject } from './OriginalObject'
 
 export interface ImgProps {
     alt?: string
-    slug: string
+    dirname: string
     src: string
 }
 
-export const Img: React.FC<ImgProps> = async ({ alt = '', slug, ...props }) => {
+export const Img: React.FC<ImgProps> = async ({
+    alt = '',
+    dirname,
+    ...props
+}) => {
     const src = await (async () => {
         const isHttp = props.src.startsWith('http')
         if (isHttp) {
@@ -17,7 +21,7 @@ export const Img: React.FC<ImgProps> = async ({ alt = '', slug, ...props }) => {
         }
         const toPath = path.join(
             '/blog-image',
-            slug,
+            dirname,
             props.src.replace('assets/', ''),
         )
         return toPath
@@ -25,7 +29,7 @@ export const Img: React.FC<ImgProps> = async ({ alt = '', slug, ...props }) => {
     if (src.endsWith('.json')) {
         // 独自定義オブジェクトの場合
         const jsonPath = fs.globSync(
-            path.join(process.cwd(), 'blog-contents', '**', slug, '*.json'),
+            path.join(process.cwd(), 'blog-contents', '**', dirname, '*.json'),
         )[0]
         if (!jsonPath) {
             throw new Error('jsonPath is not found')

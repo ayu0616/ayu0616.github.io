@@ -1,40 +1,41 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
-import { zValidator } from '@hono/zod-validator'
 import { Hono } from 'hono'
-import { z } from 'zod'
 
 const PROD = process.env.NODE_ENV !== 'development' || import.meta.env.PROD
 
-const basedir = PROD ? '/app' : process.cwd()
+const basedir = process.cwd()
 
-export const blogImageApp = new Hono().get(
-    '/:slug/:filename',
-    zValidator(
-        'param',
-        z.object({
-            slug: z.string().min(1),
-            filename: z.string().min(1),
-        }),
-    ),
-    async (c) => {
-        const { slug, filename } = c.req.valid('param')
-        const globPath = path.join(
-            basedir,
-            'blog-contents',
-            '**',
-            slug,
-            'assets',
-            filename,
+export const blogImageApp = new Hono().get('*', async (c) => {
+    const pathList = c.req.path.replace(/^\/blog-image/, '').split('/')
+    const filename = pathList.pop() ?? ''
+    const dirname = pathList.join('/')
+    if (PROD) {
+        const res = await fetch(
+            path.join(
+                'https://storage.googleapis.com/hassaku-blog-contents',
+                dirname,
+                'assets',
+                filename,
+            ),
         )
-        const imagePath = (await fs.glob(globPath).next()).value
-        if (!imagePath) {
+        if (!res.ok) {
             return c.json({ error: 'Not Found' }, { status: 404 })
         }
-        const buffer = (await fs.readFile(imagePath)).buffer
-        if (buffer instanceof ArrayBuffer) {
-            return c.body(buffer)
-        }
-        return c.json({ error: 'Not Found' }, { status: 404 })
-    },
-)
+        const buffer = await res.arrayBuffer()
+        return c.body(buffer)
+    }
+
+    const imagePath = path.join(
+        basedir,
+        'blog-contents',
+        dirname,
+        'assets',
+        filename,
+    )
+    const buffer = (await fs.readFile(imagePath)).buffer
+    if (buffer instanceof ArrayBuffer) {
+        return c.body(buffer)
+    }
+    return c.json({ error: 'Not Found' }, { status: 404 })
+})

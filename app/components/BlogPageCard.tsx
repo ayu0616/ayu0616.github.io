@@ -1,12 +1,13 @@
+import dayjs from 'dayjs'
 import type { FC } from 'react'
 import { Link } from 'react-router'
-import type { BlogPageInfoItem } from '~/constant/blog-page-info'
+import type { BlogPageInfoItem } from '~/constant/blog-page-info/schema'
 import BlogTag from './BlogTag/BlogTag'
 
-export type BlogPageCardProps = Pick<
-    BlogPageInfoItem,
-    'title' | 'slug' | 'tags' | 'publishedAt'
->
+export interface BlogPageCardProps
+    extends Pick<BlogPageInfoItem, 'title' | 'slug' | 'tags' | 'publishedAt'> {
+    publishedAt: string
+}
 
 export const BlogPageCard: FC<BlogPageCardProps> = ({
     title,
@@ -26,7 +27,9 @@ export const BlogPageCard: FC<BlogPageCardProps> = ({
                             <span className="text-gray-500">タグ無し</span>
                         )}
                     </div>
-                    <div>公開日： {publishedAt.format('YYYY-MM-DD')}</div>
+                    <div>
+                        公開日： {dayjs(publishedAt).format('YYYY-MM-DD')}
+                    </div>
                 </div>
             </div>
         </Link>

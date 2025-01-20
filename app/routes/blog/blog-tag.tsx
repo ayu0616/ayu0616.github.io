@@ -1,9 +1,11 @@
 import dayjs from 'dayjs'
+import { cache } from 'react'
 import { FaArrowLeft } from 'react-icons/fa6'
 import { Link } from 'react-router'
 import { useLoaderData } from 'react-router'
 import { BlogPageCard } from '~/components/BlogPageCard'
-import { type BlogPageInfoItem, blogPageInfo } from '~/constant/blog-page-info'
+import { getBlogPageInfo } from '~/constant/blog-page-info'
+import type { BlogPageInfoItem } from '~/constant/blog-page-info/schema'
 
 interface Params {
     tag: string
@@ -14,25 +16,24 @@ interface LoaderData {
     decodedTag: string
 }
 
-interface PageListItem extends Omit<BlogPageInfoItem, 'publishedAt'> {
+interface PageListItem extends BlogPageInfoItem {
     slug: string
-    publishedAt: Date
 }
 
-const getPageListByTag = (tag: string): PageListItem[] => {
+const getPageListByTag = cache(async (tag: string): Promise<PageListItem[]> => {
+    const blogPageInfo = await getBlogPageInfo()
     return Object.keys(blogPageInfo)
         .map((slug) => blogPageInfo[slug])
         .filter((page) => page.tags.includes(tag))
-        .sort((a, b) => b.publishedAt.diff(a.publishedAt))
-        .map((page) => ({ ...page, publishedAt: page.publishedAt.toDate() }))
-}
+        .sort((a, b) => dayjs(b.publishedAt).diff(dayjs(a.publishedAt)))
+})
 
 export const loader = async ({
     params,
 }: { params: Params }): Promise<LoaderData> => {
     const { tag } = params
     const decodedTag = decodeURI(tag)
-    const pageList = getPageListByTag(decodedTag)
+    const pageList = await getPageListByTag(decodedTag)
     return { pageList, decodedTag }
 }
 
@@ -59,7 +60,9 @@ export default function Page() {
                         <BlogPageCard
                             key={page.slug}
                             {...page}
-                            publishedAt={dayjs(page.publishedAt)}
+                            publishedAt={dayjs(page.publishedAt).format(
+                                'YYYY-MM-DD',
+                            )}
                         />
                     ))}
                 </div>
