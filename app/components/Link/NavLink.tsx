@@ -1,9 +1,9 @@
 'use client'
 
-import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
 import { type ComponentPropsWithRef, useMemo } from 'react'
 import { Link } from 'react-router'
+import { cn } from '~/lib/utils'
 
 export interface NavLinkProps extends ComponentPropsWithRef<typeof Link> {
     activeClassName?: string

@@ -1,8 +1,8 @@
-import { BASE_URL } from '@/constant/others'
 import type {
     BreadcrumbList as BreadcrumbListSchema,
     WithContext,
 } from 'schema-dts'
+import { BASE_URL } from '~/constant/others'
 import { JsonLD } from '../JsonLD/JsonLD'
 import {
     Breadcrumb,

@@ -1,8 +1,12 @@
 import { exec } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-const fileDir = path.dirname(__filename)
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+const fileDir = __dirname
 const schemaPathList = fs.globSync(
     path.join(fileDir, '../../blog-contents/schema/*.json'),
 )
@@ -12,17 +16,13 @@ schemaPathList.forEach((schemaPath) => {
     const tsPath = path.join(fileDir, '../__generated__/types', `${name}.ts`)
     exec(
         [
-            'pnpm quicktype',
+            'bun quicktype',
             schemaPath,
             '-o',
             tsPath,
             '--src-lang schema --lang typescript-zod',
         ].join(' '),
     )
-        .on('exit', () => {
-            console.log(`Generated: ${name}`)
-        })
-        .on('error', (err) => {
-            console.error(err)
-        })
+        .on('exit', () => {})
+        .on('error', (err) => {})
 })

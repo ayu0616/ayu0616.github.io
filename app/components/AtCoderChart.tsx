@@ -1,9 +1,9 @@
 'use client'
 
-import type { AtCoderResultSchema } from '@/lib/atcoder'
 import type { FC } from 'react'
 import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts'
 import type { z } from 'zod'
+import type { AtCoderResultSchema } from '~/lib/atcoder'
 import {
     type ChartConfig,
     ChartContainer,

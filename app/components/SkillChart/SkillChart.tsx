@@ -12,8 +12,8 @@ import {
     YAxis,
 } from 'recharts'
 
-import skillData, { dateMax } from '@/constant/skillData'
-import { charCount } from '@/util/charCount'
+import skillData, { dateMax } from '~/constant/skillData'
+import { charCount } from '~/util/charCount'
 
 export const SkillChart = () => {
     const router = useRouter()
