@@ -1,4 +1,5 @@
-import { Link } from 'react-router'
+import dayjs from 'dayjs'
+import { Link, useLoaderData } from 'react-router'
 import { BlogPageCard } from '~/components/BlogPageCard'
 import {
     type BlogPageInfoItem,
@@ -15,9 +16,11 @@ export const meta = () => {
     ]
 }
 
-interface PageListItem extends BlogPageInfoItem {}
+interface PageListItem extends Omit<BlogPageInfoItem, 'publishedAt'> {
+    publishedAt: Date
+}
 
-export default function Page() {
+export const loader = () => {
     const blogPageInfo = getBlogPageInfo()
     const pageList: PageListItem[] = Object.keys(blogPageInfo)
         .map((slug) => blogPageInfo[slug])
@@ -28,11 +31,21 @@ export default function Page() {
             }
             return b.slug.localeCompare(a.slug) // slugの降順
         })
+        .map((page) => ({ ...page, publishedAt: page.publishedAt.toDate() }))
+    return { pageList }
+}
+
+export default function Page() {
+    const { pageList } = useLoaderData<typeof loader>()
     return (
         <div className="gap-8 p-4 md:flex md:p-6">
             <div className="mx-auto grid max-w-screen-sm gap-4">
                 {pageList.map((page) => (
-                    <BlogPageCard key={page.slug} {...page} />
+                    <BlogPageCard
+                        key={page.slug}
+                        {...page}
+                        publishedAt={dayjs(page.publishedAt)}
+                    />
                 ))}
             </div>
             <div className="sticky top-[120px] hidden h-fit bg-white p-4 md:block">
