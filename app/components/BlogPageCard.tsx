@@ -1,6 +1,6 @@
 import type { BlogPageInfoItem } from '@/constant/blog-page-info'
-import Link from 'next/link'
 import type { FC } from 'react'
+import { Link } from 'react-router'
 import BlogTag from './BlogTag/BlogTag'
 
 export type BlogPageCardProps = Pick<
@@ -15,12 +15,12 @@ export const BlogPageCard: FC<BlogPageCardProps> = ({
     publishedAt,
 }) => {
     return (
-        <Link key={slug} href={`/blog/${slug}`}>
+        <Link key={slug} to={`/blog/${slug}`}>
             <div className="rounded-md bg-white p-6 shadow">
                 <h3 className="mb-2">{title}</h3>
                 <div className="space-y-1">
                     <div className="flex flex-wrap gap-x-2 gap-y-1">
-                        {tags.length >= 1 ? (
+                        {tags.length > 0 ? (
                             tags.map((tag) => <BlogTag key={tag} tag={tag} />)
                         ) : (
                             <span className="text-gray-500">タグ無し</span>

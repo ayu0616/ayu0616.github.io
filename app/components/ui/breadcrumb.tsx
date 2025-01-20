@@ -1,7 +1,7 @@
 import { Slot } from '@radix-ui/react-slot'
 import { ChevronRight, MoreHorizontal } from 'lucide-react'
-import Link from 'next/link'
 import * as React from 'react'
+import { Link } from 'react-router'
 
 import { cn } from '@/lib/utils'
 
@@ -52,7 +52,7 @@ const BreadcrumbLink = React.forwardRef<
         <Link
             ref={ref}
             className={cn('transition-colors hover:text-foreground', className)}
-            href={href}
+            to={href}
             {...props}
         />
     )
@@ -63,6 +63,7 @@ const BreadcrumbPage = React.forwardRef<
     HTMLSpanElement,
     React.ComponentPropsWithoutRef<'span'>
 >(({ className, ...props }, ref) => (
+    // biome-ignore lint/a11y/useFocusableInteractive: <explanation>
     <span
         ref={ref}
         aria-current="page"

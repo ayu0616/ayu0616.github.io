@@ -1,11 +1,11 @@
 'use client'
 
 import { cn } from '@/lib/utils'
-import Link, { type LinkProps } from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useMemo } from 'react'
+import { type ComponentPropsWithRef, useMemo } from 'react'
+import { Link } from 'react-router'
 
-export interface NavLinkProps extends LinkProps {
+export interface NavLinkProps extends ComponentPropsWithRef<typeof Link> {
     activeClassName?: string
     children?: React.ReactNode
     className?: string
@@ -17,26 +17,26 @@ const NavLink: React.FC<NavLinkProps> = ({
     ...props
 }: NavLinkProps) => {
     const pathName = usePathname()
-    const { href } = props
+    const { to } = props
     const isActive = useMemo(() => {
-        if (!(href && pathName)) {
+        if (!(to && pathName)) {
             return false
         }
-        if (typeof href === 'string') {
-            if (href === '/') {
+        if (typeof to === 'string') {
+            if (to === '/') {
                 return pathName === '/'
             }
-            return pathName.startsWith(href)
+            return pathName.startsWith(to)
         }
-        const hrefPath = href.pathname
-        if (!hrefPath) {
+        const toPath = to.pathname
+        if (!toPath) {
             return false
         }
-        if (hrefPath === '/') {
+        if (toPath === '/') {
             return pathName === '/'
         }
-        return pathName.startsWith(hrefPath)
-    }, [href, pathName])
+        return pathName.startsWith(toPath)
+    }, [to, pathName])
     const classNameList = [className]
     if (isActive) {
         classNameList.push(activeClassName)
