@@ -20,7 +20,7 @@ export const loader = async () => {
     return await getAtCoderResult()
 }
 
-export default async function AtCoderPage() {
+export default function AtCoderPage() {
     const data = useLoaderData<z.infer<typeof AtCoderResultSchema>>()
     const tableData = [
         ['参加回数', data.length],
