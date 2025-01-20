@@ -23,6 +23,8 @@ export const blogImageApp = new Hono().get('*', async (c) => {
             return c.json({ error: 'Not Found' }, { status: 404 })
         }
         const buffer = await res.arrayBuffer()
+        c.header('Content-Type', res.headers.get('Content-Type') ?? '')
+        c.header('Cache-Control', 'public, immutable, max-age=31536000')
         return c.body(buffer)
     }
 
