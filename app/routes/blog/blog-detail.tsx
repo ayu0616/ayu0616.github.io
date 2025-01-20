@@ -1,5 +1,6 @@
-import { atom, useAtomValue } from 'jotai'
-import { useHydrateAtoms } from 'jotai/utils'
+import { atom, useAtomValue, useSetAtom } from 'jotai'
+import { atomFamily, useHydrateAtoms } from 'jotai/utils'
+import { useEffect } from 'react'
 import { useLoaderData } from 'react-router'
 import { BlogBreadcrumb } from '~/components/BlogBreadcrumb/BlogBreadcrumb'
 import BlogTag from '~/components/BlogTag/BlogTag'
@@ -8,7 +9,9 @@ import type { BlogPageInfoItem } from '~/constant/blog-page-info/schema'
 import { honoClient } from '~/lib/hono'
 import type { Route } from './+types/blog-detail'
 
-const blogDetailAtom = atom<BlogPageInfoItem | null>(null)
+const blogDetailAtom = atomFamily((slug: string) =>
+    atom<BlogPageInfoItem | null>(null),
+)
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
     const { slug } = params
@@ -17,7 +20,7 @@ export const loader = async ({ params }: Route.LoaderArgs) => {
 }
 
 export const meta = ({ params }: Route.MetaArgs) => {
-    const data = useAtomValue(blogDetailAtom)
+    const data = useAtomValue(blogDetailAtom(params.slug))
     if (!data) {
         return []
     }
@@ -26,7 +29,11 @@ export const meta = ({ params }: Route.MetaArgs) => {
 
 export default function Page() {
     const data = useLoaderData<typeof loader>()
-    useHydrateAtoms([[blogDetailAtom, data]])
+    useHydrateAtoms([[blogDetailAtom(data.slug), data]])
+    const setBlogDetail = useSetAtom(blogDetailAtom(data.slug))
+    useEffect(() => {
+        setBlogDetail(data)
+    }, [data, setBlogDetail])
     const { slug, tags, publishedAt, title, markdown, dirname } = data
     return (
         <div className="p-4 md:p-6">

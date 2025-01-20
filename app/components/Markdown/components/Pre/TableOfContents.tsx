@@ -1,7 +1,10 @@
-import { type ReactNode, cache, use, useMemo } from 'react'
+import { type ReactNode, cache, useMemo } from 'react'
 
 import { honoClient } from '~/lib/hono'
 import Markdown from '../../Markdown'
+
+import { useQuery } from '@tanstack/react-query'
+import { Loading } from '~/components/common/loading'
 
 export interface TableOfContentsProps {
     children?: ReactNode
@@ -18,11 +21,14 @@ const TableOfContents = ({
     slug,
     ...props
 }: TableOfContentsProps) => {
+    const { data: pageInfo, isPending } = useQuery({
+        queryKey: ['blog', slug],
+        queryFn: () => (slug ? getBlogPageDetail(slug) : null),
+    })
     const toc = useMemo(() => {
-        if (!slug) {
+        if (!pageInfo?.headings) {
             return ''
         }
-        const pageInfo = use(getBlogPageDetail(slug))
         const headings = pageInfo.headings
         const tocList: string[] = []
         headings.forEach((heading) => {
@@ -33,15 +39,21 @@ const TableOfContents = ({
             )
         })
         return tocList.join('\n')
-    }, [slug])
+    }, [pageInfo?.headings])
     return (
         <div className="mx-auto w-fit min-w-[50%] max-w-full rounded-md border border-emerald-800">
             <div className="rounded-t-md bg-emerald-800 p-2 text-center text-lg text-white">
                 Contents
             </div>
-            <Markdown className="p-6" id="toc">
-                {toc || '目次なし'}
-            </Markdown>
+            {isPending ? (
+                <div className="p-6">
+                    <Loading />
+                </div>
+            ) : (
+                <Markdown className="p-6" id="toc">
+                    {toc || '目次なし'}
+                </Markdown>
+            )}
         </div>
     )
 }
