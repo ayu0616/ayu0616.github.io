@@ -1,4 +1,3 @@
-import { Welcome } from '../welcome/welcome'
 import type { Route } from './+types/home'
 
 import { Link } from 'react-router'
