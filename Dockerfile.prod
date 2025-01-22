@@ -1,4 +1,4 @@
-FROM oven/bun:latest AS base
+FROM oven/bun:slim AS base
 
 WORKDIR /app
 ENV NODE_ENV=production
@@ -11,7 +11,7 @@ RUN bun install --frozen-lockfile
 COPY . .
 RUN bun run build
 
-RUN bun build main.ts --target=node > main.js
+RUN bun build main.ts --target=node --minify > main.js
 
 FROM base AS production
 
