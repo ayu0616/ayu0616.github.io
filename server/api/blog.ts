@@ -96,3 +96,11 @@ export const blogApp = new Hono()
             return c.json(await getBlogPageDetail(slug), 200)
         },
     )
+    .get(
+        '/:slug/headings',
+        zValidator('param', z.object({ slug: z.string().min(1) })),
+        async (c) => {
+            const { slug } = c.req.valid('param')
+            return c.json((await getBlogPageDetail(slug)).headings, 200)
+        },
+    )

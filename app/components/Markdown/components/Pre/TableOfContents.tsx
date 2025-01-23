@@ -12,8 +12,10 @@ export interface TableOfContentsProps {
 }
 
 const getHeadings = cache(async (slug: string) => {
-    const res = await honoClient.blog[':slug'].$get({ param: { slug } })
-    return (await res.json()).headings
+    const res = await honoClient.blog[':slug'].headings.$get({
+        param: { slug },
+    })
+    return await res.json()
 })
 
 const TableOfContents = ({
