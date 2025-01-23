@@ -26,6 +26,7 @@ const TableOfContents = ({
     const { data: headings, isPending } = useQuery({
         queryKey: ['blog', slug],
         queryFn: () => (slug ? getHeadings(slug) : null),
+        staleTime: 1000 * 60 * 60 * 24,
     })
     const toc = useMemo(() => {
         if (!headings) {
