@@ -20,7 +20,6 @@ FROM base AS production
 
 COPY --from=builder /app/build ./build
 COPY --from=builder /app/main.js ./
-COPY server ./server
 
 EXPOSE 3000
 ENV PORT 3000
