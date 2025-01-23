@@ -3,6 +3,9 @@ FROM oven/bun:slim AS base
 WORKDIR /app
 ENV NODE_ENV=production
 
+ARG VITE_APP_URL=https://www.hassaku0616.com
+ENV VITE_APP_URL=${VITE_APP_URL}
+
 FROM base AS builder
 
 COPY package.json bun.lock ./
