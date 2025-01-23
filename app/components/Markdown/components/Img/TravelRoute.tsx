@@ -1,11 +1,11 @@
-import dayjs from 'dayjs'
-import { Bed, Binoculars, Dot, Train, Utensils } from 'lucide-react'
-import { Fragment } from 'react'
 import type {
     TravelRouteItem as TravelRouteItemType,
     TravelRoute as TravelRouteType,
-} from '~/__generated__/types/travel-route'
-import { cn } from '~/lib/utils'
+} from 'app/__generated__/types/travel-route'
+import { cn } from 'app/lib/utils'
+import dayjs from 'dayjs'
+import { Bed, Binoculars, Dot, Train, Utensils } from 'lucide-react'
+import { Fragment } from 'react'
 
 export interface TravelRouteProps {
     travelRoute: TravelRouteType

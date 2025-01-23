@@ -1,5 +1,5 @@
+import { isWorkKey, works } from 'app/constant/works'
 import { data, useLoaderData } from 'react-router'
-import { isWorkKey, works } from '~/constant/works'
 import type { Route } from './+types/work-detail'
 
 export const loader = ({ params }: Route.LoaderArgs) => {

@@ -3,9 +3,9 @@
 import { useQuery } from '@tanstack/react-query'
 import { useRef, useState } from 'react'
 
+import { Loading } from 'app/components/common/loading'
 import type { BundledLanguage } from 'shiki'
 import { codeToHtml } from 'shiki'
-import { Loading } from '~/components/common/loading'
 
 import './code.css'
 

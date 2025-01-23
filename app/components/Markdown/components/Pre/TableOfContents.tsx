@@ -1,9 +1,9 @@
 import { type ReactNode, cache } from 'react'
 
-import { honoClient } from '~/lib/hono'
+import { honoClient } from 'app/lib/hono'
 
 import { useQuery } from '@tanstack/react-query'
-import { Loading } from '~/components/common/loading'
+import { Loading } from 'app/components/common/loading'
 import { Anchor } from '../a'
 import { Li } from '../list'
 

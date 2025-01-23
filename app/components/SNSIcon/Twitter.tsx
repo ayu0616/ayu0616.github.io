@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { FaTwitter, FaXTwitter } from 'react-icons/fa6'
 
-import { cn } from '~/lib/utils'
+import { cn } from 'app/lib/utils'
 import { SNSIcon } from './SNSIcon'
 
 export interface TwitterProps {

@@ -1,6 +1,6 @@
 import Markdown from 'react-markdown'
 
-import { SkillChart } from '~/components/SkillChart/SkillChart'
+import { SkillChart } from 'app/components/SkillChart/SkillChart'
 
 const SkillPageContent = () => {
     const skillDescription = `## 技術スタック

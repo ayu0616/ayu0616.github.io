@@ -1,9 +1,9 @@
+import { AtCoderChart } from 'app/components/AtCoderChart'
+import { type AtCoderResultSchema, getAtCoderResult } from 'app/lib/atcoder'
 import dayjs from 'dayjs'
 import type { ReactNode } from 'react'
 import { useLoaderData } from 'react-router'
 import type { z } from 'zod'
-import { AtCoderChart } from '~/components/AtCoderChart'
-import { type AtCoderResultSchema, getAtCoderResult } from '~/lib/atcoder'
 import type { Route } from './+types/atcoder'
 
 export const meta = ({ params }: Route.MetaArgs) => {
