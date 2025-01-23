@@ -8,7 +8,7 @@ import { z } from 'zod'
 import {
     type BlogPageInfoItem,
     blogPageInfoSchema,
-} from '~/constant/blog-page-info/schema'
+} from '../../app/constant/blog-page-info/schema'
 
 const PROD = process.env.NODE_ENV !== 'development' || import.meta.env.PROD
 

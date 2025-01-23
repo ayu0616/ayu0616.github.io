@@ -1,7 +1,7 @@
 import type { Config } from '@react-router/dev/config'
 import skillData from './app/constant/skillData'
 import { works } from './app/constant/works'
-// import { getBlogPageInfo } from 'server/api/blog'
+import { getBlogPageInfo } from './server/api/blog'
 
 export default {
     // Config options...
@@ -17,10 +17,10 @@ export default {
                     .map((skill) => `/skill/${skill.id}`),
             )
             .concat(Object.keys(works).map((slug) => `/work/${slug}`))
-        // .concat(
-        //     Object.keys(await getBlogPageInfo()).map(
-        //         (slug) => `/blog/${slug}`,
-        //     ),
-        // )
+            .concat(
+                Object.keys(await getBlogPageInfo()).map(
+                    (slug) => `/blog/${slug}`,
+                ),
+            )
     },
 } satisfies Config
