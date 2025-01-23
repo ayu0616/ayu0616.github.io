@@ -8,7 +8,7 @@ import { z } from 'zod'
 import {
     type BlogPageInfoItem,
     blogPageInfoSchema,
-} from '~/constant/blog-page-info/schema'
+} from '../../app/constant/blog-page-info/schema'
 
 const PROD = process.env.NODE_ENV !== 'development' || import.meta.env.PROD
 
@@ -94,5 +94,13 @@ export const blogApp = new Hono()
         async (c) => {
             const { slug } = c.req.valid('param')
             return c.json(await getBlogPageDetail(slug), 200)
+        },
+    )
+    .get(
+        '/:slug/headings',
+        zValidator('param', z.object({ slug: z.string().min(1) })),
+        async (c) => {
+            const { slug } = c.req.valid('param')
+            return c.json((await getBlogPageDetail(slug)).headings, 200)
         },
     )

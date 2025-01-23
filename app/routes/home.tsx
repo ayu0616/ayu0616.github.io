@@ -8,8 +8,11 @@ import { SNSIconList } from '../components/SNSIcon/SNSIconList'
 
 export function meta({ params }: Route.MetaArgs) {
     return [
-        { title: 'New React Router App' },
-        { name: 'description', content: 'Welcome to React Router!' },
+        { title: 'はっさくゼリー製造工場' },
+        {
+            name: 'description',
+            content: 'はっさくのあれこれを書いたサイトです。',
+        },
     ]
 }
 

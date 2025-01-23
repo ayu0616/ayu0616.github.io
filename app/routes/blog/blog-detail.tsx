@@ -1,11 +1,11 @@
 import { atom, useAtomValue } from 'jotai'
 import { atomFamily, useHydrateAtoms } from 'jotai/utils'
 import { useLoaderData } from 'react-router'
+import { getBlogPageDetail } from 'server/api/blog'
 import { BlogBreadcrumb } from '~/components/BlogBreadcrumb/BlogBreadcrumb'
 import BlogTag from '~/components/BlogTag/BlogTag'
 import Markdown, { BLOG_CONTENT_ID } from '~/components/Markdown/Markdown'
 import type { BlogPageInfoItem } from '~/constant/blog-page-info/schema'
-import { honoClient } from '~/lib/hono'
 import type { Route } from './+types/blog-detail'
 
 const blogDetailAtom = atomFamily((slug: string) =>
@@ -14,8 +14,8 @@ const blogDetailAtom = atomFamily((slug: string) =>
 
 export const loader = async ({ params }: Route.LoaderArgs) => {
     const { slug } = params
-    const res = honoClient.blog[':slug'].$get({ param: { slug } })
-    return (await res).json()
+    const res = await getBlogPageDetail(slug)
+    return res
 }
 
 export const meta = ({ params }: Route.MetaArgs) => {

@@ -1,8 +1,8 @@
 import dayjs from 'dayjs'
 import { Link, useLoaderData } from 'react-router'
+import { getBlogPageInfo } from 'server/api/blog'
 import { BlogPageCard } from '~/components/BlogPageCard'
 import type { BlogPageInfoItem } from '~/constant/blog-page-info/schema'
-import { honoClient } from '~/lib/hono'
 
 export const meta = () => {
     return [
@@ -17,8 +17,7 @@ export const meta = () => {
 interface PageListItem extends BlogPageInfoItem {}
 
 export const loader = async () => {
-    const res = await honoClient.blog.$get()
-    const blogPageInfo = await res.json()
+    const blogPageInfo = await getBlogPageInfo()
     const pageList: PageListItem[] = Object.keys(blogPageInfo)
         .map((slug) => blogPageInfo[slug])
         .sort((a, b) => {

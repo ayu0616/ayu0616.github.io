@@ -1,7 +1,10 @@
-FROM oven/bun:latest AS base
+FROM oven/bun:slim AS base
 
 WORKDIR /app
 ENV NODE_ENV=production
+
+ARG VITE_APP_URL=https://www.hassaku0616.com
+ENV VITE_APP_URL=${VITE_APP_URL}
 
 FROM base AS builder
 
@@ -11,13 +14,12 @@ RUN bun install --frozen-lockfile
 COPY . .
 RUN bun run build
 
-RUN bun build main.ts --target=node > main.js
+RUN bun build main.ts --target=node --minify > main.js
 
 FROM base AS production
 
 COPY --from=builder /app/build ./build
 COPY --from=builder /app/main.js ./
-COPY server ./server
 
 EXPOSE 3000
 ENV PORT 3000

@@ -1,19 +1,44 @@
-import { type ReactNode, cache, useMemo } from 'react'
+import { type ReactNode, cache } from 'react'
 
 import { honoClient } from '~/lib/hono'
-import Markdown from '../../Markdown'
 
 import { useQuery } from '@tanstack/react-query'
 import { Loading } from '~/components/common/loading'
+import { Anchor } from '../a'
+import { Li } from '../list'
 
 export interface TableOfContentsProps {
     children?: ReactNode
     slug?: string
 }
 
-const getHeadings = cache(async (slug: string) => {
-    const res = await honoClient.blog[':slug'].$get({ param: { slug } })
-    return (await res.json()).headings
+interface Heading {
+    level: number
+    title: string
+    children: Heading[]
+}
+
+const getHeadings = cache(async (slug: string): Promise<Heading[]> => {
+    const res = await honoClient.blog[':slug'].headings.$get({
+        param: { slug },
+    })
+    const rawHeadings = await res.json()
+
+    const root: Heading = { level: 1, title: 'root', children: [] }
+    let currentParent = root
+    const stack = [root]
+
+    rawHeadings.forEach((heading) => {
+        while (stack.length > 1 && heading.level <= currentParent.level) {
+            stack.pop()
+            currentParent = stack[stack.length - 1]
+        }
+        const newItem = { ...heading, children: [] }
+        currentParent.children.push(newItem)
+        stack.push(newItem)
+        currentParent = newItem
+    })
+    return root.children
 })
 
 const TableOfContents = ({
@@ -24,21 +49,8 @@ const TableOfContents = ({
     const { data: headings, isPending } = useQuery({
         queryKey: ['blog', slug],
         queryFn: () => (slug ? getHeadings(slug) : null),
+        staleTime: 1000 * 60 * 60 * 24,
     })
-    const toc = useMemo(() => {
-        if (!headings) {
-            return ''
-        }
-        const tocList: string[] = []
-        headings.forEach((heading) => {
-            const { level, title } = heading
-            const encodedTitle = encodeURIComponent(title) // エンコードしないとリンクとして判定されない場合がある
-            tocList.push(
-                `${' '.repeat((level - 2) * 4)}- [${title}](#${encodedTitle})`,
-            )
-        })
-        return tocList.join('\n')
-    }, [headings])
     return (
         <div className="mx-auto w-fit min-w-[50%] max-w-full rounded-md border border-emerald-800">
             <div className="rounded-t-md bg-emerald-800 p-2 text-center text-lg text-white">
@@ -49,11 +61,30 @@ const TableOfContents = ({
                     <Loading />
                 </div>
             ) : (
-                <Markdown className="p-6" id="toc">
-                    {toc || '目次なし'}
-                </Markdown>
+                <div className="p-6">
+                    <HeadingList headings={headings ?? []} />
+                </div>
             )}
         </div>
+    )
+}
+
+const HeadingList = ({ headings }: { headings: Heading[] }) => {
+    return (
+        <ul>
+            {headings.map((heading) => (
+                <Li key={heading.title}>
+                    <p>
+                        <Anchor href={`#${encodeURIComponent(heading.title)}`}>
+                            {heading.title}
+                        </Anchor>
+                    </p>
+                    {heading.children.length > 0 && (
+                        <HeadingList headings={heading.children} />
+                    )}
+                </Li>
+            ))}
+        </ul>
     )
 }
 
