@@ -41,9 +41,7 @@ const Pre = ({ slug, ...props }: PreProps) => {
         default: {
             const code =
                 'children' in childProps ? String(childProps.children) : ''
-            return (
-                <CodeBlock language={lang}>{code.replace(/\n$/, '')}</CodeBlock>
-            )
+            return <CodeBlock language={lang}>{code.trim()}</CodeBlock>
         }
     }
 }
