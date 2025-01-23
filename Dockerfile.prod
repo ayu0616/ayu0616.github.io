@@ -1,6 +1,14 @@
-FROM oven/bun:slim AS base
+FROM oven/bun:slim AS installer
 
 WORKDIR /app
+
+COPY package.json bun.lock ./
+RUN bun install --frozen-lockfile
+
+FROM node:slim AS base
+
+WORKDIR /app
+
 ENV NODE_ENV=production
 
 ARG VITE_APP_URL=https://www.hassaku0616.com
@@ -8,13 +16,11 @@ ENV VITE_APP_URL=${VITE_APP_URL}
 
 FROM base AS builder
 
-COPY package.json bun.lock ./
-RUN bun install --frozen-lockfile
-
+COPY --from=installer /app/node_modules ./node_modules
 COPY . .
-RUN bun run build
+RUN npm run build
 
-RUN bun build main.ts --target=node --minify > main.js
+RUN npx esbuild main.ts --bundle --minify --platform=node --outfile=main.js
 
 FROM base AS production
 
@@ -24,4 +30,4 @@ COPY --from=builder /app/main.js ./
 EXPOSE 3000
 ENV PORT 3000
 
-CMD bun run main.js
+CMD node main.js
