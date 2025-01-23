@@ -10,6 +10,7 @@ export default [
 
     layout('routes/layout.tsx', [
         route('atcoder', 'routes/atcoder.tsx'),
+        route('japan-weekend-clock', 'routes/japan-weekend-clock.tsx'),
 
         route('skill', 'routes/skill.tsx'),
         route('skill/:id', 'routes/skill-detail.tsx'),
