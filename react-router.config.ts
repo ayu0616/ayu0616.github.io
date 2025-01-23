@@ -11,6 +11,7 @@ export default {
     async prerender({ getStaticPaths }) {
         const res = getStaticPaths()
         return res
+            .filter((path) => !path.startsWith('/atcoder'))
             .concat(
                 skillData
                     .filter((skill) => skill.id !== 'AtCoder')
