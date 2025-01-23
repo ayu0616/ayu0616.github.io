@@ -1,7 +1,7 @@
 import type { Config } from '@react-router/dev/config'
 import skillData from './app/constant/skillData'
 import { works } from './app/constant/works'
-import { getBlogPageInfo } from './server/api/blog'
+import { getBlogPageInfo, getBlogTagList } from './server/api/blog'
 
 export default {
     // Config options...
@@ -22,5 +22,6 @@ export default {
                     (slug) => `/blog/${slug}`,
                 ),
             )
+            .concat((await getBlogTagList()).map((tag) => `/blog/tag/${tag}`))
     },
 } satisfies Config

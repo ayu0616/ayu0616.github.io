@@ -3,9 +3,9 @@ import { cache } from 'react'
 import { FaArrowLeft } from 'react-icons/fa6'
 import { Link } from 'react-router'
 import { useLoaderData } from 'react-router'
+import { getBlogPageInfo } from 'server/api/blog'
 import { BlogPageCard } from '~/components/BlogPageCard'
 import type { BlogPageInfoItem } from '~/constant/blog-page-info/schema'
-import { honoClient } from '~/lib/hono'
 
 interface Params {
     tag: string
@@ -21,8 +21,7 @@ interface PageListItem extends BlogPageInfoItem {
 }
 
 const getPageListByTag = cache(async (tag: string): Promise<PageListItem[]> => {
-    const res = await honoClient.blog.$get()
-    const blogPageInfo = await res.json()
+    const blogPageInfo = await getBlogPageInfo()
     return Object.keys(blogPageInfo)
         .map((slug) => blogPageInfo[slug])
         .filter((page) => page.tags.includes(tag))
