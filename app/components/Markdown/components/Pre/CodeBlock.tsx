@@ -12,7 +12,7 @@ export interface CodeBlockProps {
 // TODO: https://github.com/shikijs/shiki
 const CodeBlock: React.FC<CodeBlockProps> = ({ language, children = '' }) => {
     const [buttonText, setButtonText] = useState(language ?? 'text')
-    const timeoutId = useRef<NodeJS.Timeout | null>(null)
+    const timeoutId = useRef<number | null>(null)
 
     const handleCopy = async () => {
         if (timeoutId.current) {
@@ -26,7 +26,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({ language, children = '' }) => {
             )
         }
         setButtonText('copied')
-        timeoutId.current = setTimeout(
+        timeoutId.current = window.setTimeout(
             () => setButtonText(language ?? 'text'),
             2000,
         )
