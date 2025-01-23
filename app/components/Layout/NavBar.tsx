@@ -1,7 +1,7 @@
 import { Link, NavLink } from 'react-router'
 
-import pages from 'app/constant/pages'
-import { cn } from 'app/lib/utils'
+import pages from '~/constant/pages'
+import { cn } from '~/lib/utils'
 
 const NavBar = () => (
     <nav

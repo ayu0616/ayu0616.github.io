@@ -5,7 +5,7 @@ import remarkBreaks from 'remark-breaks'
 import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 
-import { cn } from 'app/lib/utils'
+import { cn } from '~/lib/utils'
 
 import 'katex/dist/katex.min.css'
 import Blockquote from './components/Blockquote'

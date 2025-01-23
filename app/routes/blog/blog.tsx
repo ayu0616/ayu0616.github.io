@@ -1,8 +1,8 @@
-import { BlogPageCard } from 'app/components/BlogPageCard'
-import type { BlogPageInfoItem } from 'app/constant/blog-page-info/schema'
 import dayjs from 'dayjs'
 import { Link, useLoaderData } from 'react-router'
 import { getBlogPageInfo } from 'server/api/blog'
+import { BlogPageCard } from '~/components/BlogPageCard'
+import type { BlogPageInfoItem } from '~/constant/blog-page-info/schema'
 
 export const meta = () => {
     return [

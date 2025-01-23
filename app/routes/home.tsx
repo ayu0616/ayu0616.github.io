@@ -2,7 +2,7 @@ import type { Route } from './+types/home'
 
 import { Link } from 'react-router'
 
-import pages from 'app/constant/pages'
+import pages from '~/constant/pages'
 
 import { SNSIconList } from '../components/SNSIcon/SNSIconList'
 

@@ -1,5 +1,5 @@
-import skillData from 'app/constant/skillData'
 import { data, redirect, useLoaderData } from 'react-router'
+import skillData from '~/constant/skillData'
 import type { Route } from './+types/skill-detail'
 
 export const meta = ({ params }: Route.MetaArgs) => {

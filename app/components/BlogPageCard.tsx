@@ -1,7 +1,7 @@
-import type { BlogPageInfoItem } from 'app/constant/blog-page-info/schema'
 import dayjs from 'dayjs'
 import type { FC } from 'react'
 import { Link } from 'react-router'
+import type { BlogPageInfoItem } from '~/constant/blog-page-info/schema'
 import BlogTag from './BlogTag/BlogTag'
 
 export interface BlogPageCardProps

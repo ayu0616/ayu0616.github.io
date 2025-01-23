@@ -1,4 +1,4 @@
-import SkillPageContent from 'app/components/pages/SkillPageContent'
+import SkillPageContent from '~/components/pages/SkillPageContent'
 import type { Route } from './+types/skill'
 
 export const meta = ({ params }: Route.MetaArgs) => {

@@ -1,5 +1,5 @@
-import { works } from 'app/constant/works'
 import { Link } from 'react-router'
+import { works } from '~/constant/works'
 
 export const meta = () => {
     return [{ title: '作品一覧' }]

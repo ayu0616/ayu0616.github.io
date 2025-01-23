@@ -1,11 +1,11 @@
-import { BlogBreadcrumb } from 'app/components/BlogBreadcrumb/BlogBreadcrumb'
-import BlogTag from 'app/components/BlogTag/BlogTag'
-import Markdown, { BLOG_CONTENT_ID } from 'app/components/Markdown/Markdown'
-import type { BlogPageInfoItem } from 'app/constant/blog-page-info/schema'
-import { honoClient } from 'app/lib/hono'
 import { atom, useAtomValue } from 'jotai'
 import { atomFamily, useHydrateAtoms } from 'jotai/utils'
 import { useLoaderData } from 'react-router'
+import { BlogBreadcrumb } from '~/components/BlogBreadcrumb/BlogBreadcrumb'
+import BlogTag from '~/components/BlogTag/BlogTag'
+import Markdown, { BLOG_CONTENT_ID } from '~/components/Markdown/Markdown'
+import type { BlogPageInfoItem } from '~/constant/blog-page-info/schema'
+import { honoClient } from '~/lib/hono'
 import type { Route } from './+types/blog-detail'
 
 const blogDetailAtom = atomFamily((slug: string) =>

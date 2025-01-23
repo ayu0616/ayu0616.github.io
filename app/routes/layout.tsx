@@ -1,6 +1,6 @@
-import NavBar from 'app/components/Layout/NavBar'
-import NotFound from 'app/components/not-found'
 import { Outlet, isRouteErrorResponse } from 'react-router'
+import NavBar from '~/components/Layout/NavBar'
+import NotFound from '~/components/not-found'
 import type { Route } from './+types/layout'
 
 const LO = ({ children }: { children: React.ReactNode }) => {

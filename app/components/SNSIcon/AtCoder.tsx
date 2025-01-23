@@ -1,5 +1,5 @@
-import AtCoderIconBlack from 'app/assets/atcoder/atcoder-black.png'
-import AtCoderIconWhite from 'app/assets/atcoder/atcoder-white.png'
+import AtCoderIconBlack from '~/assets/atcoder/atcoder-black.png'
+import AtCoderIconWhite from '~/assets/atcoder/atcoder-white.png'
 
 import type { ComponentPropsWithRef } from 'react'
 import { SNSIcon } from './SNSIcon'

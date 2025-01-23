@@ -2,13 +2,13 @@ import { zValidator } from '@hono/zod-validator'
 import { Hono } from 'hono'
 
 import fs from 'node:fs/promises'
-import {
-    type BlogPageInfoItem,
-    blogPageInfoSchema,
-} from 'app/constant/blog-page-info/schema'
 import { cache } from 'react'
 import { data } from 'react-router'
 import { z } from 'zod'
+import {
+    type BlogPageInfoItem,
+    blogPageInfoSchema,
+} from '~/constant/blog-page-info/schema'
 
 const PROD = process.env.NODE_ENV !== 'development' || import.meta.env.PROD
 
