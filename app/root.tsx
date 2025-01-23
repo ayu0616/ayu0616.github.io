@@ -12,6 +12,7 @@ import dayjs from 'dayjs'
 import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 import type { Route } from './+types/root'
+import app_css from './app.css?url'
 import NotFound from './components/not-found'
 import stylesheet from './index.scss?url'
 
@@ -30,6 +31,7 @@ export const links: Route.LinksFunction = () => [
         rel: 'stylesheet',
         href: 'https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap',
     },
+    { rel: 'stylesheet', href: app_css },
     { rel: 'stylesheet', href: stylesheet },
 ]
 
