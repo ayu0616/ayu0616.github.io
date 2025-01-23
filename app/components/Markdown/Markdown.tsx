@@ -1,5 +1,4 @@
 import ReactMarkdown from 'react-markdown'
-import { Link } from 'react-router'
 import rehypeKatex from 'rehype-katex'
 import rehypeRaw from 'rehype-raw'
 import remarkBreaks from 'remark-breaks'
@@ -13,6 +12,8 @@ import Blockquote from './components/Blockquote'
 import { Img } from './components/Img/Img'
 import Pre from './components/Pre/Pre'
 import './style.css'
+import { Anchor } from './components/a'
+import { Li } from './components/list'
 
 export interface MarkdownProps {
     children?: string
@@ -35,25 +36,7 @@ const Markdown: React.FC<MarkdownProps> = ({
         <div className={cn('markdown space-y-16', className)} id={id}>
             <ReactMarkdown
                 components={{
-                    a: ({ className, children, href }) => (
-                        <Link
-                            className={cn(
-                                'inline-block break-all text-emerald-800 underline decoration-1 underline-offset-1',
-                                className,
-                            )}
-                            to={href ?? '#'}
-                            rel={
-                                href?.startsWith('http')
-                                    ? 'noopener noreferrer'
-                                    : undefined
-                            }
-                            target={
-                                href?.startsWith('http') ? '_blank' : undefined
-                            }
-                        >
-                            {children}
-                        </Link>
-                    ),
+                    a: Anchor,
                     blockquote: (props) => <Blockquote {...props} />,
                     h1: ({ className, ...props }) => (
                         <h1
@@ -123,11 +106,7 @@ const Markdown: React.FC<MarkdownProps> = ({
                         />
                     ),
                     // code: Code,
-                    li: ({ children }) => (
-                        <li className="flex">
-                            <div>{children}</div>
-                        </li>
-                    ),
+                    li: Li,
                     ol: ({ className, ...props }) => (
                         <ol
                             className={cn('list-decimal', className)}
