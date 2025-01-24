@@ -37,6 +37,25 @@ export const blogImageApp = new Hono().get(
             filename,
         )
         const buffer = (await fs.readFile(imagePath)).buffer
+        const ext = path.extname(filename)
+        const contentType = (() => {
+            switch (ext) {
+                case '.webp':
+                    return 'image/webp'
+                case '.png':
+                    return 'image/png'
+                case '.jpg':
+                case '.jpeg':
+                    return 'image/jpeg'
+                case '.gif':
+                    return 'image/gif'
+                case '.svg':
+                    return 'image/svg+xml'
+                default:
+                    return 'application/octet-stream'
+            }
+        })()
+        c.header('Content-Type', contentType)
         if (buffer instanceof ArrayBuffer) {
             return c.body(buffer)
         }
