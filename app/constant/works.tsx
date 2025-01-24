@@ -20,10 +20,11 @@ export const isWorkKey = (key: string): key is WorkKey => key in works
 
 export const workContents = {
     beaujolais: (
-        <div>
-            <p>Beaujolais</p>
-            <p>準備中</p>
-        </div>
+        <iframe
+            src="https://trash-can-frontend-zhqzb2nbkq-an.a.run.app/sommelier"
+            title="ボジョレー・ヌーヴォー エセソムリエ生成器"
+            className="h-[calc(100dvh-200px)] w-full"
+        />
     ),
     'japan-weekend-clock': <JapanWeekendClock />,
 } as const satisfies Record<WorkKey, ReactNode>
