@@ -1,7 +1,9 @@
 import type { Config } from '@react-router/dev/config'
 import skillData from './app/constant/skillData'
 import { works } from './app/constant/works'
-import { getBlogPageInfo, getBlogTagList } from './server/api/blog'
+import { getBlogPageInfo } from './server/api/blog'
+
+const ignorePrefixes = ['/atcoder', '/blog']
 
 export default {
     // Config options...
@@ -11,7 +13,10 @@ export default {
     async prerender({ getStaticPaths }) {
         const res = getStaticPaths()
         return res
-            .filter((path) => !path.startsWith('/atcoder'))
+            .filter(
+                (path) =>
+                    !ignorePrefixes.some((prefix) => path.startsWith(prefix)),
+            )
             .concat(
                 skillData
                     .filter((skill) => skill.id !== 'AtCoder')
@@ -23,6 +28,5 @@ export default {
                     (slug) => `/blog/${slug}`,
                 ),
             )
-            .concat((await getBlogTagList()).map((tag) => `/blog/tag/${tag}`))
     },
 } satisfies Config
