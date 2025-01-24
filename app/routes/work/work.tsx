@@ -7,15 +7,21 @@ export const meta = () => {
 
 export default function Page() {
     return (
-        <div>
-            {(Object.keys(works) as (keyof typeof works)[]).map((slug) => {
-                const { title } = works[slug]
-                return (
-                    <Link key={slug} to={`/work/${slug}`}>
-                        {title}
-                    </Link>
-                )
-            })}
+        <div className="mx-auto max-w-screen-sm px-4 py-8">
+            <div className="rounded border bg-white p-4">
+                <ul>
+                    {(Object.keys(works) as (keyof typeof works)[]).map(
+                        (slug) => {
+                            const { title } = works[slug]
+                            return (
+                                <li key={slug}>
+                                    <Link to={`/work/${slug}`}>{title}</Link>
+                                </li>
+                            )
+                        },
+                    )}
+                </ul>
+            </div>
         </div>
     )
 }
