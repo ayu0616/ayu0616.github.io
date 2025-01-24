@@ -1,20 +1,17 @@
 export interface ImgProps {
     alt?: string
-    dirname: string
     src: string
 }
 
-export const Img: React.FC<ImgProps> = ({ alt = '', dirname, ...props }) => {
+export const Img: React.FC<ImgProps> = ({ alt = '', ...props }) => {
     const src = (() => {
         const isHttp = props.src.startsWith('http')
         if (isHttp) {
             return props.src
         }
-        const toPath = [
-            '/blog-image',
-            dirname,
-            props.src.replace('assets/', ''),
-        ].join('/')
+        const toPath = ['/blog-image', props.src.replace('assets/', '')].join(
+            '/',
+        )
         return toPath
     })()
     // if (src.endsWith('.json')) {

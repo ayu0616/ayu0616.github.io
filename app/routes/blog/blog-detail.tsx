@@ -30,7 +30,7 @@ export default function Page({ params }: Route.ComponentProps) {
     const { slug } = params
     const data = useLoaderData<typeof loader>()
     useHydrateAtoms([[blogDetailAtom(slug), data]])
-    const { tags, publishedAt, title, markdown, dirname } = data
+    const { tags, publishedAt, title, markdown } = data
     return (
         <div className="p-4 md:p-6">
             <div className="mx-auto max-w-screen-lg space-y-8 rounded-lg border bg-white px-6 pt-8 pb-16">
@@ -55,7 +55,7 @@ export default function Page({ params }: Route.ComponentProps) {
                     </div>
                 </div>
                 <hr />
-                <Markdown id={BLOG_CONTENT_ID} slug={slug} dirname={dirname}>
+                <Markdown id={BLOG_CONTENT_ID} slug={slug}>
                     {markdown}
                 </Markdown>
             </div>

@@ -14,7 +14,6 @@ const blogPageItemSchema = z.object({
     title: z.string(),
     headings: z.array(headingSchema),
     slug: z.string(),
-    dirname: z.string(),
 })
 
 export const blogPageInfoSchema = z.record(blogPageItemSchema)
