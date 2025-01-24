@@ -155,6 +155,12 @@ const Markdown: React.FC<MarkdownProps> = ({
                             {...props}
                         />
                     ),
+                    iframe: ({ className, ...props }) => (
+                        <iframe
+                            className={cn('max-w-full', className)}
+                            {...props}
+                        />
+                    ),
                 }}
                 rehypePlugins={[rehypeRaw, rehypeKatex]}
                 remarkPlugins={[remarkGfm, remarkBreaks, remarkMath]}
