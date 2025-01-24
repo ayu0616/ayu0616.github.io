@@ -14,7 +14,6 @@ export interface CodeBlockProps {
     language?: string
 }
 
-// TODO: https://github.com/shikijs/shiki
 const CodeBlock: React.FC<CodeBlockProps> = ({ language, children = '' }) => {
     const [buttonText, setButtonText] = useState(language ?? 'text')
     const timeoutId = useRef<number | null>(null)
