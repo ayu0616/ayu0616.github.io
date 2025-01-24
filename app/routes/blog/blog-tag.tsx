@@ -46,26 +46,24 @@ export const meta = ({ params }: { params: Params }) => {
 export default function Page() {
     const { pageList, decodedTag } = useLoaderData<typeof loader>()
     return (
-        <div className="p-4 md:p-6">
-            <div className="mx-auto max-w-screen-lg">
-                <Link to="/blog">
-                    <div className="mb-8 flex items-center gap-2 text-emerald-800 underline-offset-2 hover:underline">
-                        <FaArrowLeft />
-                        <span>ブログ一覧に戻る</span>
-                    </div>
-                </Link>
-                <h1 className="mb-8">タグ：{decodedTag}</h1>
-                <div className="grid gap-4">
-                    {pageList.map((page) => (
-                        <BlogPageCard
-                            key={page.slug}
-                            {...page}
-                            publishedAt={dayjs(page.publishedAt).format(
-                                'YYYY-MM-DD',
-                            )}
-                        />
-                    ))}
+        <div className="w-full">
+            <Link to="/blog">
+                <div className="mb-8 flex items-center gap-2 text-emerald-800 underline-offset-2 hover:underline">
+                    <FaArrowLeft />
+                    <span>ブログ一覧に戻る</span>
                 </div>
+            </Link>
+            <h1 className="mb-8">タグ：{decodedTag}</h1>
+            <div className="grid gap-4">
+                {pageList.map((page) => (
+                    <BlogPageCard
+                        key={page.slug}
+                        {...page}
+                        publishedAt={dayjs(page.publishedAt).format(
+                            'YYYY-MM-DD',
+                        )}
+                    />
+                ))}
             </div>
         </div>
     )
