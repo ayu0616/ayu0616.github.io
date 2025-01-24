@@ -14,7 +14,6 @@ export interface CodeBlockProps {
     language?: string
 }
 
-// TODO: https://github.com/shikijs/shiki
 const CodeBlock: React.FC<CodeBlockProps> = ({ language, children = '' }) => {
     const [buttonText, setButtonText] = useState(language ?? 'text')
     const timeoutId = useRef<number | null>(null)
@@ -50,15 +49,22 @@ const CodeBlock: React.FC<CodeBlockProps> = ({ language, children = '' }) => {
     }
 
     return (
-        <div className="relative">
+        <div className="drop-shadow-md">
+            <div className="flex items-center justify-between overflow-hidden rounded-t-md border-x border-t bg-white">
+                <div className="flex gap-1.5 pl-2">
+                    <div className="size-3 rounded-full bg-red-500" />
+                    <div className="size-3 rounded-full bg-yellow-500" />
+                    <div className="size-3 rounded-full bg-green-500" />
+                </div>
+                <button
+                    type="button"
+                    className="border-l px-2 py-1 text-sm hover:bg-slate-100"
+                    onClick={handleCopy}
+                >
+                    <code>{buttonText}</code>
+                </button>
+            </div>
             <div dangerouslySetInnerHTML={{ __html: html }} />
-            <button
-                type="button"
-                className="absolute top-0 right-0 rounded-tr-md rounded-bl-md bg-white px-2 py-1 text-sm hover:bg-slate-100"
-                onClick={handleCopy}
-            >
-                <code>{buttonText}</code>
-            </button>
         </div>
     )
 }

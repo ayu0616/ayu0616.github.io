@@ -46,15 +46,15 @@ export const getBlogTagList = cache(async () =>
     ),
 )
 
-const getMarkdown = async (dirname: string) => {
+const getMarkdown = async (slug: string) => {
     let markdown = ''
     if (PROD) {
         const res = await fetch(
-            `https://storage.googleapis.com/hassaku-blog-contents/${dirname}/page.md`,
+            `https://storage.googleapis.com/hassaku-blog-contents/${slug}.md`,
         )
         markdown = await res.text()
     } else {
-        markdown = await fs.readFile(`blog-contents/${dirname}/page.md`, {
+        markdown = await fs.readFile(`blog-contents/${slug}.md`, {
             encoding: 'utf-8',
         })
     }
@@ -77,7 +77,7 @@ export const getBlogPageDetail = cache(async (slug: string) => {
     if (!info) {
         throw data('not-found', { status: 404 })
     }
-    const markdown = await getMarkdown(info.dirname)
+    const markdown = await getMarkdown(slug)
     return { ...info, markdown }
 })
 

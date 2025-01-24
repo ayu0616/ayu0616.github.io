@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { Link, useLoaderData } from 'react-router'
+import { useLoaderData } from 'react-router'
 import { getBlogPageInfo } from 'server/api/blog'
 import { BlogPageCard } from '~/components/BlogPageCard'
 import type { BlogPageInfoItem } from '~/constant/blog-page-info/schema'
@@ -35,33 +35,14 @@ export const loader = async () => {
 export default function Page() {
     const { pageList } = useLoaderData<typeof loader>()
     return (
-        <div className="gap-8 p-4 md:flex md:p-6">
-            <div className="mx-auto grid max-w-screen-sm gap-4">
-                {pageList.map((page) => (
-                    <BlogPageCard
-                        key={page.slug}
-                        {...page}
-                        publishedAt={dayjs(page.publishedAt).format(
-                            'YYYY-MM-DD',
-                        )}
-                    />
-                ))}
-            </div>
-            <div className="sticky top-[120px] hidden h-fit bg-white p-4 md:block">
-                <h2 className="mb-2 text-lg">新着記事</h2>
-                <ul>
-                    {pageList.slice(0, 5).map(({ slug, title }) => (
-                        <li className="flex" key={slug}>
-                            <Link
-                                className="underline-offset-2 hover:underline"
-                                to={`/blog/${slug}`}
-                            >
-                                {title}
-                            </Link>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </div>
+        <>
+            {pageList.map((page) => (
+                <BlogPageCard
+                    key={page.slug}
+                    {...page}
+                    publishedAt={dayjs(page.publishedAt).format('YYYY-MM-DD')}
+                />
+            ))}
+        </>
     )
 }

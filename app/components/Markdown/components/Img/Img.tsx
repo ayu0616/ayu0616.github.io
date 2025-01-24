@@ -1,20 +1,20 @@
+import { useQuery } from '@tanstack/react-query'
+import type { FC } from 'react'
+
 export interface ImgProps {
     alt?: string
-    dirname: string
     src: string
 }
 
-export const Img: React.FC<ImgProps> = ({ alt = '', dirname, ...props }) => {
+export const Img: React.FC<ImgProps> = ({ alt = '', ...props }) => {
     const src = (() => {
         const isHttp = props.src.startsWith('http')
         if (isHttp) {
             return props.src
         }
-        const toPath = [
-            '/blog-image',
-            dirname,
-            props.src.replace('assets/', ''),
-        ].join('/')
+        const toPath = ['/blog-image', props.src.replace('assets/', '')].join(
+            '/',
+        )
         return toPath
     })()
     // if (src.endsWith('.json')) {
@@ -27,24 +27,34 @@ export const Img: React.FC<ImgProps> = ({ alt = '', dirname, ...props }) => {
     //     }
     //     return <OriginalObject alt={alt} filePath={jsonPath} />
     // }
-    if (src.endsWith('.svg')) {
-        return (
-            // eslint-disable-next-line @next/next/no-img-element
+    return (
+        <figure className="w-full">
             <img
                 alt={alt}
                 className="mx-auto max-h-[50vh] object-contain"
                 loading="lazy"
                 src={src}
             />
-        )
-    }
+            {alt && (
+                <figcaption className="mt-2 whitespace-break-spaces text-gray-700 text-sm [line-break:anywhere]">
+                    {alt}
+                </figcaption>
+            )}
+        </figure>
+    )
+}
+
+const SvgImg: FC<{ src: string; alt: string }> = ({ src, alt }) => {
+    const { data } = useQuery({
+        queryKey: ['blog-image', src],
+        queryFn: () => fetch(src).then((res) => res.text()),
+        staleTime: 1000 * 60 * 60 * 24,
+    })
     return (
         <figure className="mx-auto w-fit">
-            <img
-                alt={alt}
-                className="max-h-[50vh] object-contain"
-                loading="lazy"
-                src={src}
+            <div
+                className="mx-auto size-fit [&>svg]:max-h-[50vh]"
+                dangerouslySetInnerHTML={{ __html: data ?? '' }}
             />
             {alt && (
                 <figcaption className="mt-2 whitespace-break-spaces text-gray-700 text-sm [line-break:anywhere]">
