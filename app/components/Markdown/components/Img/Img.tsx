@@ -1,5 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import type { FC } from 'react'
+import { GCS_URL, PROD } from '~/constant/others'
+import { urlJoin } from '~/util/url'
 
 export interface ImgProps {
     alt?: string
@@ -11,6 +13,12 @@ export const Img: React.FC<ImgProps> = ({ alt = '', ...props }) => {
         const isHttp = props.src.startsWith('http')
         if (isHttp) {
             return props.src
+        }
+        if (PROD) {
+            const filename = props.src
+                .replace('assets/', '')
+                .replaceAll('/', '')
+            return urlJoin(GCS_URL, 'assets', filename)
         }
         const toPath = ['/blog-image', props.src.replace('assets/', '')].join(
             '/',
