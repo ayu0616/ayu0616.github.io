@@ -1,3 +1,3 @@
 export const urlJoin = (...paths: string[]): string => {
-    return paths.join('/').replace(/\/{2,}/g, '/')
+    return paths.join('/').replace(/(?<!:)\/\/+/g, '/')
 }
