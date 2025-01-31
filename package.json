@@ -13,7 +13,8 @@
         "typecheck": "react-router typegen && tsc",
         "lint-staged": "lint-staged --config .lintstagedrc.js",
         "codegen": "bunx tsx app/scripts/codegen.ts",
-        "push-content": "rm blog-contents.zip && python blog-contents/update_page_info.py && zip -r blog-contents.zip blog-contents && cd terraform && terraform apply -var-file vars.tfvars -auto-approve && cd .."
+        "push-content": "rm blog-contents.zip && python blog-contents/update_page_info.py && zip -r blog-contents.zip blog-contents && cd terraform && terraform apply -var-file vars.tfvars -auto-approve && cd ..",
+        "update-cors-config": "gcloud storage buckets update gs://hassaku-blog-contents --cors-file=gcloud-config/cors.json"
     },
     "dependencies": {
         "@hono/zod-validator": "^0.4.2",
