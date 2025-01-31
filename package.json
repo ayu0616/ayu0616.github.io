@@ -6,7 +6,7 @@
     "scripts": {
         "dev": "react-router dev",
         "build": "react-router build",
-        "start": "react-router-serve ./build/server/index.js",
+        "start": "bunx tsx main.ts",
         "lint": "biome check --write .",
         "cp:img": "bunx ts-node --project tsconfig.local.json src/scripts/copyImg.ts",
         "prepare": "node --eval 'process.exit(process.env.NODE_ENV === `production` ? 0 : 1)' || husky",

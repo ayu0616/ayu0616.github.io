@@ -3,8 +3,8 @@ import path from 'node:path'
 import { zValidator } from '@hono/zod-validator'
 import { Hono } from 'hono'
 import { z } from 'zod'
-
-const PROD = process.env.NODE_ENV !== 'development' || import.meta.env.PROD
+import { GCS_URL, PROD } from '~/constant/others'
+import { urlJoin } from '~/util/url'
 
 const basedir = process.cwd()
 
@@ -14,13 +14,7 @@ export const blogImageApp = new Hono().get(
     async (c) => {
         const { filename } = c.req.valid('param')
         if (PROD) {
-            const res = await fetch(
-                path.join(
-                    'https://storage.googleapis.com/hassaku-blog-contents',
-                    'assets',
-                    filename,
-                ),
-            )
+            const res = await fetch(urlJoin(GCS_URL, 'assets', filename))
             if (!res.ok) {
                 return c.json({ error: 'Not Found' }, { status: 404 })
             }

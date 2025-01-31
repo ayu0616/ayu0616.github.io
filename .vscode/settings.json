@@ -41,7 +41,7 @@
     "[dockerfile]": {
         "editor.defaultFormatter": "ms-azuretools.vscode-docker"
     },
-    "github.copilot.chat.experimental.codeGeneration.instructions": [
+    "github.copilot.chat.codeGeneration.instructions": [
         {
             "file": ".cursorrules"
         }
