@@ -44,7 +44,7 @@ export const BlogPageCard: FC<BlogPageCardProps> = ({
                             alt="thumbnail"
                             className="h-32 w-32 rounded-md object-cover"
                             loading="lazy"
-                            src={'https://placehold.jp/600x600.png'} // TODO: 画像を取得する
+                            src={`/blog-image/${slug}/thumbnail`}
                         />
                     </div>
                 </div>

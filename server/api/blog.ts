@@ -81,6 +81,14 @@ export const getBlogPageDetail = cache(async (slug: string) => {
     return { ...info, markdown }
 })
 
+export const getBlogThumbnail = cache(async (slug: string) => {
+    const info = (await getBlogPageInfo())[slug]
+    if (!info) {
+        throw data('not-found', { status: 404 })
+    }
+    return info.thumbnail
+})
+
 export const blogApp = new Hono()
     .get('/', async (c) => {
         return c.json(await getBlogPageInfo(), 200)
