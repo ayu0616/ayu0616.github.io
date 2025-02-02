@@ -6,12 +6,14 @@ import { z } from 'zod'
 
 import fs from 'node:fs'
 import path from 'node:path'
+import { PROD } from '~/constant/others'
 
+const fontPath = PROD ? 'build/client/fonts' : 'public/fonts'
 const bizUdpGothic = fs.readFileSync(
-    path.join('public', 'fonts', 'BIZUDPGothic-Regular.ttf'),
+    path.join(fontPath, 'BIZUDPGothic-Regular.ttf'),
 )
 const bizUdpGothicBold = fs.readFileSync(
-    path.join('public', 'fonts', 'BIZUDPGothic-Bold.ttf'),
+    path.join(fontPath, 'BIZUDPGothic-Bold.ttf'),
 )
 
 declare module 'react' {
