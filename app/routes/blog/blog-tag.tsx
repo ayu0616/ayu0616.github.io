@@ -54,7 +54,7 @@ export default function Page() {
                 </div>
             </Link>
             <h1 className="mb-8">タグ：{decodedTag}</h1>
-            <div className="grid gap-4">
+            <div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-2">
                 {pageList.map((page) => (
                     <BlogPageCard
                         key={page.slug}

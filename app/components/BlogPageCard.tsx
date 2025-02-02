@@ -17,9 +17,17 @@ export const BlogPageCard: FC<BlogPageCardProps> = ({
 }) => {
     return (
         <Link key={slug} to={`/blog/${slug}`}>
-            <div className="rounded-md bg-white p-6 shadow">
-                <div className="flex gap-4">
-                    <div className="flex-1">
+            <div className="h-full overflow-hidden rounded-md bg-white shadow">
+                <div className="flex h-full flex-col">
+                    <div>
+                        <img
+                            alt="thumbnail"
+                            className="aspect-[3/2] w-full object-cover"
+                            loading="lazy"
+                            src={`/blog-image/${slug}/thumbnail`}
+                        />
+                    </div>
+                    <div className="flex flex-1 flex-col justify-between p-6">
                         <h3 className="mb-2">{title}</h3>
                         <div className="space-y-1">
                             <div className="flex flex-wrap gap-x-2 gap-y-1">
@@ -38,14 +46,6 @@ export const BlogPageCard: FC<BlogPageCardProps> = ({
                                 {dayjs(publishedAt).format('YYYY-MM-DD')}
                             </div>
                         </div>
-                    </div>
-                    <div>
-                        <img
-                            alt="thumbnail"
-                            className="h-32 w-32 rounded-md object-cover"
-                            loading="lazy"
-                            src={`/blog-image/${slug}/thumbnail`}
-                        />
                     </div>
                 </div>
             </div>

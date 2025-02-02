@@ -35,7 +35,7 @@ export const loader = async () => {
 export default function Page() {
     const { pageList } = useLoaderData<typeof loader>()
     return (
-        <>
+        <div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-2">
             {pageList.map((page) => (
                 <BlogPageCard
                     key={page.slug}
@@ -43,6 +43,6 @@ export default function Page() {
                     publishedAt={dayjs(page.publishedAt).format('YYYY-MM-DD')}
                 />
             ))}
-        </>
+        </div>
     )
 }
