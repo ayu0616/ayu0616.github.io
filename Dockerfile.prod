@@ -20,9 +20,10 @@ COPY --from=installer /app/node_modules ./node_modules
 COPY . .
 RUN bun run build
 
-RUN bunx esbuild main.ts --bundle --minify --platform=node --outfile=main.js
+# RUN bunx esbuild main.ts --bundle --minify --platform=node --outfile=main.js
+RUN bun build main.ts --minify --target node > main.js 
 
-FROM base AS production
+FROM oven/bun:slim AS production
 
 COPY --from=builder /app/build ./build
 COPY --from=builder /app/main.js ./
