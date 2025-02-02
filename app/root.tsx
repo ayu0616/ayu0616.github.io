@@ -49,6 +49,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="ja">
             <head>
+                <Meta />
+                <Links />
                 <meta charSet="utf-8" />
                 <meta
                     name="viewport"
@@ -71,8 +73,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     name="twitter:image"
                     content={ogImageClient['og-image'].$url().href}
                 />
-                <Meta />
-                <Links />
             </head>
             <body>
                 <QueryClientProvider client={queryClient}>
