@@ -18,6 +18,6 @@ app.get('/api', (c) => {
 
 app.route('/api', apiApp)
 app.route('/blog-image', blogImageApp)
-app.route('/og-image', ogImageApp)
+app.route('/', ogImageApp)
 
 export default app

@@ -6,6 +6,7 @@ import { BlogBreadcrumb } from '~/components/BlogBreadcrumb/BlogBreadcrumb'
 import BlogTag from '~/components/BlogTag/BlogTag'
 import Markdown, { BLOG_CONTENT_ID } from '~/components/Markdown/Markdown'
 import type { BlogPageInfoItem } from '~/constant/blog-page-info/schema'
+import { ogImageClient } from '~/lib/hono'
 import type { Route } from './+types/blog-detail'
 
 const blogDetailAtom = atomFamily((slug: string) =>
@@ -23,7 +24,29 @@ export const meta = ({ params }: Route.MetaArgs) => {
     if (!data) {
         return []
     }
-    return [{ title: data.title }]
+    return [
+        { title: data.title },
+        {
+            property: 'og:title',
+            content: data.title,
+        },
+        {
+            property: 'og:image',
+            content: ogImageClient['og-image'].$url({
+                query: { title: data.title },
+            }),
+        },
+        {
+            name: 'twitter:title',
+            content: data.title,
+        },
+        {
+            name: 'twitter:image',
+            content: ogImageClient['og-image'].$url({
+                query: { title: data.title },
+            }),
+        },
+    ]
 }
 
 export default function Page({ params }: Route.ComponentProps) {
