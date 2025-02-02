@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
 import { apiApp } from './api'
-import { blogImageApp } from './blog-image'
+import { blogImageApp } from './blog-image.tsx'
 import { ogImageApp } from './og-image.tsx'
 
 const app = new Hono()
