@@ -22,7 +22,7 @@ export default function Home() {
             <div className="aspect-square max-h-[50dvh] rounded-full lg:max-h-none lg:max-w-[50dvw]">
                 <img
                     alt="アイコン"
-                    className="rounded-full border-[max(1dvh,_1dvw)] border-emerald-800 drop-shadow-lg transition-transform duration-300 ease-in-out hover:scale-105"
+                    className="rounded-full drop-shadow-lg transition-transform duration-300 ease-in-out hover:scale-105"
                     loading="lazy"
                     src={'/icon.webp'}
                 />
