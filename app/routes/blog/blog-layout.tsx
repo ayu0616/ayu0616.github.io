@@ -24,11 +24,9 @@ export const loader = async () => {
 export default function Layout() {
     const { pageList } = useLoaderData<typeof loader>()
     return (
-        <div className="justify-around gap-8 p-6 pb-10 md:flex md:p-8 md:pb-16">
-            <div>
-                <div className="mx-auto grid max-w-screen-sm gap-4">
-                    <Outlet />
-                </div>
+        <div className="w-full justify-between gap-8 p-6 pb-10 md:flex md:p-8 md:pb-16">
+            <div className="mx-auto grid min-w-[50%] max-w-screen-sm flex-1 gap-4">
+                <Outlet />
             </div>
             <div className="md:hidden">
                 <MobileMenu pageList={pageList} />
