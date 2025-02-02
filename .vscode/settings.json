@@ -45,5 +45,12 @@
         {
             "file": ".cursorrules"
         }
+    ],
+    "tailwindCSS.classAttributes": [
+        "class",
+        "className",
+        "ngClass",
+        "class:list",
+        "tw"
     ]
 }
