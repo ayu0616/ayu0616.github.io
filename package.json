@@ -4,7 +4,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "react-router dev",
+        "dev": "bunx --bun react-router dev",
         "build": "react-router build",
         "start": "bunx tsx main.ts",
         "lint": "biome check --write .",
@@ -43,6 +43,7 @@
         "remark-breaks": "^4.0.0",
         "remark-gfm": "^4.0.0",
         "remark-math": "^6.0.0",
+        "satori": "^0.12.1",
         "tailwind-merge": "^2.6.0",
         "tailwindcss-animate": "^1.0.7",
         "zod": "^3.24.1"

@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import { apiApp } from './api'
 import { blogImageApp } from './blog-image'
+import { ogImageApp } from './og-image.tsx'
 
 const app = new Hono()
 
@@ -17,5 +18,6 @@ app.get('/api', (c) => {
 
 app.route('/api', apiApp)
 app.route('/blog-image', blogImageApp)
+app.route('/og-image', ogImageApp)
 
 export default app

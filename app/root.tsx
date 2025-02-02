@@ -14,7 +14,9 @@ import utc from 'dayjs/plugin/utc'
 import type { Route } from './+types/root'
 import app_css from './app.css?url'
 import NotFound from './components/not-found'
+import { BASE_URL } from './constant/others'
 import stylesheet from './index.scss?url'
+import { ogImageClient } from './lib/hono'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)
@@ -51,6 +53,23 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <meta
                     name="viewport"
                     content="width=device-width, initial-scale=1"
+                />
+                <meta property="og:title" content="はっさくゼリー製造工場" />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content={BASE_URL} />
+                <meta
+                    property="og:image"
+                    content={ogImageClient['og-image'].$url().href}
+                />
+                <meta
+                    property="og:site_name"
+                    content="はっさくゼリー製造工場"
+                />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="はっさくゼリー製造工場" />
+                <meta
+                    name="twitter:image"
+                    content={ogImageClient['og-image'].$url().href}
                 />
                 <Meta />
                 <Links />
