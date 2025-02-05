@@ -184,8 +184,13 @@ const Markdown: React.FC<MarkdownProps> = ({
                                     {...props}
                                     className={cn('space-y-2', className)}
                                 >
-                                    {newChildren.map((ch) => (
-                                        <p key={JSON.stringify(ch)}>{ch}</p>
+                                    {newChildren.map((ch, i) => (
+                                        <p
+                                            // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                                            key={`ptag-${i}`}
+                                        >
+                                            {ch}
+                                        </p>
                                     ))}
                                 </div>
                             )
