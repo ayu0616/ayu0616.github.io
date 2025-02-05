@@ -12,6 +12,7 @@ import Blockquote from './components/Blockquote'
 import { Img } from './components/Img/Img'
 import Pre from './components/Pre/Pre'
 import './style.css'
+import type { ReactNode } from 'react'
 import { Anchor } from './components/a'
 import { Li } from './components/list'
 
@@ -31,7 +32,7 @@ const Markdown: React.FC<MarkdownProps> = ({
     slug,
 }) => {
     return (
-        <div className={cn('markdown space-y-16', className)} id={id}>
+        <div className={cn('markdown space-y-12', className)} id={id}>
             <ReactMarkdown
                 components={{
                     a: Anchor,
@@ -161,6 +162,40 @@ const Markdown: React.FC<MarkdownProps> = ({
                             {...props}
                         />
                     ),
+                    p: ({ children, className, ...props }) => {
+                        if (Array.isArray(children)) {
+                            const newChildren: ReactNode[][] = [[]]
+                            for (const node of children as ReactNode[]) {
+                                if (
+                                    node &&
+                                    typeof node === 'object' &&
+                                    'type' in node &&
+                                    node.type === 'br'
+                                ) {
+                                    newChildren.push([])
+                                } else {
+                                    newChildren[newChildren.length - 1].push(
+                                        node,
+                                    )
+                                }
+                            }
+                            return (
+                                <div
+                                    {...props}
+                                    className={cn('space-y-2', className)}
+                                >
+                                    {newChildren.map((ch) => (
+                                        <p key={JSON.stringify(ch)}>{ch}</p>
+                                    ))}
+                                </div>
+                            )
+                        }
+                        return (
+                            <p {...props} className={className}>
+                                {children}
+                            </p>
+                        )
+                    },
                 }}
                 rehypePlugins={[rehypeRaw, rehypeKatex]}
                 remarkPlugins={[remarkGfm, remarkBreaks, remarkMath]}
