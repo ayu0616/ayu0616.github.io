@@ -52,7 +52,7 @@ const TableOfContents = ({
         staleTime: 1000 * 60 * 60 * 24,
     })
     return (
-        <div className="mx-auto w-fit min-w-[50%] max-w-full rounded-md border border-emerald-800">
+        <div className="mx-auto w-fit min-w-[min(100%,384px)] max-w-full rounded-md border border-emerald-800">
             <div className="rounded-t-md bg-emerald-800 p-2 text-center text-lg text-white">
                 Contents
             </div>
