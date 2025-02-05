@@ -51,6 +51,7 @@
         "className",
         "ngClass",
         "class:list",
-        "tw"
+        "tw",
+        ".*ClassName"
     ]
 }

@@ -25,6 +25,9 @@ export interface MarkdownProps {
 
 export const BLOG_CONTENT_ID = 'blog-content'
 
+const headingClassName =
+    'mt-8 first:mt-0 md:mt-14 bg-emerald-800 text-white px-2 py-1 rounded'
+
 const Markdown: React.FC<MarkdownProps> = ({
     children = '',
     id,
@@ -50,50 +53,35 @@ const Markdown: React.FC<MarkdownProps> = ({
                     h2: ({ className, ...props }) => (
                         <h2
                             {...props}
-                            className={cn(
-                                'mt-8 first:mt-0 md:mt-14',
-                                className,
-                            )}
+                            className={cn(headingClassName, className)}
                             id={props.children?.toString()}
                         />
                     ),
                     h3: ({ className, ...props }) => (
                         <h3
                             {...props}
-                            className={cn(
-                                'mt-8 first:mt-0 md:mt-14',
-                                className,
-                            )}
+                            className={cn(headingClassName, className)}
                             id={props.children?.toString()}
                         />
                     ),
                     h4: ({ className, ...props }) => (
                         <h4
                             {...props}
-                            className={cn(
-                                'mt-8 first:mt-0 md:mt-14',
-                                className,
-                            )}
+                            className={cn(headingClassName, className)}
                             id={props.children?.toString()}
                         />
                     ),
                     h5: ({ className, ...props }) => (
                         <h5
                             {...props}
-                            className={cn(
-                                'mt-8 first:mt-0 md:mt-14',
-                                className,
-                            )}
+                            className={cn(headingClassName, className)}
                             id={props.children?.toString()}
                         />
                     ),
                     h6: ({ className, ...props }) => (
                         <h6
                             {...props}
-                            className={cn(
-                                'mt-8 first:mt-0 md:mt-14',
-                                className,
-                            )}
+                            className={cn(headingClassName, className)}
                             id={props.children?.toString()}
                         />
                     ),
