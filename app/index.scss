@@ -3,11 +3,6 @@
 
 :root {
     font-family: 'BIZ UDPGothic', sans-serif;
-
-    font-size: 14px;
-    @media (min-width: 768px) {
-        font-size: 16px;
-    }
 }
 
 h1 {
@@ -42,7 +37,7 @@ img {
 @mixin bulletedList($nest_num: 5) {
     &::before {
         content: '•';
-        border: none;
+        @apply border-none;
     }
 
     ul {
@@ -84,18 +79,17 @@ ul li {
         $size: calc(1rem / 3);
         $mr: 0.5rem;
 
-        display: inline-block;
         margin-right: $mr;
 
         font-family: Arial;
         font-size: 1.5rem;
         @apply leading-6 md:leading-7;
-        vertical-align: middle;
+        @apply inline-block align-middle;
     }
 
     span,
     a {
-        vertical-align: middle;
+        @apply align-middle;
     }
 }
 
@@ -106,23 +100,21 @@ ol.list-decimal {
         &::before {
             content: counter(list) '. ';
             counter-increment: list;
-            margin-right: 0.5rem;
+            @apply mr-2;
         }
     }
 }
 
 .katex {
-    margin: 0 0.25rem;
-    display: inline-flex;
-    align-items: center;
+    @apply mx-1 my-0 inline-flex items-center;
 }
 
 .katex-display {
     > .katex {
-        margin: 0;
+        @apply m-0;
     }
 
     .newline {
-        height: 0.75rem;
+        @apply h-3;
     }
 }

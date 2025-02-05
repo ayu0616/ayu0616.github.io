@@ -96,5 +96,6 @@
         &:has(#nav-bar) {
             @apply scroll-pt-24;
         }
+        @apply scroll-smooth;
     }
 }

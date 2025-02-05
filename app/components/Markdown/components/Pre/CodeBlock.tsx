@@ -49,7 +49,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({ language, children = '' }) => {
     }
 
     return (
-        <div className="drop-shadow-md">
+        <div className="min-w-0 drop-shadow-md">
             <div className="flex items-center justify-between overflow-hidden rounded-t-md border-x border-t bg-white">
                 <div className="flex gap-1.5 pl-2">
                     <div className="size-3 rounded-full bg-red-500" />

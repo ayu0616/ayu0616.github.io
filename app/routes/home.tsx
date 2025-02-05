@@ -19,7 +19,7 @@ export function meta({ params }: Route.MetaArgs) {
 export default function Home() {
     return (
         <div className="flex h-dvh flex-col items-center gap-12 p-12 lg:flex-row">
-            <div className="aspect-square max-h-[50dvh] rounded-full lg:max-h-none lg:max-w-[50dvw]">
+            <div className="aspect-square max-h-[50dvh] rounded-full lg:max-h-[85dvh] lg:max-w-[50dvw]">
                 <img
                     alt="アイコン"
                     className="rounded-full drop-shadow-lg transition-transform duration-300 ease-in-out hover:scale-105"
