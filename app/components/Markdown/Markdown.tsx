@@ -32,7 +32,7 @@ const Markdown: React.FC<MarkdownProps> = ({
     slug,
 }) => {
     return (
-        <div className={cn('markdown space-y-12', className)} id={id}>
+        <div className={cn('markdown grid gap-12', className)} id={id}>
             <ReactMarkdown
                 components={{
                     a: Anchor,
