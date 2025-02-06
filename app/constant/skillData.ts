@@ -85,7 +85,7 @@ const _data = [
     },
     {
         color: color.emerald['500'],
-        dateRange: [dayjs('2023-07'), dateMax],
+        dateRange: [dayjs('2023-07'), dayjs('2024-06')],
         logo: vueLogo,
         skillName: 'Vue.js',
     },
