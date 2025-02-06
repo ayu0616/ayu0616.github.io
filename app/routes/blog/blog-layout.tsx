@@ -25,13 +25,13 @@ export default function Layout() {
     const { pageList } = useLoaderData<typeof loader>()
     return (
         <div className="w-full justify-between gap-8 p-6 pb-10 md:flex md:p-8 md:pb-16">
-            <div className="mx-auto grid min-w-[50%] max-w-screen-sm flex-1 gap-4">
+            <div className="mx-auto grid min-w-[50%] flex-1 gap-4">
                 <Outlet />
             </div>
             <div className="md:hidden">
                 <MobileMenu pageList={pageList} />
             </div>
-            <div className="hidden md:block">
+            <div className="hidden max-w-[33%] md:block">
                 <DesktopMenu pageList={pageList} />
             </div>
         </div>
