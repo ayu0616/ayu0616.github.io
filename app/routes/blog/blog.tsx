@@ -35,7 +35,7 @@ export const loader = async () => {
 export default function Page() {
     const { pageList } = useLoaderData<typeof loader>()
     return (
-        <div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-2">
+        <div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-2 xl:grid-cols-3">
             {pageList.map((page) => (
                 <BlogPageCard
                     key={page.slug}
