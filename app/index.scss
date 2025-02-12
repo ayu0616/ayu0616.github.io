@@ -1,47 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&display=swap');
-
-
-:root {
-    font-family: 'BIZ UDPGothic', sans-serif;
-}
-
-h1 {
-    @apply text-4xl font-bold;
-}
-
-h2 {
-    @apply text-3xl font-bold;
-}
-
-h3 {
-    @apply text-2xl font-bold;
-}
-
-h4 {
-    @apply text-xl font-bold;
-}
-
-h5 {
-    @apply text-lg font-bold;
-}
-
-h6 {
-    @apply text-base font-bold;
-}
-
-img {
-    -webkit-user-drag: none;
-    -khtml-user-drag: none;
-}
-
 @mixin bulletedList($nest_num: 5) {
     &::before {
         content: '•';
-        @apply border-none;
+        border: none;
     }
 
     ul {
-        @apply ml-6;
+        margin-left: 1.5rem;
         li {
             &::before {
                 content: '◦';
@@ -49,7 +13,7 @@ img {
         }
 
         ul {
-            @apply ml-6;
+            margin-left: 1.5rem;
             li {
                 &::before {
                     content: '▪';
@@ -69,10 +33,10 @@ ul li {
     @include bulletedList(3);
 
     &:not(:first-child) {
-        @apply mt-1;
+        margin-top: 0.25rem;
     }
     li {
-        @apply mt-1;
+        margin-top: 0.25rem;
     }
 
     &::before {
@@ -83,13 +47,18 @@ ul li {
 
         font-family: Arial;
         font-size: 1.5rem;
-        @apply leading-6 md:leading-7;
-        @apply inline-block align-middle;
+        line-height: 1.5rem;
+        display: inline-block;
+        vertical-align: middle;
+
+        @media (min-width: 768px) {
+            line-height: 1.75rem;
+        }
     }
 
     span,
     a {
-        @apply align-middle;
+        vertical-align: middle;
     }
 }
 
@@ -100,21 +69,7 @@ ol.list-decimal {
         &::before {
             content: counter(list) '. ';
             counter-increment: list;
-            @apply mr-2;
+            margin-right: 0.5rem;
         }
-    }
-}
-
-.katex {
-    @apply mx-1 my-0 inline-flex items-center;
-}
-
-.katex-display {
-    > .katex {
-        @apply m-0;
-    }
-
-    .newline {
-        @apply h-3;
     }
 }

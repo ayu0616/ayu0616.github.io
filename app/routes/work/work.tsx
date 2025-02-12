@@ -7,7 +7,7 @@ export const meta = () => {
 
 export default function Page() {
     return (
-        <div className="mx-auto max-w-screen-sm px-4 py-8">
+        <div className="mx-auto max-w-(--breakpoint-sm) px-4 py-8">
             <div className="rounded border bg-white p-4">
                 <ul>
                     {(Object.keys(works) as (keyof typeof works)[]).map(

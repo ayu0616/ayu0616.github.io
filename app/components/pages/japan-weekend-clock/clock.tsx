@@ -48,7 +48,7 @@ export const Clock: FC<{
                 <div className="h-1/2 w-0 border border-red-600" />
             </div>
             {disabled && (
-                <div className="absolute inset-0 rounded-full bg-black bg-opacity-25" />
+                <div className="absolute inset-0 rounded-full bg-black/25" />
             )}
         </div>
     )

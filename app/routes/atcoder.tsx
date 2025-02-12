@@ -40,7 +40,7 @@ export default function AtCoderPage() {
         ],
     ] satisfies [ReactNode, ReactNode][]
     return (
-        <div className="mx-auto max-w-screen-sm px-4 py-8">
+        <div className="mx-auto max-w-(--breakpoint-sm) px-4 py-8">
             <h1 className="mb-8 font-bold text-2xl">AtCoderの取り組み</h1>
             <div>
                 <p className="mb-1 font-bold">集計</p>

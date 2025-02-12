@@ -40,7 +40,7 @@ export default function Layout() {
 
 const MobileMenu: FC<{ pageList: BlogPageInfoItem[] }> = ({ pageList }) => {
     return (
-        <div className="mx-auto mt-12 h-fit max-w-screen-sm rounded-md border bg-white p-4">
+        <div className="mx-auto mt-12 h-fit max-w-(--breakpoint-sm) rounded-md border bg-white p-4">
             <h2 className="mb-2 text-lg">新着記事</h2>
             <ul>
                 {pageList.slice(0, 5).map(({ slug, title }) => (

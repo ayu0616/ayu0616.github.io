@@ -1,0 +1,9 @@
+{
+    "name": "はっさくゼリー製造工場",
+    "short_name": "はっさく",
+    "theme_color": "#065f46",
+    "background_color": "#2196f3",
+    "display": "standalone",
+    "scope": "/",
+    "start_url": "/"
+}
