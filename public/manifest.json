@@ -1,9 +1,17 @@
 {
+    "$schema": "https://json.schemastore.org/web-manifest-combined.json",
     "name": "はっさくゼリー製造工場",
     "short_name": "はっさく",
     "theme_color": "#065f46",
-    "background_color": "#2196f3",
+    "background_color": "#f8fafc",
     "display": "standalone",
     "scope": "/",
-    "start_url": "/"
+    "start_url": "/",
+    "icons": [
+        {
+            "src": "icon.webp",
+            "sizes": "192x192",
+            "type": "image/webp"
+        }
+    ]
 }
