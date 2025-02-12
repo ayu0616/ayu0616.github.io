@@ -21,7 +21,7 @@ const Content = ({ slug }: { slug: string }) =>
 
 export default function WorkDetailPage({ params }: Route.ComponentProps) {
     return (
-        <div className="mx-auto max-w-screen-sm px-4 py-8">
+        <div className="mx-auto max-w-(--breakpoint-sm) px-4 py-8">
             <div className="rounded border bg-white p-4">
                 <Content slug={params.slug} />
             </div>

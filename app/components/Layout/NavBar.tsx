@@ -12,7 +12,7 @@ const NavBar = () => (
             <Link className="size-full" to={{ pathname: '/' }}>
                 <img
                     alt="icon"
-                    className="drag-none aspect-square h-full rounded-full object-contain shadow drop-shadow transition-transform duration-300 ease-in-out hover:scale-105"
+                    className="drag-none aspect-square h-full rounded-full object-contain shadow-sm drop-shadow-sm transition-transform duration-300 ease-in-out hover:scale-105"
                     loading="lazy"
                     src={'/icon-mini.webp'}
                 />

@@ -56,7 +56,7 @@ export default function Page({ params }: Route.ComponentProps) {
     const { tags, publishedAt, title, markdown } = data
     return (
         <div className="w-full min-w-0">
-            <div className="mx-auto max-w-screen-lg space-y-8 rounded-lg border bg-white px-6 pt-8 pb-16">
+            <div className="mx-auto max-w-(--breakpoint-lg) space-y-8 rounded-lg border bg-white px-6 pt-8 pb-16">
                 <div className="space-y-4">
                     <BlogBreadcrumb slug={slug} title={title} />
                     <div className="space-y-1">

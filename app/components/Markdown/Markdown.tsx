@@ -8,11 +8,10 @@ import remarkMath from 'remark-math'
 import { cn } from '~/lib/utils'
 
 import 'katex/dist/katex.min.css'
+import type { ReactNode } from 'react'
 import Blockquote from './components/Blockquote'
 import { Img } from './components/Img/Img'
 import Pre from './components/Pre/Pre'
-import './style.css'
-import type { ReactNode } from 'react'
 import { Anchor } from './components/a'
 import { Li } from './components/list'
 

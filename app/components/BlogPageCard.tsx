@@ -17,12 +17,12 @@ export const BlogPageCard: FC<BlogPageCardProps> = ({
 }) => {
     return (
         <Link key={slug} to={`/blog/${slug}`}>
-            <div className="h-full overflow-hidden rounded-md bg-white shadow">
+            <div className="h-full overflow-hidden rounded-md bg-white shadow-sm">
                 <div className="flex h-full flex-col">
                     <div>
                         <img
                             alt="thumbnail"
-                            className="aspect-[3/2] w-full object-cover"
+                            className="aspect-3/2 w-full object-cover"
                             loading="lazy"
                             src={`/blog-image/${slug}/thumbnail`}
                         />
