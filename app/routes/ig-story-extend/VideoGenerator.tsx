@@ -211,7 +211,7 @@ interface FFmpegLogDisplayProps {
 }
 
 const FFmpegLogDisplay: React.FC<FFmpegLogDisplayProps> = ({ messageRef }) => (
-    <div className="rounded-lg bg-gray-50 p-4">
+    <div className="rounded-lg border bg-white p-4">
         <pre className="overflow-x-auto font-mono text-gray-600 text-sm">
             <code ref={messageRef}>準備完了</code>
         </pre>
