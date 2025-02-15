@@ -214,6 +214,10 @@
         -webkit-user-drag: none;
     }
 
+    button {
+        @apply cursor-pointer;
+    }
+
     .katex {
         @apply mx-1 my-0 inline-flex items-center;
     }

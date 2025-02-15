@@ -1,4 +1,4 @@
-import { data } from 'react-router'
+import { data, redirect } from 'react-router'
 import { isWorkKey, workContents, works } from '~/constant/works'
 import type { Route } from './+types/work-detail'
 
@@ -6,6 +6,10 @@ export const loader = ({ params }: Route.LoaderArgs) => {
     if (!isWorkKey(params.slug)) {
         throw data('not-found', { status: 404 })
     }
+    if (params.slug === 'ig-story-extend') {
+        return redirect('/ig-story-extend')
+    }
+
     return works[params.slug]
 }
 

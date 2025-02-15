@@ -22,7 +22,11 @@ export default {
                     .filter((skill) => skill.id !== 'AtCoder')
                     .map((skill) => `/skill/${skill.id}`),
             )
-            .concat(Object.keys(works).map((slug) => `/work/${slug}`))
+            .concat(
+                Object.keys(works)
+                    .filter((slug) => !['ig-story-extend'].includes(slug))
+                    .map((slug) => `/work/${slug}`),
+            )
             .concat(
                 Object.keys(await getBlogPageInfo()).map(
                     (slug) => `/blog/${slug}`,

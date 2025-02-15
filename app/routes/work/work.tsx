@@ -14,7 +14,10 @@ export default function Page() {
                         (slug) => {
                             const { title } = works[slug]
                             return (
-                                <li key={slug}>
+                                <li
+                                    key={slug}
+                                    className="py-0.5 transition-colors hover:bg-slate-100"
+                                >
                                     <Link to={`/work/${slug}`}>{title}</Link>
                                 </li>
                             )
