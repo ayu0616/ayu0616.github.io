@@ -17,9 +17,11 @@ const IgStoryExtend: React.FC = () => {
     return (
         <main className="min-h-screen bg-gray-50">
             <div className="mx-auto max-w-2xl px-4 py-8">
-                <header className="mb-12 text-center">
-                    <h1 className="mb-2 font-bold text-3xl text-gray-900">
-                        Instagram ストーリー時間設定ツール
+                <header className="mb-12">
+                    <h1 className="mb-2 flex flex-wrap justify-center font-bold text-3xl text-gray-900">
+                        <span className="mr-2">Instagram</span>
+                        <span>ストーリー</span>
+                        <span>時間設定ツール</span>
                     </h1>
                     <p className="text-gray-600">
                         画像をアップロードしてストーリーに表示される秒数を自由に設定
