@@ -10,7 +10,7 @@ interface ImageUploaderProps {
 }
 
 const ImageUploader: React.FC<ImageUploaderProps> = ({ handleImageChange }) => (
-    <div className="space-y-4">
+    <div className="space-y-2">
         <label
             htmlFor="image-upload"
             className="block font-medium text-gray-700 text-sm"
@@ -36,7 +36,7 @@ const DurationInput: React.FC<DurationInputProps> = ({
     duration,
     handleDurationChange,
 }) => (
-    <div className="space-y-4">
+    <div className="space-y-2">
         <label
             htmlFor="duration"
             className="block font-medium text-gray-700 text-sm"
@@ -60,7 +60,7 @@ interface ColorPickerProps {
 }
 
 const ColorPicker: React.FC<ColorPickerProps> = ({ bgColor, setBgColor }) => (
-    <div className="space-y-4">
+    <div className="space-y-2">
         <label
             htmlFor="bg-color"
             className="block font-medium text-gray-700 text-sm"
