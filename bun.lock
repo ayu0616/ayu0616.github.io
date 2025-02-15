@@ -6,7 +6,7 @@
       "dependencies": {
         "@ffmpeg/ffmpeg": "^0.12.15",
         "@ffmpeg/util": "^0.12.2",
-        "@hono/zod-validator": "^0.4.2",
+        "@hono/zod-validator": "^0.4.3",
         "@radix-ui/react-slot": "^1.1.2",
         "@react-router/node": "^7.1.5",
         "@react-router/serve": "^7.1.5",
@@ -15,7 +15,7 @@
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "dayjs": "^1.11.13",
-        "hono": "^4.7.0",
+        "hono": "^4.7.1",
         "hono-react-router-adapter": "^0.6.2",
         "isbot": "^5.1.22",
         "jotai": "^2.12.0",
@@ -44,14 +44,14 @@
         "@react-router/dev": "^7.1.5",
         "@tailwindcss/postcss": "^4.0.6",
         "@types/js-yaml": "^4.0.9",
-        "@types/node": "^22.13.1",
+        "@types/node": "^22.13.4",
         "@types/react": "^19.0.8",
         "@types/react-dom": "^19.0.3",
         "husky": "^9.1.7",
         "lint-staged": "^15.4.3",
         "postcss": "^8.5.2",
         "quicktype": "^23.0.171",
-        "sass": "^1.84.0",
+        "sass": "^1.85.0",
         "schema-dts": "^1.1.2",
         "shiki": "^2.3.2",
         "tailwindcss": "^4.0.6",
@@ -211,7 +211,7 @@
 
     "@hono/vite-dev-server": ["@hono/vite-dev-server@0.18.1", "", { "dependencies": { "@hono/node-server": "^1.12.0", "minimatch": "^9.0.3" }, "peerDependencies": { "hono": "*", "miniflare": "*", "wrangler": "*" }, "optionalPeers": ["miniflare", "wrangler"] }, "sha512-Hud6Vsm+5jZDYGuchOVrc/Cr+CqydLH9yBc7VY8ChI1PH0WKSxG12t/qtQs4otuPDuUhowtemCLrk3TpMONYjQ=="],
 
-    "@hono/zod-validator": ["@hono/zod-validator@0.4.2", "", { "peerDependencies": { "hono": ">=3.9.0", "zod": "^3.19.1" } }, "sha512-1rrlBg+EpDPhzOV4hT9pxr5+xDVmKuz6YJl+la7VCwK6ass5ldyKm5fD+umJdV2zhHD6jROoCCv8NbTwyfhT0g=="],
+    "@hono/zod-validator": ["@hono/zod-validator@0.4.3", "", { "peerDependencies": { "hono": ">=3.9.0", "zod": "^3.19.1" } }, "sha512-xIgMYXDyJ4Hj6ekm9T9Y27s080Nl9NXHcJkOvkXPhubOLj8hZkOL8pDnnXfvCf5xEE8Q4oMFenQUZZREUY2gqQ=="],
 
     "@img/sharp-darwin-arm64": ["@img/sharp-darwin-arm64@0.33.5", "", { "optionalDependencies": { "@img/sharp-libvips-darwin-arm64": "1.0.4" }, "os": "darwin", "cpu": "arm64" }, "sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ=="],
 
@@ -449,7 +449,7 @@
 
     "@types/ms": ["@types/ms@2.1.0", "", {}, "sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA=="],
 
-    "@types/node": ["@types/node@22.13.1", "", { "dependencies": { "undici-types": "~6.20.0" } }, "sha512-jK8uzQlrvXqEU91UxiK5J7pKHyzgnI1Qnl0QDHIgVGuolJhRb9EEl28Cj9b3rGR8B2lhFCtvIm5os8lFnO/1Ew=="],
+    "@types/node": ["@types/node@22.13.4", "", { "dependencies": { "undici-types": "~6.20.0" } }, "sha512-ywP2X0DYtX3y08eFVx5fNIw7/uIv8hYUKgXoK8oayJlLnKcRfEYCxWMVE1XagUdVtCJlZT1AU4LXEABW+L1Peg=="],
 
     "@types/react": ["@types/react@19.0.8", "", { "dependencies": { "csstype": "^3.0.2" } }, "sha512-9P/o1IGdfmQxrujGbIMDyYaaCykhLKc0NGCtYcECNUr9UAaDe4gwvV9bR6tvd5Br1SG0j+PBpbKr2UYY8CwqSw=="],
 
@@ -793,7 +793,7 @@
 
     "hex-rgb": ["hex-rgb@4.3.0", "", {}, "sha512-Ox1pJVrDCyGHMG9CFg1tmrRUMRPRsAWYc/PinY0XzJU4K7y7vjNoLKIQ7BR5UJMCxNN8EM1MNDmHWA/B3aZUuw=="],
 
-    "hono": ["hono@4.7.0", "", {}, "sha512-hV97aIR4WYbG30k234sD9B3VNr1ZWdQRmrVF76LKFlmI7O9Yo70mG9+mFwyQ6Sjrz4wH71GfnBxv6CPjcx3QNw=="],
+    "hono": ["hono@4.7.1", "", {}, "sha512-V3eWoPkBxoNgFCkSc5Y5rpLF6YoQQx1pkYO4qrF6YfOw8RZbujUNlJLZCxh0z9gZct70+je2Ih7Zrdpv21hP9w=="],
 
     "hono-react-router-adapter": ["hono-react-router-adapter@0.6.2", "", { "dependencies": { "@hono/vite-dev-server": "^0.18.1", "react-router": "^7.0.1" }, "optionalDependencies": { "@hono/node-server": "*", "@react-router/node": "*" }, "peerDependencies": { "hono": "*" } }, "sha512-DBmLpwLOS2GI9sS8Na1/xjpVknp/Pqu/pcN4nlVt9/LL6hH0awcaY88FjSB8su31u0EU2M7CZbAAYBrXBZwEHg=="],
 
@@ -1233,7 +1233,7 @@
 
     "safer-buffer": ["safer-buffer@2.1.2", "", {}, "sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg=="],
 
-    "sass": ["sass@1.84.0", "", { "dependencies": { "chokidar": "^4.0.0", "immutable": "^5.0.2", "source-map-js": ">=0.6.2 <2.0.0" }, "optionalDependencies": { "@parcel/watcher": "^2.4.1" }, "bin": { "sass": "sass.js" } }, "sha512-XDAbhEPJRxi7H0SxrnOpiXFQoUJHwkR2u3Zc4el+fK/Tt5Hpzw5kkQ59qVDfvdaUq6gCrEZIbySFBM2T9DNKHg=="],
+    "sass": ["sass@1.85.0", "", { "dependencies": { "chokidar": "^4.0.0", "immutable": "^5.0.2", "source-map-js": ">=0.6.2 <2.0.0" }, "optionalDependencies": { "@parcel/watcher": "^2.4.1" }, "bin": { "sass": "sass.js" } }, "sha512-3ToiC1xZ1Y8aU7+CkgCI/tqyuPXEmYGJXO7H4uqp0xkLXUqp88rQQ4j1HmP37xSJLbCJPaIiv+cT1y+grssrww=="],
 
     "satori": ["satori@0.12.1", "", { "dependencies": { "@shuding/opentype.js": "1.4.0-beta.0", "css-background-parser": "^0.1.0", "css-box-shadow": "1.0.0-3", "css-gradient-parser": "^0.0.16", "css-to-react-native": "^3.0.0", "emoji-regex": "^10.2.1", "escape-html": "^1.0.3", "linebreak": "^1.1.0", "parse-css-color": "^0.2.1", "postcss-value-parser": "^4.2.0", "yoga-wasm-web": "^0.3.3" } }, "sha512-0SbjchvDrDbeXeQgxWVtSWxww7qcFgk3DtSE2/blHOSlLsSHwIqO2fCrtVa/EudJ7Eqno8A33QNx56rUyGbLuw=="],
 
