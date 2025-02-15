@@ -1,5 +1,6 @@
 import { FFmpeg } from '@ffmpeg/ffmpeg'
 import { fetchFile, toBlobURL } from '@ffmpeg/util'
+import { Share2Icon } from 'lucide-react'
 import type React from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { cn } from '~/lib/utils'
@@ -108,6 +109,7 @@ interface ActionButtonsProps {
     videoUrl: string | null
     generateVideo: () => void
     downloadVideo: () => void
+    handleShare: () => void
 }
 
 const ActionButtons: React.FC<ActionButtonsProps> = ({
@@ -117,6 +119,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
     videoUrl,
     generateVideo,
     downloadVideo,
+    handleShare,
 }) => (
     <div className="flex gap-4">
         <button
@@ -155,13 +158,25 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
             )}
         </button>
         {videoUrl && (
-            <button
-                onClick={downloadVideo}
-                className="rounded-lg bg-green-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-green-700"
-                type="button"
-            >
-                ダウンロード
-            </button>
+            <>
+                <button
+                    onClick={downloadVideo}
+                    className="rounded-lg bg-green-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-green-700"
+                    type="button"
+                >
+                    ダウンロード
+                </button>
+                <button
+                    onClick={handleShare}
+                    className="rounded-lg bg-purple-600 px-6 py-3 font-semibold text-white transition-colors hover:bg-purple-700"
+                    type="button"
+                >
+                    <span className="flex items-center gap-2">
+                        <Share2Icon className="size-5" />
+                        共有
+                    </span>
+                </button>
+            </>
         )}
     </div>
 )
@@ -377,6 +392,24 @@ const VideoGenerator: React.FC = () => {
         URL.revokeObjectURL(videoUrl)
     }
 
+    const handleShare = useCallback(async () => {
+        if (!videoUrl) {
+            return
+        }
+
+        try {
+            if (navigator.share) {
+                await navigator.share({
+                    title: 'Instagramストーリー動画',
+                    url: videoUrl,
+                })
+            } else {
+                await navigator.clipboard.writeText(videoUrl)
+                alert('動画URLをクリップボードにコピーしました！')
+            }
+        } catch (error) {}
+    }, [videoUrl])
+
     return (
         <div className="mx-auto max-w-2xl space-y-6 p-6">
             <div className="space-y-6">
@@ -395,6 +428,7 @@ const VideoGenerator: React.FC = () => {
                 videoUrl={videoUrl}
                 generateVideo={generateVideo}
                 downloadVideo={downloadVideo}
+                handleShare={handleShare}
             />
 
             <ProgressDisplay progress={progress} status={status} />
