@@ -23,9 +23,9 @@ const IgStoryExtend: React.FC = () => {
                     </h1>
                     <p className="text-gray-600">
                         画像をアップロードしてストーリーに表示される秒数を自由に設定
-                        <br className="hidden sm:block" />
+                        <br />
                         （デフォルト15秒・最短1秒〜最長60秒）
-                        <br className="hidden sm:block" />※
+                        <br />※
                         アップロードされた画像はサーバーには送信されません。
                     </p>
                 </header>
