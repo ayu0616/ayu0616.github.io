@@ -22,5 +22,7 @@ export default [
             route('blog/:slug', 'routes/blog/blog-detail.tsx'),
             route('blog/tag/:tag', 'routes/blog/blog-tag.tsx'),
         ]),
+
+        route('ig-story-extend', 'routes/ig-story-extend/ig-story-extend.tsx'),
     ]),
 ] satisfies RouteConfig

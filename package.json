@@ -17,6 +17,8 @@
         "update-cors-config": "gcloud storage buckets update gs://hassaku-blog-contents --cors-file=gcloud-config/cors.json"
     },
     "dependencies": {
+        "@ffmpeg/ffmpeg": "^0.12.15",
+        "@ffmpeg/util": "^0.12.2",
         "@hono/zod-validator": "^0.4.2",
         "@radix-ui/react-slot": "^1.1.2",
         "@react-router/node": "^7.1.5",
