@@ -121,7 +121,7 @@ const ActionButtons: React.FC<ActionButtonsProps> = ({
     downloadVideo,
     handleShare,
 }) => (
-    <div className="flex gap-4">
+    <div className="flex flex-wrap gap-4">
         <button
             onClick={generateVideo}
             disabled={!isValidInput || generating || !loaded}
