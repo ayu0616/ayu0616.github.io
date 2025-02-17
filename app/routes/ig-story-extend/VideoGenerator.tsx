@@ -202,10 +202,38 @@ interface VideoPreviewProps {
     videoUrl: string | null
 }
 
-const VideoPreview: React.FC<VideoPreviewProps> = ({ videoUrl }) =>
-    videoUrl && (
+const VideoPreview: React.FC<VideoPreviewProps> = ({ videoUrl }) => {
+    const videoRef = useCallback(
+        (element: HTMLVideoElement | null) => {
+            if (!(element && videoUrl)) {
+                return
+            }
+
+            const handleCanPlay = () => {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center',
+                })
+                element.removeEventListener('canplay', handleCanPlay)
+            }
+
+            element.addEventListener('canplay', handleCanPlay)
+
+            return () => {
+                element.removeEventListener('canplay', handleCanPlay)
+            }
+        },
+        [videoUrl],
+    )
+
+    if (!videoUrl) {
+        return null
+    }
+
+    return (
         <div className="w-full space-y-4">
             <video
+                ref={videoRef}
                 src={videoUrl}
                 controls
                 className="mx-auto aspect-[9/16] max-h-[50vh] rounded-lg shadow-lg"
@@ -214,6 +242,7 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({ videoUrl }) =>
             />
         </div>
     )
+}
 
 const VideoGenerator: React.FC = () => {
     const [image, setImage] = useState<File | null>(null)
