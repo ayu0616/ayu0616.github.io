@@ -3,6 +3,7 @@ import { fetchFile, toBlobURL } from '@ffmpeg/util'
 import { Loader2Icon, Share2Icon } from 'lucide-react'
 import type React from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import { toast } from 'sonner'
 import { cn } from '~/lib/utils'
 
 interface ImageUploaderProps {
@@ -407,16 +408,33 @@ const VideoGenerator: React.FC = () => {
         }
 
         try {
-            if (navigator.share) {
+            if (!videoUrl) {
+                return
+            }
+
+            const response = await fetch(videoUrl)
+            const blob = await response.blob()
+            const file = new File([blob], 'video.mp4', { type: 'video/mp4' })
+
+            if (
+                navigator.share &&
+                navigator.canShare &&
+                navigator.canShare({ files: [file] })
+            ) {
                 await navigator.share({
                     title: 'Instagramストーリー動画',
-                    url: videoUrl,
+                    files: [file],
                 })
             } else {
                 await navigator.clipboard.writeText(videoUrl)
-                alert('動画URLをクリップボードにコピーしました！')
+                toast.success('動画URLをクリップボードにコピーしました！')
             }
-        } catch (error) {}
+        } catch (error) {
+            if (error instanceof DOMException && error.name === 'AbortError') {
+                return
+            }
+            toast.error('動画の共有に失敗しました。')
+        }
     }, [videoUrl])
 
     return (
