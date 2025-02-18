@@ -15,6 +15,9 @@ export const works = {
     'ig-story-extend': {
         title: 'Instagram ストーリー時間設定ツール',
     },
+    'ig-moment-story': {
+        title: 'Instagram ストーリー瞬間保存ツール',
+    },
 } as const satisfies { [key: string]: Work }
 
 type WorkKey = keyof typeof works
@@ -31,4 +34,5 @@ export const workContents = {
     ),
     'japan-weekend-clock': <JapanWeekendClock />,
     'ig-story-extend': <></>, // app/routes/work/work-detail.tsx にてリダイレクト設定
+    'ig-moment-story': <></>, // app/routes/work/work-detail.tsx にてリダイレクト設定
 } as const satisfies Record<WorkKey, ReactNode>

@@ -30,6 +30,7 @@
         "dayjs": "^1.11.13",
         "hono": "^4.7.1",
         "hono-react-router-adapter": "^0.6.2",
+        "isbot": "^5",
         "jotai": "^2.12.0",
         "js-yaml": "^4.1.0",
         "katex": "^0.16.21",

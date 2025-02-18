@@ -24,7 +24,12 @@ export default {
             )
             .concat(
                 Object.keys(works)
-                    .filter((slug) => !['ig-story-extend'].includes(slug))
+                    .filter(
+                        (slug) =>
+                            !['ig-story-extend', 'ig-moment-story'].includes(
+                                slug,
+                            ),
+                    )
                     .map((slug) => `/work/${slug}`),
             )
             .concat(
