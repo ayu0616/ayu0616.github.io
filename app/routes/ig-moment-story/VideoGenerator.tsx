@@ -28,33 +28,6 @@ const ImageUploader: React.FC<ImageUploaderProps> = ({ handleImageChange }) => (
     </div>
 )
 
-interface DurationInputProps {
-    duration: number
-    handleDurationChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-}
-
-const DurationInput: React.FC<DurationInputProps> = ({
-    duration,
-    handleDurationChange,
-}) => (
-    <div className="space-y-2">
-        <label
-            htmlFor="duration"
-            className="block font-medium text-gray-700 text-sm"
-        >
-            動画時間（秒）
-        </label>
-        <input
-            type="number"
-            id="duration"
-            value={duration}
-            onChange={handleDurationChange}
-            className="w-full rounded-md border bg-white px-3 py-2 focus:ring-2 focus:ring-blue-500"
-            min="1"
-        />
-    </div>
-)
-
 interface ColorPickerProps {
     bgColor: string
     setBgColor: React.Dispatch<React.SetStateAction<string>>
@@ -247,7 +220,6 @@ const VideoPreview: React.FC<VideoPreviewProps> = ({ videoUrl }) => {
 
 const VideoGenerator: React.FC = () => {
     const [image, setImage] = useState<File | null>(null)
-    const [duration, setDuration] = useState<number>(15)
     const [loaded, setLoaded] = useState<boolean>(false)
     const [videoUrl, setVideoUrl] = useState<string | null>(null)
     const [generating, setGenerating] = useState<boolean>(false)
@@ -257,35 +229,21 @@ const VideoGenerator: React.FC = () => {
     const ffmpegRef = useRef(new FFmpeg())
     const messageRef = useRef<HTMLParagraphElement>(null)
 
-    const isValidInput =
-        !!image && duration > 0 && /^#[0-9A-Fa-f]{6}$/.test(bgColor)
+    const isValidInput = !!image && /^#[0-9A-Fa-f]{6}$/.test(bgColor)
 
-    const parseLog = useCallback(
-        (message: string) => {
-            const timeMatch = message.match(/time=(\d+:\d+:\d+\.\d+)/)
-            if (timeMatch && duration > 0) {
-                const [hours, minutes, seconds] = timeMatch[1]
-                    .split(':')
-                    .map(Number.parseFloat)
-                const currentTime = hours * 3600 + minutes * 60 + seconds
-                const calculatedProgress = (currentTime / duration) * 100
-                setProgress(Math.min(100, Math.max(0, calculatedProgress)))
-            }
+    const parseLog = useCallback((message: string) => {
+        if (message.includes('Opening')) {
+            setStatus('初期化中...')
+        } else if (message.includes('frame=')) {
+            setStatus('変換処理中...')
+        } else if (message.includes('muxing overhead')) {
+            setStatus('最終化処理中...')
+        }
 
-            if (message.includes('Opening')) {
-                setStatus('初期化中...')
-            } else if (message.includes('frame=')) {
-                setStatus('変換処理中...')
-            } else if (message.includes('muxing overhead')) {
-                setStatus('最終化処理中...')
-            }
-
-            if (messageRef.current) {
-                messageRef.current.innerHTML = message
-            }
-        },
-        [duration],
-    )
+        if (messageRef.current) {
+            messageRef.current.innerHTML = message
+        }
+    }, [])
 
     const load = useCallback(async () => {
         const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm'
@@ -325,10 +283,6 @@ const VideoGenerator: React.FC = () => {
         }
     }
 
-    const handleDurationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setDuration(Number.parseInt(e.target.value))
-    }
-
     const generateVideo = async () => {
         setProgress(0)
         setStatus('処理を開始しています...')
@@ -346,12 +300,10 @@ const VideoGenerator: React.FC = () => {
             await ffmpeg.writeFile(filename, await fetchFile(image))
 
             await ffmpeg.exec([
-                '-loop',
-                '1',
                 '-i',
                 filename,
-                '-t',
-                duration.toString(),
+                '-frames:v',
+                '1',
                 '-c:v',
                 'libx264',
                 '-preset',
@@ -363,7 +315,7 @@ const VideoGenerator: React.FC = () => {
                 '-vf',
                 `scale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:(ow-iw)/2:(oh-ih)/2:${bgColor}`,
                 '-r',
-                '30',
+                '120',
                 'video.mp4',
             ])
 
@@ -408,10 +360,6 @@ const VideoGenerator: React.FC = () => {
         }
 
         try {
-            if (!videoUrl) {
-                return
-            }
-
             const response = await fetch(videoUrl)
             const blob = await response.blob()
             const file = new File([blob], 'video.mp4', { type: 'video/mp4' })
@@ -422,7 +370,7 @@ const VideoGenerator: React.FC = () => {
                 navigator.canShare({ files: [file] })
             ) {
                 await navigator.share({
-                    title: 'Instagramストーリー動画',
+                    title: 'Instagramストーリー瞬間保存動画',
                     files: [file],
                 })
             } else {
@@ -441,10 +389,6 @@ const VideoGenerator: React.FC = () => {
         <div className="mx-auto max-w-2xl space-y-6 p-2 md:p-6">
             <div className="space-y-6">
                 <ImageUploader handleImageChange={handleImageChange} />
-                <DurationInput
-                    duration={duration}
-                    handleDurationChange={handleDurationChange}
-                />
                 <ColorPicker bgColor={bgColor} setBgColor={setBgColor} />
             </div>
 

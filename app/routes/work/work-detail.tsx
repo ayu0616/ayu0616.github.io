@@ -9,6 +9,9 @@ export const loader = ({ params }: Route.LoaderArgs) => {
     if (params.slug === 'ig-story-extend') {
         return redirect('/ig-story-extend')
     }
+    if (params.slug === 'ig-moment-story') {
+        return redirect('/ig-moment-story')
+    }
 
     return works[params.slug]
 }

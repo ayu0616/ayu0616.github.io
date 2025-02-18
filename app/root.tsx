@@ -14,6 +14,7 @@ import utc from 'dayjs/plugin/utc'
 import type { Route } from './+types/root'
 import app_css from './app.css?url'
 import NotFound from './components/not-found'
+import { Toaster } from './components/ui/sooner'
 import { BASE_URL } from './constant/others'
 import stylesheet from './index.scss?url'
 import { ogImageClient } from './lib/hono'
@@ -78,6 +79,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <body>
                 <QueryClientProvider client={queryClient}>
                     {children}
+                    <Toaster />
                     <ScrollRestoration />
                     <Scripts />
                 </QueryClientProvider>

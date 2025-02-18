@@ -24,5 +24,6 @@ export default [
         ]),
 
         route('ig-story-extend', 'routes/ig-story-extend/ig-story-extend.tsx'),
+        route('ig-moment-story', 'routes/ig-moment-story/ig-moment-story.tsx'),
     ]),
 ] satisfies RouteConfig
