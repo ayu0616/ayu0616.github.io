@@ -4,7 +4,7 @@ import VideoGenerator from './VideoGenerator'
 
 export const meta = () => {
     return [
-        { title: 'Instagram ストーリー瞬間表示ツール' },
+        { title: 'Instagram 瞬間表示ストーリー作成ツール' },
         {
             name: 'description',
             content:
@@ -20,8 +20,8 @@ const IgMomentStory: React.FC = () => {
                 <header className="mb-12">
                     <h1 className="mb-2 flex flex-wrap justify-center font-bold text-3xl text-gray-900">
                         <span className="mr-2">Instagram</span>
-                        <span>ストーリー</span>
-                        <span>瞬間表示ツール</span>
+                        <span>瞬間表示ストーリー</span>
+                        <span>作成ツール</span>
                     </h1>
                     <p className="text-gray-600">
                         画像をアップロードして一瞬で消えるストーリー動画を生成（120fps・1フレーム）
