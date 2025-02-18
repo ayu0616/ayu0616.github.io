@@ -16,7 +16,7 @@ export const works = {
         title: 'Instagram ストーリー時間設定ツール',
     },
     'ig-moment-story': {
-        title: 'Instagram ストーリー瞬間保存ツール',
+        title: 'Instagram 瞬間表示ストーリー作成ツール',
     },
 } as const satisfies { [key: string]: Work }
 
