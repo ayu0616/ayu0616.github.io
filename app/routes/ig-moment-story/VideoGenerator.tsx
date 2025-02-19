@@ -4,6 +4,8 @@ import { Loader2Icon, Share2Icon } from 'lucide-react'
 import type React from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
+import { Input } from '~/components/ui/input'
+import { Label } from '~/components/ui/label'
 import { cn } from '~/lib/utils'
 
 interface ImageUploaderProps {
@@ -12,18 +14,18 @@ interface ImageUploaderProps {
 
 const ImageUploader: React.FC<ImageUploaderProps> = ({ handleImageChange }) => (
     <div className="space-y-2">
-        <label
+        <Label
             htmlFor="image-upload"
             className="block font-medium text-gray-700 text-sm"
         >
             画像選択
-        </label>
-        <input
+        </Label>
+        <Input
             id="image-upload"
             type="file"
             accept="image/*"
             onChange={handleImageChange}
-            className="block w-full rounded border bg-white text-gray-500 text-sm file:mr-4 file:rounded file:border-0 file:bg-blue-50 file:px-4 file:py-2 file:font-semibold file:text-blue-700 file:text-sm hover:file:bg-blue-100"
+            className="block w-full rounded border bg-white p-0 text-gray-500 text-sm file:mr-4 file:rounded file:border-0 file:bg-blue-50 file:px-4 file:py-2 file:font-semibold file:text-blue-700 file:text-sm hover:file:bg-blue-100"
         />
     </div>
 )
@@ -42,14 +44,14 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ bgColor, setBgColor }) => (
             背景色
         </label>
         <div className="flex items-center gap-2">
-            <input
+            <Input
                 type="color"
                 id="bg-color"
                 value={bgColor}
                 onChange={(e) => setBgColor(e.target.value)}
-                className="h-12 w-12 cursor-pointer rounded bg-white"
+                className="h-12 w-12 cursor-pointer rounded bg-white p-1 [&::-webkit-color-swatch-wrapper]:p-0 [&::-webkit-color-swatch]:rounded [&::-webkit-color-swatch]:border-none"
             />
-            <input
+            <Input
                 type="text"
                 value={bgColor}
                 onChange={(e) => {

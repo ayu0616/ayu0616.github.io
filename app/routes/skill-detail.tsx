@@ -1,4 +1,4 @@
-import { data, redirect, useLoaderData } from 'react-router'
+import { data, redirect } from 'react-router'
 import skillData from '~/constant/skillData'
 import type { Route } from './+types/skill-detail'
 
@@ -18,8 +18,7 @@ export const loader = ({ params }: Route.LoaderArgs) => {
     return skill
 }
 
-export default function Page({ params }: Route.ComponentProps) {
-    const skill = useLoaderData<typeof loader>()
+export default function Page({ loaderData: skill }: Route.ComponentProps) {
     return (
         <div className="flex h-full w-dvw flex-col items-center justify-center gap-6">
             <h1 className="font-bold text-3xl" style={{ color: skill.color }}>

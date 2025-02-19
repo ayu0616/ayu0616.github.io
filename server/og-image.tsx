@@ -6,7 +6,8 @@ import { z } from 'zod'
 
 import fs from 'node:fs'
 import path from 'node:path'
-import { PROD } from '~/constant/others'
+import { BASE_URL, PROD } from '~/constant/others'
+import { urlJoin } from '~/util/url'
 
 const fontPath = PROD ? 'build/client/fonts' : 'public/fonts'
 const bizUdpGothic = fs.readFileSync(
@@ -50,11 +51,22 @@ export const ogImageApp = new Hono().basePath('/og-image').get(
                 }}
                 tw="flex"
             >
-                <div tw="flex items-center justify-center bg-emerald-700 py-[50px] size-full">
+                <div tw="flex items-center justify-center bg-[#416A51] py-[50px] size-full">
                     <div tw="h-full w-full items-center justify-center bg-white flex">
-                        <div tw="flex-col flex w-full px-[75px]">
-                            <h1 tw="font-bold text-[72px]">{mainText}</h1>
-                            <p tw="text-[32px] text-gray-700">{subText}</p>
+                        <div
+                            tw="flex-row flex w-full px-[60px] items-center"
+                            style={{ gap: '2rem' }}
+                        >
+                            <img
+                                src={urlJoin(BASE_URL, 'icon.jpeg')}
+                                tw="rounded-full w-[240px] h-[240px]"
+                                style={{ marginRight: '20px' }}
+                                alt="はっさくゼリー製造工場"
+                            />
+                            <div tw="flex-col flex flex-1">
+                                <h1 tw="font-bold text-[72px]">{mainText}</h1>
+                                <p tw="text-[32px] text-gray-700">{subText}</p>
+                            </div>
                         </div>
                     </div>
                 </div>

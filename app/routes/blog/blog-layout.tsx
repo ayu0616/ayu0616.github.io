@@ -1,11 +1,12 @@
 import dayjs from 'dayjs'
 import type { FC } from 'react'
 import { Outlet } from 'react-router'
-import { Link, useLoaderData } from 'react-router'
+import { Link } from 'react-router'
 import { getBlogPageInfo } from 'server/api/blog'
 import type { BlogPageInfoItem } from '~/constant/blog-page-info/schema'
+import type { Route } from './+types/blog-layout'
 
-export const loader = async () => {
+export const loader = async (): Promise<{ pageList: BlogPageInfoItem[] }> => {
     const blogPageInfo = await getBlogPageInfo()
     const pageList: BlogPageInfoItem[] = Object.keys(blogPageInfo)
         .map((slug) => blogPageInfo[slug])
@@ -21,8 +22,9 @@ export const loader = async () => {
     return { pageList }
 }
 
-export default function Layout() {
-    const { pageList } = useLoaderData<typeof loader>()
+export default function Layout({
+    loaderData: { pageList },
+}: Route.ComponentProps) {
     return (
         <div className="w-full justify-between gap-8 p-6 pb-10 md:flex md:p-8 md:pb-16">
             <div className="mx-auto grid min-w-[50%] flex-1 gap-4">

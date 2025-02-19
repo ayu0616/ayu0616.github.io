@@ -39,7 +39,7 @@ export const Img: React.FC<ImgProps> = ({ alt = '', ...props }) => {
         <figure className="w-full">
             <img
                 alt={alt}
-                className="mx-auto max-h-[50vh] object-contain"
+                className="mx-auto max-h-[50vh] rounded object-contain drop-shadow-md"
                 loading="lazy"
                 src={src}
             />
