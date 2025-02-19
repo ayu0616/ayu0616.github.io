@@ -1,6 +1,7 @@
 import { XIcon } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { Form, useNavigate } from 'react-router'
+import { Button } from '~/components/ui/button'
 import { useDebounce } from '~/hooks/debounce'
 
 interface SearchFormProps {
@@ -29,7 +30,7 @@ export function SearchForm({ searchQuery }: SearchFormProps) {
                 <span className="inline-block text-muted-foreground text-sm">
                     記事のタイトルで検索
                 </span>
-                <div className="flex gap-2">
+                <div className="flex items-center gap-2">
                     <input
                         type="search"
                         name="q"
@@ -43,17 +44,18 @@ export function SearchForm({ searchQuery }: SearchFormProps) {
                         }}
                     />
                     {query && (
-                        <button
+                        <Button
                             type="button"
                             aria-label="検索をリセット"
-                            className="rounded-lg border bg-background p-2 transition-colors hover:bg-accent"
+                            size={'icon'}
+                            variant={'outline'}
                             onClick={() => {
                                 setQuery('')
                                 navigate({ pathname: '.' })
                             }}
                         >
                             <XIcon size={20} />
-                        </button>
+                        </Button>
                     )}
                 </div>
             </label>
