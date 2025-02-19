@@ -54,6 +54,23 @@ export default function Page({
                     defaultValue={searchQuery}
                 />
             </Form>
+
+            {searchQuery && (
+                <div className="space-y-4">
+                    <h2 className="font-semibold text-xl">
+                        「{searchQuery}」の検索結果
+                        <span className="ml-2 text-gray-500 text-sm">
+                            ({pageList.length}件)
+                        </span>
+                    </h2>
+                    {pageList.length === 0 && (
+                        <p className="text-gray-500">
+                            該当する記事が見つかりませんでした
+                        </p>
+                    )}
+                </div>
+            )}
+
             <div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-2 xl:grid-cols-3">
                 {pageList.map((page) => (
                     <BlogPageCard
