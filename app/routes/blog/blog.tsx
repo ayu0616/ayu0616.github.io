@@ -1,9 +1,9 @@
 import dayjs from 'dayjs'
-import { Form } from 'react-router'
 import { getBlogPageInfo } from 'server/api/blog'
 import { BlogPageCard } from '~/components/BlogPageCard'
 import type { BlogPageInfoItem } from '~/constant/blog-page-info/schema'
 import type { Route } from './+types/blog'
+import { SearchForm } from './components/search-form'
 
 export const meta = () => {
     return [
@@ -45,15 +45,7 @@ export default function Page({
 }: Route.ComponentProps) {
     return (
         <div className="space-y-8">
-            <Form className="mb-8 max-w-md">
-                <input
-                    type="search"
-                    name="q"
-                    placeholder="記事を検索..."
-                    className="w-full rounded-lg border bg-white px-4 py-2"
-                    defaultValue={searchQuery}
-                />
-            </Form>
+            <SearchForm searchQuery={searchQuery} />
 
             {searchQuery && (
                 <div className="space-y-4">
