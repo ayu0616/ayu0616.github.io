@@ -2,6 +2,8 @@ import { XIcon } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
 import { Form, useNavigate } from 'react-router'
 import { Button } from '~/components/ui/button'
+import { Input } from '~/components/ui/input'
+import { Label } from '~/components/ui/label'
 import { useDebounce } from '~/hooks/debounce'
 
 interface SearchFormProps {
@@ -26,17 +28,16 @@ export function SearchForm({ searchQuery }: SearchFormProps) {
 
     return (
         <Form ref={formRef} className="mb-8 w-full">
-            <label className="block cursor-pointer space-y-1">
+            <Label className="block cursor-pointer space-y-1">
                 <span className="inline-block text-muted-foreground text-sm">
                     記事のタイトルで検索
                 </span>
                 <div className="flex items-center gap-2">
-                    <input
+                    <Input
                         type="search"
                         name="q"
                         aria-label="記事検索"
                         placeholder="記事を検索..."
-                        className="w-full flex-1 rounded-lg border bg-white px-4 py-2 focus:ring-2 focus:ring-primary"
                         value={query}
                         onChange={(e) => {
                             setQuery(e.target.value)
@@ -58,7 +59,7 @@ export function SearchForm({ searchQuery }: SearchFormProps) {
                         </Button>
                     )}
                 </div>
-            </label>
+            </Label>
         </Form>
     )
 }

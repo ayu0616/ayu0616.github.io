@@ -20,6 +20,7 @@
         "@ffmpeg/ffmpeg": "^0.12.15",
         "@ffmpeg/util": "^0.12.2",
         "@hono/zod-validator": "^0.4.3",
+        "@radix-ui/react-label": "^2.1.2",
         "@radix-ui/react-slot": "^1.1.2",
         "@react-router/node": "^7.1.5",
         "@react-router/serve": "^7.1.5",
