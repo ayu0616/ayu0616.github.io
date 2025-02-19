@@ -1,16 +1,16 @@
 import { atom, useAtomValue } from 'jotai'
-import { atomFamily, useHydrateAtoms } from 'jotai/utils'
-import { useLoaderData } from 'react-router'
+import { atomFamily } from 'jotai/utils'
 import { getBlogPageDetail } from 'server/api/blog'
 import { BlogBreadcrumb } from '~/components/BlogBreadcrumb/BlogBreadcrumb'
 import BlogTag from '~/components/BlogTag/BlogTag'
 import { JsonLD } from '~/components/JsonLD/JsonLD'
 import Markdown, { BLOG_CONTENT_ID } from '~/components/Markdown/Markdown'
+import { AtomsHydrator } from '~/components/common/atoms-hydrator'
 import type { BlogPageInfoItem } from '~/constant/blog-page-info/schema'
 import { ogImageClient } from '~/lib/hono'
 import type { Route } from './+types/blog-detail'
 
-const blogDetailAtom = atomFamily((slug: string) =>
+export const blogDetailAtom = atomFamily((slug: string) =>
     atom<BlogPageInfoItem | null>(null),
 )
 
@@ -50,49 +50,49 @@ export const meta = ({ params }: Route.MetaArgs) => {
     ]
 }
 
-export default function Page({ params }: Route.ComponentProps) {
+export default function Page({ params, loaderData }: Route.ComponentProps) {
     const { slug } = params
-    const data = useLoaderData<typeof loader>()
-    useHydrateAtoms([[blogDetailAtom(slug), data]])
-    const { tags, publishedAt, title, markdown } = data
+    const { tags, publishedAt, title, markdown } = loaderData
     return (
         <>
-            <div className="w-full min-w-0">
-                <div className="mx-auto max-w-(--breakpoint-lg) space-y-8 rounded-lg border bg-white px-6 pt-8 pb-16">
-                    <div className="space-y-4">
-                        <BlogBreadcrumb slug={slug} title={title} />
-                        <div className="space-y-1">
-                            <div className="flex gap-2">
-                                <span>タグ：</span>
-                                <div className="flex flex-1 flex-wrap gap-x-2 gap-y-1">
-                                    {tags.length > 0 ? (
-                                        tags.map((tag) => (
-                                            <BlogTag key={tag} tag={tag} />
-                                        ))
-                                    ) : (
-                                        <span className="text-gray-500">
-                                            タグ無し
-                                        </span>
-                                    )}
+            <AtomsHydrator atomValues={[[blogDetailAtom(slug), loaderData]]}>
+                <div className="w-full min-w-0">
+                    <div className="mx-auto max-w-(--breakpoint-lg) space-y-8 rounded-lg border bg-white px-6 pt-8 pb-16">
+                        <div className="space-y-4">
+                            <BlogBreadcrumb slug={slug} title={title} />
+                            <div className="space-y-1">
+                                <div className="flex gap-2">
+                                    <span>タグ：</span>
+                                    <div className="flex flex-1 flex-wrap gap-x-2 gap-y-1">
+                                        {tags.length > 0 ? (
+                                            tags.map((tag) => (
+                                                <BlogTag key={tag} tag={tag} />
+                                            ))
+                                        ) : (
+                                            <span className="text-gray-500">
+                                                タグ無し
+                                            </span>
+                                        )}
+                                    </div>
                                 </div>
+                                <div>公開日： {publishedAt}</div>
                             </div>
-                            <div>公開日： {publishedAt}</div>
                         </div>
+                        <hr />
+                        <Markdown id={BLOG_CONTENT_ID} slug={slug}>
+                            {markdown}
+                        </Markdown>
                     </div>
-                    <hr />
-                    <Markdown id={BLOG_CONTENT_ID} slug={slug}>
-                        {markdown}
-                    </Markdown>
                 </div>
-            </div>
+            </AtomsHydrator>
             <JsonLD
                 id="blog-post-jsonld"
                 json={{
                     '@context': 'https://schema.org',
                     '@type': 'BlogPosting',
-                    headline: data.title,
-                    datePublished: data.publishedAt ?? undefined,
-                    dateModified: data.publishedAt ?? undefined,
+                    headline: title,
+                    datePublished: publishedAt ?? undefined,
+                    dateModified: publishedAt ?? undefined,
                     author: {
                         '@type': 'Person',
                         name: 'はっさくゼリー製造工場',
@@ -107,7 +107,7 @@ export default function Page({ params }: Route.ComponentProps) {
                     },
                     image: ogImageClient['og-image']
                         .$url({
-                            query: { title: data.title },
+                            query: { title: title },
                         })
                         .toString(),
                     url: `https://www.hassaku0616.com/blog/${slug}`,

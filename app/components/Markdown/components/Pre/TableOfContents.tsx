@@ -1,9 +1,6 @@
-import { type ReactNode, cache } from 'react'
-
-import { honoClient } from '~/lib/hono'
-
-import { useQuery } from '@tanstack/react-query'
-import { Loading } from '~/components/common/loading'
+import { useAtomValue } from 'jotai'
+import type { ReactNode } from 'react'
+import { blogDetailAtom } from '~/routes/blog/blog-detail'
 import { Anchor } from '../a'
 import { Li } from '../list'
 
@@ -18,16 +15,12 @@ interface Heading {
     children: Heading[]
 }
 
-const getHeadings = cache(async (slug: string): Promise<Heading[]> => {
-    const res = await honoClient.blog[':slug'].headings.$get({
-        param: { slug },
-    })
-    const rawHeadings = await res.json()
-
+function createHeadingList(
+    rawHeadings: { level: number; title: string }[],
+): Heading[] {
     const root: Heading = { level: 1, title: 'root', children: [] }
     let currentParent = root
     const stack = [root]
-
     rawHeadings.forEach((heading) => {
         while (stack.length > 1 && heading.level <= currentParent.level) {
             stack.pop()
@@ -39,32 +32,24 @@ const getHeadings = cache(async (slug: string): Promise<Heading[]> => {
         currentParent = newItem
     })
     return root.children
-})
+}
 
 const TableOfContents = ({
     children,
     slug,
     ...props
 }: TableOfContentsProps) => {
-    const { data: headings, isPending } = useQuery({
-        queryKey: ['blog', slug],
-        queryFn: () => (slug ? getHeadings(slug) : null),
-        staleTime: 1000 * 60 * 60 * 24,
-    })
+    const rawHeadings = useAtomValue(blogDetailAtom(slug ?? ''))?.headings ?? []
+    const headings = createHeadingList(rawHeadings)
+
     return (
         <div className="mx-auto w-fit min-w-[min(100%,384px)] max-w-full rounded-md border border-emerald-800">
             <div className="rounded-t-md bg-emerald-800 p-2 text-center text-lg text-white">
                 Contents
             </div>
-            {isPending ? (
-                <div className="p-6">
-                    <Loading />
-                </div>
-            ) : (
-                <div className="p-6">
-                    <HeadingList headings={headings ?? []} />
-                </div>
-            )}
+            <div className="p-6">
+                <HeadingList headings={headings} />
+            </div>
         </div>
     )
 }
