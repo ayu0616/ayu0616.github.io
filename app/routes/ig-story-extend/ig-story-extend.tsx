@@ -1,4 +1,5 @@
 import type React from 'react'
+import { JsonLD } from '~/components/JsonLD/JsonLD'
 import { Loading } from '~/components/common/loading'
 import VideoGenerator from './VideoGenerator'
 
@@ -38,6 +39,28 @@ const IgStoryExtend: React.FC = () => {
                     <Loading />
                 )}
             </div>
+            <JsonLD
+                id="web-application"
+                json={{
+                    '@context': 'https://schema.org',
+                    '@type': 'WebApplication',
+                    name: 'Instagram ストーリー時間設定ツール',
+                    applicationCategory: 'Multimedia',
+                    operatingSystem: 'Any',
+                    browserRequirements: 'Requires JavaScript',
+                    screenshot: 'https://www.hassaku0616.com/og-image',
+                    featureList: [
+                        '表示時間の精密調整（1〜60秒）',
+                        'カスタム背景色選択（HEXコード直接入力可能）',
+                        'ストーリー用の動画生成（1080x1920ピクセル）',
+                        '動画はダウンロード可能（MP4形式）',
+                        'SNS直接シェア機能（Instagram連携）',
+                        'プログレッシブWebアプリ（PWA）対応',
+                        'クリップボードへのURLコピー機能',
+                        'リアルタイムプレビュー表示',
+                    ],
+                }}
+            />
         </main>
     )
 }

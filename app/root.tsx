@@ -15,7 +15,7 @@ import type { Route } from './+types/root'
 import app_css from './app.css?url'
 import NotFound from './components/not-found'
 import { Toaster } from './components/ui/sooner'
-import { BASE_URL } from './constant/others'
+import { BASE_URL, PROD } from './constant/others'
 import stylesheet from './index.scss?url'
 import { ogImageClient } from './lib/hono'
 
@@ -78,17 +78,21 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </head>
             <body>
                 {/* Google tag (gtag.js) */}
-                <script
-                    async
-                    src="https://www.googletagmanager.com/gtag/js?id=G-WB8DFKSGMP"
-                />
-                <script>
-                    {`window.dataLayer = window.dataLayer || [];
+                {PROD && (
+                    <>
+                        <script
+                            async
+                            src="https://www.googletagmanager.com/gtag/js?id=G-WB8DFKSGMP"
+                        />
+                        <script>
+                            {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 
 gtag('config', 'G-WB8DFKSGMP');`}
-                </script>
+                        </script>
+                    </>
+                )}
 
                 <QueryClientProvider client={queryClient}>
                     {children}
