@@ -1,4 +1,5 @@
 import type React from 'react'
+import { JsonLD } from '~/components/JsonLD/JsonLD'
 import { Loading } from '~/components/common/loading'
 import VideoGenerator from './VideoGenerator'
 
@@ -36,6 +37,29 @@ const IgMomentStory: React.FC = () => {
                 ) : (
                     <Loading />
                 )}
+
+                <JsonLD
+                    id="web-application"
+                    json={{
+                        '@context': 'https://schema.org',
+                        '@type': 'WebApplication',
+                        name: 'Instagram 瞬間表示ストーリー作成ツール',
+                        applicationCategory: 'Multimedia',
+                        operatingSystem: 'Any',
+                        browserRequirements: 'Requires WebAssembly support',
+                        screenshot: 'https://www.hassaku0616.com/og-image',
+                        featureList: [
+                            '1フレームの動画作成',
+                            'WebP/PNG/JPG画像対応',
+                            '動画はダウンロード可能（MP4形式）',
+                            'クライアントサイド処理（画像非送信）',
+                            'リアルタイムプレビュー',
+                        ],
+                        softwareRequirements:
+                            'Modern browsers (Chrome 90+, Firefox 89+, Safari 15+)',
+                        processorRequirements: '64-bit architecture',
+                    }}
+                />
             </div>
         </main>
     )
