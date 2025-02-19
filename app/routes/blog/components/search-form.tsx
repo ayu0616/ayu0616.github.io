@@ -1,6 +1,6 @@
 import { XIcon } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
-import { Form } from 'react-router'
+import { Form, useNavigate } from 'react-router'
 import { useDebounce } from '~/hooks/debounce'
 
 interface SearchFormProps {
@@ -10,6 +10,7 @@ interface SearchFormProps {
 export function SearchForm({ searchQuery }: SearchFormProps) {
     const [query, setQuery] = useState(searchQuery)
     const formRef = useRef<HTMLFormElement>(null)
+    const navigate = useNavigate()
 
     const debounce = useDebounce({
         callback: () => {
@@ -48,7 +49,7 @@ export function SearchForm({ searchQuery }: SearchFormProps) {
                             className="rounded-lg border bg-background p-2 transition-colors hover:bg-accent"
                             onClick={() => {
                                 setQuery('')
-                                formRef.current?.requestSubmit()
+                                navigate({ pathname: '.' })
                             }}
                         >
                             <XIcon size={20} />
