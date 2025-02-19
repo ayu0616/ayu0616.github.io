@@ -43,6 +43,7 @@ export function SearchForm({ searchQuery }: SearchFormProps) {
                             setQuery(e.target.value)
                             debounce()
                         }}
+                        className="bg-white"
                     />
                     {query && (
                         <Button
