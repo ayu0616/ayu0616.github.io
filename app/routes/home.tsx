@@ -61,6 +61,13 @@ export default function Home() {
                     '@type': 'Person',
                     name: 'はっさくゼリー製造工場',
                     url: 'https://www.hassaku0616.com',
+                    sameAs: [
+                        'https://github.com/ayu0616',
+                        'https://twitter.com/hassaku_0616',
+                        'https://www.instagram.com/hassaku_0616',
+                        'https://www.threads.net/@hassaku_0616',
+                        'https://atcoder.jp/users/ayu0616',
+                    ],
                 }}
             />
         </>
