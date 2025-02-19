@@ -13,9 +13,7 @@ export function SearchForm({ searchQuery }: SearchFormProps) {
 
     const debounce = useDebounce({
         callback: () => {
-            formRef.current?.dispatchEvent(
-                new Event('submit', { bubbles: true }),
-            )
+            formRef.current?.requestSubmit()
         },
         delay: 500,
     })
@@ -24,34 +22,33 @@ export function SearchForm({ searchQuery }: SearchFormProps) {
         setQuery(searchQuery)
     }, [searchQuery])
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setQuery(e.target.value)
-        debounce()
-    }
-
     return (
         <Form ref={formRef} className="mb-8 w-full">
-            <label className="block cursor-pointer">
-                <span className="mb-1 inline-block text-muted-foreground text-sm">
+            <label className="block cursor-pointer space-y-1">
+                <span className="inline-block text-muted-foreground text-sm">
                     記事のタイトルで検索
                 </span>
                 <div className="flex gap-2">
                     <input
                         type="search"
                         name="q"
+                        aria-label="記事検索"
                         placeholder="記事を検索..."
-                        className="w-full flex-1 rounded-lg border bg-white px-4 py-2"
+                        className="w-full flex-1 rounded-lg border bg-white px-4 py-2 focus:ring-2 focus:ring-primary"
                         value={query}
-                        onChange={handleChange}
+                        onChange={(e) => {
+                            setQuery(e.target.value)
+                            debounce()
+                        }}
                     />
                     {query && (
                         <button
                             type="button"
                             aria-label="検索をリセット"
-                            className="rounded-lg border bg-gray-100 p-2 transition-colors hover:bg-gray-200"
+                            className="rounded-lg border bg-background p-2 transition-colors hover:bg-accent"
                             onClick={() => {
                                 setQuery('')
-                                debounce()
+                                formRef.current?.requestSubmit()
                             }}
                         >
                             <XIcon size={20} />
