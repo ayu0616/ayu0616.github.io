@@ -77,6 +77,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 />
             </head>
             <body>
+                {/* Google tag (gtag.js) */}
+                <script
+                    async
+                    src="https://www.googletagmanager.com/gtag/js?id=G-WB8DFKSGMP"
+                />
+                <script>
+                    {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-WB8DFKSGMP');`}
+                </script>
+
                 <QueryClientProvider client={queryClient}>
                     {children}
                     <Toaster />
