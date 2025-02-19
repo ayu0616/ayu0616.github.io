@@ -1,9 +1,7 @@
 import dayjs from 'dayjs'
 import type { ReactNode } from 'react'
-import { useLoaderData } from 'react-router'
-import type { z } from 'zod'
 import { AtCoderChart } from '~/components/AtCoderChart'
-import { type AtCoderResultSchema, getAtCoderResult } from '~/lib/atcoder'
+import { getAtCoderResult } from '~/lib/atcoder'
 import type { Route } from './+types/atcoder'
 
 export const meta = ({ params }: Route.MetaArgs) => {
@@ -20,8 +18,9 @@ export const loader = async () => {
     return await getAtCoderResult()
 }
 
-export default function AtCoderPage() {
-    const data = useLoaderData<z.infer<typeof AtCoderResultSchema>>()
+export default function AtCoderPage({
+    loaderData: data,
+}: Route.ComponentProps) {
     const tableData = [
         ['参加回数', data.length],
         ['現在のレーティング', data[data.length - 1].NewRating],

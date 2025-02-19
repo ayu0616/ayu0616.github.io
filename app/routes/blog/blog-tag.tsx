@@ -2,10 +2,10 @@ import dayjs from 'dayjs'
 import { cache } from 'react'
 import { FaArrowLeft } from 'react-icons/fa6'
 import { Link } from 'react-router'
-import { useLoaderData } from 'react-router'
 import { getBlogPageInfo } from 'server/api/blog'
 import { BlogPageCard } from '~/components/BlogPageCard'
 import type { BlogPageInfoItem } from '~/constant/blog-page-info/schema'
+import type { Route } from './+types/blog-tag'
 
 interface Params {
     tag: string
@@ -43,8 +43,9 @@ export const meta = ({ params }: { params: Params }) => {
     return [{ title: `タグ： ${decodedTag}` }]
 }
 
-export default function Page() {
-    const { pageList, decodedTag } = useLoaderData<typeof loader>()
+export default function Page({
+    loaderData: { pageList, decodedTag },
+}: Route.ComponentProps) {
     return (
         <div className="w-full">
             <Link to="/blog">
