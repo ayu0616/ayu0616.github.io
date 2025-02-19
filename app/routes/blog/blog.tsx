@@ -5,12 +5,20 @@ import type { BlogPageInfoItem } from '~/constant/blog-page-info/schema'
 import type { Route } from './+types/blog'
 import { SearchForm } from './components/search-form'
 
-export const meta = () => {
+export const meta: Route.MetaFunction = ({ data }) => {
+    const { searchQuery } = data as { searchQuery: string }
+    const title = searchQuery
+        ? `「${searchQuery}」の検索結果 - ブログ`
+        : 'ブログ'
+    const description = searchQuery
+        ? `ブログ：「${searchQuery}」を含む記事の検索結果。`
+        : 'ブログの全記事リストです。'
+
     return [
-        { title: 'ブログ' },
+        { title: title },
         {
             name: 'description',
-            content: 'ブログ記事一覧を表示します。',
+            content: description,
         },
     ]
 }
