@@ -4,6 +4,7 @@ import { Callout } from './Callout'
 import CodeBlock from './CodeBlock'
 import Embed from './Embed'
 import TableOfContents from './TableOfContents'
+import { CardLink } from './card-link'
 
 interface PreProps extends ComponentPropsWithoutRef<'pre'> {
     slug?: string
@@ -38,6 +39,8 @@ const Pre = ({ slug, ...props }: PreProps) => {
         }
         case 'callout':
             return <Callout>{String(childProps.children)}</Callout>
+        case 'cardlink':
+            return <CardLink>{String(childProps.children)}</CardLink>
         default: {
             const code =
                 'children' in childProps ? String(childProps.children) : ''
