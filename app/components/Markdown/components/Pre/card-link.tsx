@@ -33,14 +33,14 @@ export const CardLink: FC<{ children: string }> = ({ children }) => {
                 href={parsedData.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="grid grid-cols-[1fr_2fr]"
+                className="grid sm:grid-cols-[1fr_2fr]"
             >
                 {parsedData.image && (
-                    <div className="">
+                    <div className="aspect-[64/27] sm:aspect-auto">
                         <img
                             src={parsedData.image}
                             alt={parsedData.title}
-                            className="h-full object-cover"
+                            className="size-full object-cover"
                             loading="lazy"
                             sizes="(max-width: 768px) 100vw, 33vw"
                         />
