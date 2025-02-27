@@ -3,6 +3,7 @@ import * as yaml from 'js-yaml'
 import { useMemo } from 'react'
 import type { FC } from 'react'
 import { z } from 'zod'
+import { cn } from '~/lib/utils'
 
 const LinkSchema = z.object({
     url: z.string().url(),
@@ -33,7 +34,10 @@ export const CardLink: FC<{ children: string }> = ({ children }) => {
                 href={parsedData.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="grid sm:grid-cols-[1fr_2fr]"
+                className={cn(
+                    'grid',
+                    parsedData.image && 'sm:grid-cols-[1fr_2fr]',
+                )}
             >
                 {parsedData.image && (
                     <div className="aspect-[64/27] sm:aspect-auto">
