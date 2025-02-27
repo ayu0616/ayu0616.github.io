@@ -61,7 +61,7 @@ const CodeBlock: React.FC<CodeBlockProps> = ({ language, children = '' }) => {
                     className="border-l px-2 py-1 text-sm hover:bg-slate-100"
                     onClick={handleCopy}
                 >
-                    <code>{buttonText}</code>
+                    <code>{buttonText || 'copy'}</code>
                 </button>
             </div>
             <div dangerouslySetInnerHTML={{ __html: html }} />
