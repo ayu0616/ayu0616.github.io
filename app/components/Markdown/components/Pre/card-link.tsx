@@ -40,11 +40,11 @@ export const CardLink: FC<{ children: string }> = ({ children }) => {
                 )}
             >
                 {parsedData.image && (
-                    <div className="aspect-[64/27] sm:aspect-auto">
+                    <div className="relative aspect-[64/27] h-full sm:aspect-auto">
                         <img
                             src={parsedData.image}
                             alt={parsedData.title}
-                            className="size-full object-cover"
+                            className="-translate-1/2 absolute top-1/2 left-1/2 size-full object-cover"
                             loading="lazy"
                             sizes="(max-width: 768px) 100vw, 33vw"
                         />
