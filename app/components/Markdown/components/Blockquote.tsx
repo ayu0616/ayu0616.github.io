@@ -1,19 +1,27 @@
 'use client'
 
+import type React from 'react'
 import { type ComponentProps, createRef } from 'react'
 
 import { cn } from '~/lib/utils'
 
 export interface BlockquoteProps extends ComponentProps<'blockquote'> {}
 
-const Blockquote: React.FC<BlockquoteProps> = ({ className, ...props }) => {
+const Blockquote: React.FC<BlockquoteProps> = (props) => {
+    const { className } = props
     const isTwitter = className?.split(' ').includes('twitter-tweet')
+    const isInstagram = className?.split(' ').includes('instagram-media')
     const ref = createRef<HTMLQuoteElement>()
     // useEffect(() => {
     //     if (isTwitter) {
     //         window.twttr?.widgets.load(ref.current)
     //     }
     // }, [isTwitter, ref])
+
+    if (isInstagram) {
+        return <InstagramQuote {...props} />
+    }
+
     return (
         <div
             className={cn(
@@ -30,6 +38,14 @@ const Blockquote: React.FC<BlockquoteProps> = ({ className, ...props }) => {
                     className,
                 )}
             />
+        </div>
+    )
+}
+
+const InstagramQuote: React.FC<BlockquoteProps> = (props) => {
+    return (
+        <div className="flex items-center justify-center">
+            <blockquote {...props} />
         </div>
     )
 }
