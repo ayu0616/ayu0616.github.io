@@ -12,7 +12,7 @@ export function meta({ params }: Route.MetaArgs) {
         { title: 'はっさくゼリー製造工場' },
         {
             name: 'description',
-            content: 'はっさくのあれこれを書いたサイトです。',
+            content: 'はっさくのあれこれを書いたサイトです。@hassaku_0616',
         },
     ]
 }
