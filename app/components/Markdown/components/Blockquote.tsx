@@ -44,7 +44,7 @@ const Blockquote: React.FC<BlockquoteProps> = (props) => {
 
 const InstagramQuote: React.FC<BlockquoteProps> = (props) => {
     return (
-        <div className="flex items-center justify-center">
+        <div className="flex w-full min-w-0 items-center justify-center">
             <blockquote {...props} />
         </div>
     )
